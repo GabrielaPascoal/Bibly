@@ -1,20 +1,16 @@
 package model.VO;
 
 public class UsuarioVO {
-  private Integer id;
+  private int id;
   private String cpf;
   private String senha;
 
-  public Integer getInt() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setInt(Integer id) {
+  public void setInt(int id) {
     try {
-      if (id.equals(null)) {
-        throw new Exception("O usuário deve possuir um id.");
-      }
-
       if (id <= 0) {
         throw new Exception("O id do usuário não pode ser menor que 0.");
       }

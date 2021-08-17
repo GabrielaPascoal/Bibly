@@ -1,22 +1,18 @@
 package model.VO;
 
 public class ClienteVO {
-  private Integer id;
+  private int id;
   private String nome;
   private String cpf;
   private String endereco;
-  private Integer celular;
+  private int celular;
 
-  public Integer getInt() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setInt(Integer id) {
+  public void setInt(int id) {
     try {
-      if (id.equals(null)) {
-        throw new Exception("O cliente deve possuir um id.");
-      }
-
       if (id <= 0) {
         throw new Exception("O id do cliente não pode ser menor que 0.");
       }
@@ -83,16 +79,12 @@ public class ClienteVO {
     }
   }
 
-  public Integer getCelular() {
+  public int getCelular() {
     return this.celular;
   }
 
-  public void setCelular(Integer celular) {
+  public void setCelular(int celular) {
     try {
-      if (celular.equals(null)) {
-        throw new Exception("O cliente deve informar um número de celular.");
-      }
-
       if (String.valueOf(celular).length() <= 8) {
         throw new Exception("O cliente deve informar um número válido.");
       }

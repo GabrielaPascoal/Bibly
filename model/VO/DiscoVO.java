@@ -1,23 +1,19 @@
 package model.VO;
 
 public class DiscoVO {
-  private Integer id;
+  private int id;
   private String titulo;
   private String artista;
   private String estilo;
-  private Double valor;
-  private Integer quantidade;
+  private double valor;
+  private int quantidade;
 
-  public Integer getInt() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setInt(Integer id) {
+  public void setInt(int id) {
     try {
-      if (id.equals(null)) {
-        throw new Exception("O disco deve possuir um id.");
-      }
-
       if (id <= 0) {
         throw new Exception("O id do disco não pode ser menor que 0.");
       }
@@ -80,37 +76,31 @@ public class DiscoVO {
     }
   }
 
-  public Double getValor() {
+  public double getValor() {
     return this.valor;
   }
 
-  public void setValor(Double valor) {
+  public void setValor(double valor) {
     try {
-      if (valor.equals(null)) {
-        throw new Exception("O disco deve possuir um valor.");
-      }
-
       if (valor <= 0) {
         throw new Exception("O valor do disco não pode ser menor que 0.");
       }
 
       this.valor = valor;
 
-    } catch (Exception erro) {
+    } catch (
+
+    Exception erro) {
 
     }
   }
 
-  public Integer getQuantidade() {
+  public int getQuantidade() {
     return this.quantidade;
   }
 
-  public void setQuantidade(Integer quantidade) {
+  public void setQuantidade(int quantidade) {
     try {
-      if (quantidade.equals(null)) {
-        throw new Exception("Deve haver uma quantidade de discos.");
-      }
-
       if (quantidade <= 0) {
         throw new Exception("A quantidade de discos não pode ser menor que 0.");
       }

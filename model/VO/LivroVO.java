@@ -1,25 +1,21 @@
 package model.VO;
 
 public class LivroVO {
-  private Integer id;
+  private int id;
   private String titulo;
   private String artista;
   private String estilo;
-  private Integer ano;
-  private Integer paginas;
-  private Double valor;
-  private Integer quantidade;
+  private int ano;
+  private int paginas;
+  private double valor;
+  private int quantidade;
 
-  public Integer getInt() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setInt(Integer id) {
+  public void setInt(int id) {
     try {
-      if (id.equals(null)) {
-        throw new Exception("O livro deve possuir um id.");
-      }
-
       if (id <= 0) {
         throw new Exception("O id do livro não pode ser menor que 0.");
       }
@@ -82,16 +78,12 @@ public class LivroVO {
     }
   }
 
-  public Integer getAno() {
+  public int getAno() {
     return this.ano;
   }
 
-  public void setAno(Integer ano) {
+  public void setAno(int ano) {
     try {
-      if (ano.equals(null)) {
-        throw new Exception("O livro deve possuir um ano de lançamento.");
-      }
-
       if (ano <= 0) {
         throw new Exception("O ano do livro não pode ser menor que 0.");
       }
@@ -103,16 +95,12 @@ public class LivroVO {
     }
   }
 
-  public Integer getPagina() {
+  public int getPagina() {
     return this.paginas;
   }
 
-  public void setPagina(Integer paginas) {
+  public void setPagina(int paginas) {
     try {
-      if ((paginas.equals(null)) || (paginas == 0)) {
-        throw new Exception("O livro deve possuir algumas paginas.");
-      }
-
       if (paginas <= 0) {
         throw new Exception("A quantidade de paginas do livro não pode ser menor que 0.");
       }
@@ -124,16 +112,12 @@ public class LivroVO {
     }
   }
 
-  public Double getValor() {
+  public double getValor() {
     return this.valor;
   }
 
-  public void setValor(Double valor) {
+  public void setValor(double valor) {
     try {
-      if (valor.equals(null)) {
-        throw new Exception("O livro deve possuir um valor.");
-      }
-
       if (valor <= 0) {
         throw new Exception("O valor do livro não pode ser menor que 0.");
       }
@@ -145,16 +129,12 @@ public class LivroVO {
     }
   }
 
-  public Integer getQuantidade() {
+  public int getQuantidade() {
     return this.quantidade;
   }
 
-  public void setQuantidade(Integer quantidade) {
+  public void setQuantidade(int quantidade) {
     try {
-      if (quantidade.equals(null)) {
-        throw new Exception("Deve haver uma quantidade de livros.");
-      }
-
       if (quantidade <= 0) {
         throw new Exception("A quantidade de livros não pode ser menor que 0.");
       }

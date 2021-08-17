@@ -1,21 +1,17 @@
 package model.VO;
 
 public class AluguelVO {
-  private Integer id;
+  private int id;
   private String produto;
-  private Integer quantidade;
-  private Double valor;
+  private int quantidade;
+  private double valor;
 
-  public Integer getInt() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setInt(Integer id) {
+  public void setInt(int id) {
     try {
-      if (id.equals(null)) {
-        throw new Exception("O aluguel deve possuir um id.");
-      }
-
       if (id <= 0) {
         throw new Exception("O id do aluguel não pode ser menor que 0.");
       }
@@ -44,16 +40,12 @@ public class AluguelVO {
     }
   }
 
-  public Double getValor() {
+  public double getValor() {
     return this.valor;
   }
 
-  public void setValor(Double valor) {
+  public void setValor(double valor) {
     try {
-      if (valor.equals(null)) {
-        throw new Exception("O aluguel deve possuir um valor.");
-      }
-
       if (valor <= 0) {
         throw new Exception("O valor do aluguel não pode ser menor que 0.");
       }
@@ -65,16 +57,12 @@ public class AluguelVO {
     }
   }
 
-  public Integer getQuantidade() {
+  public int getQuantidade() {
     return this.quantidade;
   }
 
-  public void setQuantidade(Integer quantidade) {
+  public void setQuantidade(int quantidade) {
     try {
-      if (quantidade.equals(null)) {
-        throw new Exception("Deve haver uma quantidade de itens alugados.");
-      }
-
       if (quantidade <= 0) {
         throw new Exception("A quantidade itens alugados não pode ser menor que 0.");
       }
