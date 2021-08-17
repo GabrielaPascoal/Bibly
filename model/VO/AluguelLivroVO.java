@@ -1,8 +1,8 @@
 package model.VO;
 
-public class AluguelVO {
+public class AluguelLivroVO {
   private int id;
-  private String produto;
+  private LivroVO produto;
   private int quantidade;
   private double valor;
 
@@ -23,14 +23,14 @@ public class AluguelVO {
     }
   }
 
-  public String getProduto() {
+  public LivroVO getProduto() {
     return this.produto;
   }
 
-  public void setProduto(String produto) {
+  public void setProduto(LivroVO produto) {
     try {
-      if ((produto == null) || (produto == (""))) {
-        throw new Exception("O cliente deve informar o produto que irá ser alugado.");
+      if (produto == null) {
+        throw new Exception("O livro que irá ser alugado deve ser informado.");
       }
 
       this.produto = produto;
