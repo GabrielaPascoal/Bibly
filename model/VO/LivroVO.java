@@ -3,7 +3,7 @@ package model.VO;
 public class LivroVO {
   private int id;
   private String titulo;
-  private String artista;
+  private String autor;
   private String estilo;
   private int ano;
   private int paginas;
@@ -44,17 +44,17 @@ public class LivroVO {
     }
   }
 
-  public String getArtista() {
-    return this.artista;
+  public String getAutor() {
+    return this.autor;
   }
 
-  public void setArtista(String artista) {
+  public void setAutor(String autor) {
     try {
-      if ((artista == null) || (artista == (""))) {
-        throw new Exception("O livro deve conter um artítsa.");
+      if ((autor == null) || (autor == (""))) {
+        throw new Exception("O livro deve conter um autor.");
       }
 
-      this.artista = artista;
+      this.autor = autor;
 
     } catch (Exception erro) {
 
