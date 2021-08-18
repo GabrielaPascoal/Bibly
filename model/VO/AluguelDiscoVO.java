@@ -2,6 +2,7 @@ package model.VO;
 
 public class AluguelDiscoVO<T> {
   private int id;
+  private ClienteVO cliente;
   private DiscoVO produto;
   private int quantidade;
   private double valor;
@@ -17,6 +18,23 @@ public class AluguelDiscoVO<T> {
       }
 
       this.id = id;
+
+    } catch (Exception erro) {
+
+    }
+  }
+
+  public ClienteVO getCliente() {
+    return this.cliente;
+  }
+
+  public void setCliente(ClienteVO cliente) {
+    try {
+      if (cliente == null) {
+        throw new Exception("O Cliente que irá alugar deve ser informar.");
+      }
+
+      this.cliente = cliente;
 
     } catch (Exception erro) {
 
