@@ -1,6 +1,6 @@
 package model.VO;
 
-public class AluguelDiscoVO<T> {
+public class AluguelDiscoVO {
   private int id;
   private ClienteVO cliente;
   private DiscoVO produto;
