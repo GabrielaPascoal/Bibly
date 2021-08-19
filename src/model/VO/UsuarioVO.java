@@ -12,12 +12,14 @@ public class UsuarioVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do usuÃ¡rio nÃ£o pode ser menor que 0.");
+        throw new Exception("O id do usuário não pode ser menor que 0.");
       }
 
       this.id = id;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -28,17 +30,19 @@ public class UsuarioVO {
 
   public void setCpf(String cpf) {
     try {
-      if ((cpf == null) || (cpf == (""))) {
-        throw new Exception("O usuÃ¡rio deve informar um CPF.");
+      if ((cpf == null) || (cpf.equals(""))) {
+        throw new Exception("O usuário deve informar um CPF.");
       }
 
       if (cpf.length() != 11) {
-        throw new Exception("o usuÃ¡rio deve informar um CPF vÃ¡lido.");
+        throw new Exception("o usuário deve informar um CPF válido.");
       }
 
       this.cpf = cpf;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -49,13 +53,15 @@ public class UsuarioVO {
 
   public void setSenha(String senha) {
     try {
-      if ((senha == null) || (senha == (""))) {
-        throw new Exception("O usuÃ¡rio deve apresentar uma senha.");
+      if ((senha == null) || (senha.equals(""))) {
+        throw new Exception("O usuário deve apresentar uma senha.");
       }
 
       this.senha = senha;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }

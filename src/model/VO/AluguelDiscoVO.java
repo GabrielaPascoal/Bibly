@@ -1,9 +1,9 @@
 package model.VO;
 
-public class AluguelLivroVO {
+public class AluguelDiscoVO {
   private int id;
   private ClienteVO cliente;
-  private LivroVO produto;
+  private DiscoVO produto;
   private int quantidade;
   private double valor;
 
@@ -20,6 +20,8 @@ public class AluguelLivroVO {
       this.id = id;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -37,23 +39,27 @@ public class AluguelLivroVO {
       this.cliente = cliente;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
 
-  public LivroVO getProduto() {
+  public DiscoVO getProduto() {
     return this.produto;
   }
 
-  public void setProduto(LivroVO produto) {
+  public void setProduto(DiscoVO produto) {
     try {
       if (produto == null) {
-        throw new Exception("O livro que irá ser alugado deve ser informado.");
+        throw new Exception("O disco que irá ser alugado deve ser informar.");
       }
 
       this.produto = produto;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -71,6 +77,8 @@ public class AluguelLivroVO {
       this.valor = valor;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -88,6 +96,8 @@ public class AluguelLivroVO {
       this.quantidade = quantidade;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }

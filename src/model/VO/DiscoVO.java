@@ -21,6 +21,8 @@ public class DiscoVO {
       this.id = id;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -31,13 +33,15 @@ public class DiscoVO {
 
   public void setTitulo(String titulo) {
     try {
-      if ((titulo == null) || (titulo == (""))) {
+      if ((titulo == null) || (titulo.equals(""))) {
         throw new Exception("O disco deve conter um título.");
       }
 
       this.titulo = titulo;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -48,13 +52,15 @@ public class DiscoVO {
 
   public void setArtista(String artista) {
     try {
-      if ((artista == null) || (artista == (""))) {
+      if ((artista == null) || (artista.equals(""))) {
         throw new Exception("O disco deve conter um artítsa.");
       }
 
       this.artista = artista;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -65,13 +71,15 @@ public class DiscoVO {
 
   public void setEstilo(String estilo) {
     try {
-      if ((estilo == null) || (estilo == (""))) {
+      if ((estilo == null) || (estilo.equals(""))) {
         throw new Exception("O disco deve possuir um estilo.");
       }
 
       this.estilo = estilo;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -83,14 +91,14 @@ public class DiscoVO {
   public void setValor(double valor) {
     try {
       if (valor <= 0) {
-        throw new Exception("O valor do disco não pode ser menor que 0.");
+        throw new Exception("O valor do disco n�o pode ser menor que 0.");
       }
 
       this.valor = valor;
 
-    } catch (
-
-    Exception erro) {
+    } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -101,13 +109,15 @@ public class DiscoVO {
 
   public void setQuantidade(int quantidade) {
     try {
-      if (quantidade <= 0) {
+      if (quantidade < 0) {
         throw new Exception("A quantidade de discos não pode ser menor que 0.");
       }
 
       this.quantidade = quantidade;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }

@@ -20,6 +20,8 @@ public class ClienteVO {
       this.id = id;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -30,13 +32,15 @@ public class ClienteVO {
 
   public void setNome(String nome) {
     try {
-      if ((nome == null) || (nome == (""))) {
+      if ((nome == null) || (nome.equals(""))) {
         throw new Exception("O cliente deve apresentar um nome.");
       }
 
       this.nome = nome;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -47,7 +51,7 @@ public class ClienteVO {
 
   public void setCpf(String cpf) {
     try {
-      if ((cpf == null) || (cpf == (""))) {
+      if ((cpf == null) || (cpf.equals(""))) {
         throw new Exception("O cliente deve informar um CPF.");
       }
 
@@ -58,6 +62,8 @@ public class ClienteVO {
       this.cpf = cpf;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -68,13 +74,15 @@ public class ClienteVO {
 
   public void setEndereco(String endereco) {
     try {
-      if ((endereco == null) || (endereco == (""))) {
+      if ((endereco == null) || (endereco.equals(""))) {
         throw new Exception("O cliente deve informar um endereco.");
       }
 
       this.endereco = endereco;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -92,6 +100,8 @@ public class ClienteVO {
       this.celular = celular;
 
     } catch (Exception erro) {
+    	
+    	System.err.println(erro);
 
     }
   }
