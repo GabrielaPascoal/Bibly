@@ -17,14 +17,14 @@ public class LivroVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do livro não pode ser menor que 0.");
+        throw new Exception("O id do livro nï¿½o pode ser menor que 0.");
       }
 
       this.id = id;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -36,14 +36,14 @@ public class LivroVO {
   public void setTitulo(String titulo) {
     try {
       if ((titulo == null) || (titulo.equals(""))) {
-        throw new Exception("O livro deve conter um título.");
+        throw new Exception("O livro deve conter um tï¿½tulo.");
       }
 
       this.titulo = titulo;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -61,8 +61,8 @@ public class LivroVO {
       this.autor = autor;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -80,8 +80,8 @@ public class LivroVO {
       this.estilo = estilo;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -92,6 +92,10 @@ public class LivroVO {
 
   public void setAno(int ano) {
     try {
+      if (String.valueOf(ano).length() <= 4) {
+        throw new Exception("O ano deve possuir 4 caractÃ©res.");
+      }
+
       if (ano <= 0) {
         throw new Exception("O ano do livro nÃ£o pode ser menor que 0.");
       }
@@ -99,8 +103,8 @@ public class LivroVO {
       this.ano = ano;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -118,8 +122,8 @@ public class LivroVO {
       this.paginas = paginas;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -137,8 +141,8 @@ public class LivroVO {
       this.valor = valor;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
@@ -156,8 +160,8 @@ public class LivroVO {
       this.quantidade = quantidade;
 
     } catch (Exception erro) {
-    	
-    	System.err.println(erro);
+
+      System.err.println(erro);
 
     }
   }
