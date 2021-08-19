@@ -19,7 +19,7 @@ public class LivroVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do livro nï¿½o pode ser menor que 0.");
+        throw new Exception("O id do livro não pode ser menor que 0.");
       }
 
       this.id = id;
@@ -95,11 +95,11 @@ public class LivroVO {
   public void setAno(int ano) {
     try {
       if (String.valueOf(ano).length() <= 4) {
-        throw new Exception("O ano deve possuir 4 caractÃ©res.");
+        throw new Exception("O ano deve possuir 4 caracteres.");
       }
 
       if (ano <= 0) {
-        throw new Exception("O ano do livro nÃ£o pode ser menor que 0.");
+        throw new Exception("O ano do livro não pode ser menor que 0.");
       }
 
       this.ano = ano;
@@ -118,7 +118,7 @@ public class LivroVO {
   public void setPagina(int paginas) {
     try {
       if (paginas <= 0) {
-        throw new Exception("A quantidade de paginas do livro nÃ£o pode ser menor que 0.");
+        throw new Exception("A quantidade de paginas do livro não pode ser menor que 0.");
       }
 
       this.paginas = paginas;
@@ -137,7 +137,7 @@ public class LivroVO {
   public void setValor(double valor) {
     try {
       if (valor <= 0) {
-        throw new Exception("O valor do livro nÃ£o pode ser menor que 0.");
+        throw new Exception("O valor do livro não pode ser menor que 0.");
       }
 
       this.valor = valor;
@@ -156,7 +156,7 @@ public class LivroVO {
   public void setQuantidade(int quantidade) {
     try {
       if (quantidade < 0) {
-        throw new Exception("A quantidade de livros nÃ£o pode ser menor que 0.");
+        throw new Exception("A quantidade de livros não pode ser menor que 0.");
       }
 
       this.quantidade = quantidade;

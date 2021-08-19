@@ -16,7 +16,7 @@ public class ClienteVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do cliente nÃ£o pode ser menor que 0.");
+        throw new Exception("O id do cliente não pode ser menor que 0.");
       }
 
       this.id = id;
@@ -58,7 +58,7 @@ public class ClienteVO {
       }
 
       if (cpf.length() != 11) {
-        throw new Exception("O cliente deve informar um CPF vÃ¡lido.");
+        throw new Exception("O cliente deve informar um CPF válido.");
       }
 
       this.cpf = cpf;
@@ -96,7 +96,7 @@ public class ClienteVO {
   public void setCelular(int celular) {
     try {
       if (String.valueOf(celular).length() <= 8) {
-        throw new Exception("O cliente deve informar um nÃºmero vÃ¡lido.");
+        throw new Exception("O cliente deve informar um número válido.");
       }
 
       this.celular = celular;
