@@ -9,6 +9,8 @@ public class LivroVO {
   private int paginas;
   private double valor;
   private int quantidade;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;

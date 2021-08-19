@@ -4,6 +4,8 @@ public class UsuarioVO {
   private int id;
   private String cpf;
   private String senha;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;

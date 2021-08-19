@@ -6,6 +6,8 @@ public class AluguelDiscoVO {
   private DiscoVO produto;
   private int quantidade;
   private double valor;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;

@@ -6,6 +6,8 @@ public class ClienteVO {
   private String cpf;
   private String endereco;
   private int celular;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;
