@@ -92,7 +92,7 @@ public class LivroVO {
 
   public void setAno(int ano) {
     try {
-      if (String.valueOf(ano).length() <= 4) {
+      if ((String.valueOf(ano).length() != 4)) {
         throw new Exception("O ano deve possuir 4 caractéres.");
       }
 
