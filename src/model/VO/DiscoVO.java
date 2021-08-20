@@ -7,6 +7,8 @@ public class DiscoVO {
   private String estilo;
   private double valor;
   private int quantidade;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;
@@ -15,7 +17,7 @@ public class DiscoVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do disco nÃ£o pode ser menor que 0.");
+        throw new Exception("O id do disco não pode ser menor que 0.");
       }
 
       this.id = id;
@@ -34,7 +36,7 @@ public class DiscoVO {
   public void setTitulo(String titulo) {
     try {
       if ((titulo == null) || (titulo.equals(""))) {
-        throw new Exception("O disco deve conter um tÃ­tulo.");
+        throw new Exception("O disco deve conter um titulo.");
       }
 
       this.titulo = titulo;
@@ -53,7 +55,7 @@ public class DiscoVO {
   public void setArtista(String artista) {
     try {
       if ((artista == null) || (artista.equals(""))) {
-        throw new Exception("O disco deve conter um artÃ­tsa.");
+        throw new Exception("O disco deve conter um artista.");
       }
 
       this.artista = artista;
@@ -110,7 +112,7 @@ public class DiscoVO {
   public void setQuantidade(int quantidade) {
     try {
       if (quantidade < 0) {
-        throw new Exception("A quantidade de discos nÃ£o pode ser menor que 0.");
+        throw new Exception("A quantidade de discos não pode ser menor que 0.");
       }
 
       this.quantidade = quantidade;

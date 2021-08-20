@@ -6,6 +6,8 @@ public class AluguelDiscoVO {
   private DiscoVO produto;
   private int quantidade;
   private double valor;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;
@@ -14,7 +16,7 @@ public class AluguelDiscoVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do aluguel nÃ£o pode ser menor que 0.");
+        throw new Exception("O id do aluguel não pode ser menor que 0.");
       }
 
       this.id = id;
@@ -33,7 +35,7 @@ public class AluguelDiscoVO {
   public void setCliente(ClienteVO cliente) {
     try {
       if (cliente == null) {
-        throw new Exception("O Cliente que irÃ¡ alugar deve ser informar.");
+        throw new Exception("O cliente que irá alugar deve ser informado.");
       }
 
       this.cliente = cliente;
@@ -52,7 +54,7 @@ public class AluguelDiscoVO {
   public void setProduto(DiscoVO produto) {
     try {
       if (produto == null) {
-        throw new Exception("O disco que irÃ¡ ser alugado deve ser informar.");
+        throw new Exception("O disco que irá ser alugado deve ser informado.");
       }
 
       this.produto = produto;
@@ -71,7 +73,7 @@ public class AluguelDiscoVO {
   public void setValor(double valor) {
     try {
       if (valor <= 0) {
-        throw new Exception("O valor do aluguel nÃ£o pode ser menor que 0.");
+        throw new Exception("O valor do aluguel não pode ser menor que 0.");
       }
 
       this.valor = valor;
@@ -90,7 +92,7 @@ public class AluguelDiscoVO {
   public void setQuantidade(int quantidade) {
     try {
       if (quantidade <= 0) {
-        throw new Exception("A quantidade itens alugados nÃ£o pode ser menor que 0.");
+        throw new Exception("A quantidade itens alugados não pode ser menor que 0.");
       }
 
       this.quantidade = quantidade;

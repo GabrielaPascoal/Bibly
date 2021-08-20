@@ -9,6 +9,8 @@ public class LivroVO {
   private int paginas;
   private double valor;
   private int quantidade;
+  
+  // implementação para garantir integridade dos dados
 
   public int getInt() {
     return this.id;
@@ -17,7 +19,7 @@ public class LivroVO {
   public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do livro n�o pode ser menor que 0.");
+        throw new Exception("O id do livro não pode ser menor que 0.");
       }
 
       this.id = id;
@@ -36,7 +38,7 @@ public class LivroVO {
   public void setTitulo(String titulo) {
     try {
       if ((titulo == null) || (titulo.equals(""))) {
-        throw new Exception("O livro deve conter um t�tulo.");
+        throw new Exception("O livro deve conter um tï¿½tulo.");
       }
 
       this.titulo = titulo;
@@ -92,8 +94,9 @@ public class LivroVO {
 
   public void setAno(int ano) {
     try {
+
       if ((String.valueOf(ano).length() != 4)) {
-        throw new Exception("O ano deve possuir 4 caractéres.");
+        throw new Exception("O ano deve possuir 4 caractÃ©res.");
       }
 
       if (ano <= 0) {
