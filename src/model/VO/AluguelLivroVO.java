@@ -63,4 +63,14 @@ public class AluguelLivroVO {
 
     }
   }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "aluguel_id: " + this.aluguel.getId() + '\n';
+    obj += "produto: {" + this.produto + "}" + '\n';
+    obj += "quantidade: " + this.quantidade;
+
+    return obj;
+  }
 }

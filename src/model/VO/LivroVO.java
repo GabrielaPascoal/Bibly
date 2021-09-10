@@ -9,14 +9,14 @@ public class LivroVO {
   private int paginas;
   private double valor;
   private int quantidade;
-  
+
   // implementação para garantir integridade dos dados
 
-  public int getInt() {
+  public int getId() {
     return this.id;
   }
 
-  public void setInt(int id) {
+  public void setId(int id) {
     try {
       if (id <= 0) {
         throw new Exception("O id do livro não pode ser menor que 0.");
@@ -167,5 +167,20 @@ public class LivroVO {
       System.err.println(erro);
 
     }
+  }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "titulo: " + this.titulo + '\n';
+    obj += "autor: " + this.autor + '\n';
+    obj += "estilo: " + this.estilo + '\n';
+    obj += "ano: " + this.ano + '\n';
+    obj += "paginas: " + this.paginas + '\n';
+    obj += "valor: " + this.valor + '\n';
+    obj += "quantidade: " + this.quantidade;
+
+    return obj;
   }
 }
