@@ -45,9 +45,6 @@ public class AluguelLivroDAO extends BaseDAO {
       aluguel.setId(resposta.getInt("aluguel_id"));
       // livro.setId(resposta.getInt("livro_id"));
 
-      aluguel = AluguelDAO.buscarPorId(aluguel);
-      // livro = LivroDAO.buscarPorId(livro);
-
       aluguelLivroEncontrado.setAluguel(aluguel);
       // aluguelLivroEncontrado.setLivro(livro);
       aluguelLivroEncontrado.setQuantidade(resposta.getInt("quantidade"));

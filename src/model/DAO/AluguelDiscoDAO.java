@@ -45,9 +45,6 @@ public class AluguelDiscoDAO extends BaseDAO {
       aluguel.setId(resposta.getInt("aluguel_id"));
       // disco.setId(resposta.getInt("disco_id"));
 
-      aluguel = AluguelDAO.buscarPorId(aluguel);
-      // disco = DiscoDAO.buscarPorId(disco);
-
       aluguelDiscoEncontrado.setAluguel(aluguel);
       // aluguelDiscoEncontrado.setDisco(disco);
       aluguelDiscoEncontrado.setQuantidade(resposta.getInt("quantidade"));
