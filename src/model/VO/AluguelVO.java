@@ -116,9 +116,6 @@ public class AluguelVO {
       if (data == null) {
         throw new Exception("A data do aluguel deve ser informado.");
       }
-      if (data.isBefore(LocalDate.now())) {
-        throw new Exception("Não é possível alugar algo no passado.");
-      }
 
       this.data = data;
 
@@ -127,5 +124,15 @@ public class AluguelVO {
       System.err.println(erro);
 
     }
+  }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "valor: " + this.valor + '\n';
+    obj += "data: " + this.data.toString();
+
+    return obj;
   }
 }
