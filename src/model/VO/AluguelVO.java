@@ -14,11 +14,11 @@ public class AluguelVO {
     return this.cliente;
   }
 
-  public int getInt() {
+  public int getId() {
     return this.id;
   }
 
-  public void setInt(int id) {
+  public void setId(int id) {
     try {
       if (id <= 0) {
         throw new Exception("O id do aluguel n�o pode ser menor que 0.");

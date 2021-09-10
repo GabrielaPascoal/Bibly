@@ -9,14 +9,14 @@ public class LivroVO {
   private int paginas;
   private double valor;
   private int quantidade;
-  
+
   // implementação para garantir integridade dos dados
 
-  public int getInt() {
+  public int getId() {
     return this.id;
   }
 
-  public void setInt(int id) {
+  public void setId(int id) {
     try {
       if (id <= 0) {
         throw new Exception("O id do livro não pode ser menor que 0.");
