@@ -7,24 +7,24 @@ public class DiscoVO {
   private String estilo;
   private double valor;
   private int quantidade;
+  
+  // implementação para garantir integridade dos dados
 
-  // implementaï¿½ï¿½o para garantir integridade dos dados
-
-  public int getId() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do disco nï¿½o pode ser menor que 0.");
+        throw new Exception("O id do disco não pode ser menor que 0.");
       }
 
       this.id = id;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -42,8 +42,8 @@ public class DiscoVO {
       this.titulo = titulo;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -61,8 +61,8 @@ public class DiscoVO {
       this.artista = artista;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -80,8 +80,8 @@ public class DiscoVO {
       this.estilo = estilo;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -93,14 +93,14 @@ public class DiscoVO {
   public void setValor(double valor) {
     try {
       if (valor <= 0) {
-        throw new Exception("O valor do disco nï¿½o pode ser menor que 0.");
+        throw new Exception("O valor do disco não pode ser menor que 0.");
       }
 
       this.valor = valor;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -112,28 +112,15 @@ public class DiscoVO {
   public void setQuantidade(int quantidade) {
     try {
       if (quantidade < 0) {
-        throw new Exception("A quantidade de discos nï¿½o pode ser menor que 0.");
+        throw new Exception("A quantidade de discos não pode ser menor que 0.");
       }
 
       this.quantidade = quantidade;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
-  }
-
-  public String toString() {
-    String obj = "";
-
-    obj = "id: " + this.id + '\n';
-    obj += "titulo: " + this.titulo + '\n';
-    obj += "artista: " + this.artista + '\n';
-    obj += "estilo: " + this.estilo + '\n';
-    obj += "valor: " + this.valor + '\n';
-    obj += "quantidade: " + this.quantidade;
-
-    return obj;
   }
 }

@@ -6,24 +6,24 @@ public class ClienteVO {
   private String cpf;
   private String endereco;
   private int celular;
+  
+  // implementação para garantir integridade dos dados
 
-  // implementaï¿½ï¿½o para garantir integridade dos dados
-
-  public int getId() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setInt(int id) {
     try {
       if (id <= 0) {
-        throw new Exception("O id do cliente nï¿½o pode ser menor que 0.");
+        throw new Exception("O id do cliente não pode ser menor que 0.");
       }
 
       this.id = id;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -41,8 +41,8 @@ public class ClienteVO {
       this.nome = nome;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -58,14 +58,14 @@ public class ClienteVO {
       }
 
       if (cpf.length() != 11) {
-        throw new Exception("O cliente deve informar um CPF vï¿½lido.");
+        throw new Exception("O cliente deve informar um CPF válido.");
       }
 
       this.cpf = cpf;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -83,8 +83,8 @@ public class ClienteVO {
       this.endereco = endereco;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
   }
@@ -96,27 +96,15 @@ public class ClienteVO {
   public void setCelular(int celular) {
     try {
       if (String.valueOf(celular).length() <= 8) {
-        throw new Exception("O cliente deve informar um nï¿½mero vï¿½lido.");
+        throw new Exception("O cliente deve informar um número válido.");
       }
 
       this.celular = celular;
 
     } catch (Exception erro) {
-
-      System.err.println(erro);
+    	
+    	System.err.println(erro);
 
     }
-  }
-
-  public String toString() {
-    String obj = "";
-
-    obj = "id: " + this.id + '\n';
-    obj += "nome: " + this.nome + '\n';
-    obj += "cpf: " + this.cpf + '\n';
-    obj += "endereco: " + this.endereco + '\n';
-    obj += "celular: " + this.celular;
-
-    return obj;
   }
 }
