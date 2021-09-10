@@ -1,25 +1,24 @@
 package model.VO;
 
 import java.time.LocalDate;
-import java.util.List;
 
 public class AluguelVO {
   private int id;
   private double valor;
   private ClienteVO cliente;
-  private List<AluguelLivroVO> livros;
-  private List<AluguelDiscoVO> discos;
+  private AluguelLivroVO[] livros;
+  private AluguelDiscoVO[] discos;
   private LocalDate data;
 
   public ClienteVO getCliente() {
     return this.cliente;
   }
 
-  public int getId() {
+  public int getInt() {
     return this.id;
   }
 
-  public void setId(int id) {
+  public void setInt(int id) {
     try {
       if (id <= 0) {
         throw new Exception("O id do aluguel n�o pode ser menor que 0.");
@@ -68,11 +67,11 @@ public class AluguelVO {
     }
   }
 
-  public List<AluguelLivroVO> getLivros() {
+  public AluguelLivroVO[] getLivros() {
     return this.livros;
   }
 
-  public void setLivros(List<AluguelLivroVO> livros) {
+  public void setLivros(AluguelLivroVO[] livros) {
     try {
       for (AluguelLivroVO livro : livros) {
         if (livro == null) {
@@ -88,11 +87,11 @@ public class AluguelVO {
     }
   }
 
-  public List<AluguelDiscoVO> getDiscos() {
+  public AluguelDiscoVO[] getDiscos() {
     return this.discos;
   }
 
-  public void setDiscos(List<AluguelDiscoVO> discos) {
+  public void setDiscos(AluguelDiscoVO[] discos) {
     try {
       for (AluguelDiscoVO disco : discos) {
         if (disco == null) {
@@ -117,6 +116,9 @@ public class AluguelVO {
       if (data == null) {
         throw new Exception("A data do aluguel deve ser informado.");
       }
+      if (data.isBefore(LocalDate.now())) {
+        throw new Exception("Não é possível alugar algo no passado.");
+      }
 
       this.data = data;
 
@@ -125,18 +127,5 @@ public class AluguelVO {
       System.err.println(erro);
 
     }
-  }
-
-  public String toString() {
-    String obj = "";
-
-    obj = "id: " + this.id + '\n';
-    obj += "valor: " + this.valor + '\n';
-    obj += "data: " + this.data + '\n';
-    obj += "cliente: " + this.cliente + '\n';
-    obj += "livros: " + this.livros + '\n';
-    obj += "discos: " + this.discos;
-
-    return obj;
   }
 }
