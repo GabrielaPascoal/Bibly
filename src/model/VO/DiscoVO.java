@@ -123,4 +123,17 @@ public class DiscoVO {
 
     }
   }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "titulo: " + this.titulo + '\n';
+    obj += "artista: " + this.artista + '\n';
+    obj += "estilo: " + this.estilo + '\n';
+    obj += "valor: " + this.valor + '\n';
+    obj += "quantidade: " + this.quantidade;
+
+    return obj;
+  }
 }

@@ -107,4 +107,16 @@ public class ClienteVO {
 
     }
   }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "nome: " + this.nome + '\n';
+    obj += "cpf: " + this.cpf + '\n';
+    obj += "endereco: " + this.endereco + '\n';
+    obj += "celular: " + this.celular;
+
+    return obj;
+  }
 }

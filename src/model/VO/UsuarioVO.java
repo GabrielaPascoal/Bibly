@@ -67,4 +67,13 @@ public class UsuarioVO {
 
     }
   }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "cpf: " + this.cpf + '\n';
+
+    return obj;
+  }
 }

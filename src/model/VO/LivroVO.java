@@ -168,4 +168,19 @@ public class LivroVO {
 
     }
   }
+
+  public String toString() {
+    String obj = "";
+
+    obj = "id: " + this.id + '\n';
+    obj += "titulo: " + this.titulo + '\n';
+    obj += "autor: " + this.autor + '\n';
+    obj += "estilo: " + this.estilo + '\n';
+    obj += "ano: " + this.ano + '\n';
+    obj += "paginas: " + this.paginas + '\n';
+    obj += "valor: " + this.valor + '\n';
+    obj += "quantidade: " + this.quantidade;
+
+    return obj;
+  }
 }

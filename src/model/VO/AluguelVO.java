@@ -131,7 +131,7 @@ public class AluguelVO {
 
     obj = "id: " + this.id + '\n';
     obj += "valor: " + this.valor + '\n';
-    obj += "data: " + this.data.toString();
+    obj += "data: " + this.data;
 
     return obj;
   }
