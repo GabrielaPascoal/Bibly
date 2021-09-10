@@ -1,7 +1,9 @@
 package model.DAO;
 
 import java.sql.Statement;
+import java.time.LocalDate;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -107,13 +109,100 @@ public class AluguelDAO extends BaseDAO {
     return alugueisEncontrados;
   }
 
-  public static List<AluguelVO> buscarPorMes(Integer monthNumber) throws SQLException {
+  public static List<AluguelVO> buscarPorMes(Integer Mes) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE EXTRACT(MONTH FROM data) = ?";
 
     PreparedStatement preparedStatement = connection.prepareStatement(query);
-    preparedStatement.setInt(1, monthNumber);
+    preparedStatement.setInt(1, Mes);
+
+    ResultSet resposta = preparedStatement.executeQuery();
+
+    List<AluguelVO> alugueisEncontrados = new ArrayList<AluguelVO>();
+
+    while (resposta.next()) {
+
+      AluguelVO aluguelEncontrado = new AluguelVO();
+
+      aluguelEncontrado.setId(resposta.getInt("id"));
+      aluguelEncontrado.setValor(resposta.getDouble("valor"));
+      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
+
+      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+      // ClienteVO clientes = new ClienteVO();
+
+      alugueisLivros.setAluguel(aluguelEncontrado);
+      alugueisDiscos.setAluguel(aluguelEncontrado);
+      // clientes.setAluguel(aluguelEncontrado);
+
+      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+      // List<ClienteVO> clientesEncontrados =
+      // ClienteDAO.buscarPorAluguelId(clientes);
+
+      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
+      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
+      // aluguelEncontrado.setCliente(clienteEncontrados);
+
+      alugueisEncontrados.add(aluguelEncontrado);
+    }
+
+    return alugueisEncontrados;
+  }
+
+  public static List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM alugueis WHERE cliente_id= ?";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    preparedStatement.setInt(1, aluguel.getCliente().getId());
+
+    ResultSet resposta = preparedStatement.executeQuery();
+
+    List<AluguelVO> alugueisEncontrados = new ArrayList<AluguelVO>();
+
+    while (resposta.next()) {
+
+      AluguelVO aluguelEncontrado = new AluguelVO();
+
+      aluguelEncontrado.setId(resposta.getInt("id"));
+      aluguelEncontrado.setValor(resposta.getDouble("valor"));
+      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
+
+      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+      // ClienteVO clientes = new ClienteVO();
+
+      alugueisLivros.setAluguel(aluguelEncontrado);
+      alugueisDiscos.setAluguel(aluguelEncontrado);
+      // clientes.setAluguel(aluguelEncontrado);
+
+      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+      // List<ClienteVO> clientesEncontrados =
+      // ClienteDAO.buscarPorAluguelId(clientes);
+
+      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
+      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
+      // aluguelEncontrado.setCliente(clienteEncontrados);
+
+      alugueisEncontrados.add(aluguelEncontrado);
+    }
+
+    return alugueisEncontrados;
+  }
+
+  public static List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM alugueis WHERE (? <= data AND data <= ?)";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    preparedStatement.setDate(1, Date.valueOf(dataMin));
+    preparedStatement.setDate(2, Date.valueOf(dataMax));
 
     ResultSet resposta = preparedStatement.executeQuery();
 
