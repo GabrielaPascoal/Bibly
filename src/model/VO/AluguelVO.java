@@ -1,13 +1,14 @@
 package model.VO;
 
 import java.time.LocalDate;
+import java.util.List;
 
 public class AluguelVO {
   private int id;
   private double valor;
   private ClienteVO cliente;
-  private AluguelLivroVO[] livros;
-  private AluguelDiscoVO[] discos;
+  private List<AluguelLivroVO> livros;
+  private List<AluguelDiscoVO> discos;
   private LocalDate data;
 
   public ClienteVO getCliente() {
@@ -67,11 +68,11 @@ public class AluguelVO {
     }
   }
 
-  public AluguelLivroVO[] getLivros() {
+  public List<AluguelLivroVO> getLivros() {
     return this.livros;
   }
 
-  public void setLivros(AluguelLivroVO[] livros) {
+  public void setLivros(List<AluguelLivroVO> livros) {
     try {
       for (AluguelLivroVO livro : livros) {
         if (livro == null) {
@@ -87,11 +88,11 @@ public class AluguelVO {
     }
   }
 
-  public AluguelDiscoVO[] getDiscos() {
+  public List<AluguelDiscoVO> getDiscos() {
     return this.discos;
   }
 
-  public void setDiscos(AluguelDiscoVO[] discos) {
+  public void setDiscos(List<AluguelDiscoVO> discos) {
     try {
       for (AluguelDiscoVO disco : discos) {
         if (disco == null) {
@@ -131,7 +132,10 @@ public class AluguelVO {
 
     obj = "id: " + this.id + '\n';
     obj += "valor: " + this.valor + '\n';
-    obj += "data: " + this.data;
+    obj += "data: " + this.data + '\n';
+    obj += "cliente: " + this.cliente + '\n';
+    obj += "livros: " + this.livros + '\n';
+    obj += "discos: " + this.discos;
 
     return obj;
   }

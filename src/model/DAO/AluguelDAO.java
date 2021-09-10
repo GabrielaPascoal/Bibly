@@ -8,6 +8,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import model.VO.AluguelDiscoVO;
+import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
 
 public class AluguelDAO extends BaseDAO {
@@ -40,16 +42,26 @@ public class AluguelDAO extends BaseDAO {
 
     AluguelVO aluguelEncontrado = new AluguelVO();
 
-    // ClienteVO cliente = ClienteDAO.buscarPorId(resposta.getInt("cliente_id"));
-    // LivroVO[] livros =AluguelLivroDAO.buscarPorAluguelId(resposta.getInt("id"));
-    // DiscoVO[] discos =AluguelDiscoDAO.buscarPorAluguelId(resposta.getInt("id"));
-
     aluguelEncontrado.setId(resposta.getInt("id"));
     aluguelEncontrado.setValor(resposta.getDouble("valor"));
     aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
-    // aluguelEncontrado.setCliente(cliente);
-    // aluguelEncontrado.setLivros(livros);
-    // aluguelEncontrado.setDiscos(discos);
+
+    AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+    AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+    // ClienteVO clientes = new ClienteVO();
+
+    alugueisLivros.setAluguel(aluguelEncontrado);
+    alugueisDiscos.setAluguel(aluguelEncontrado);
+    // clientes.setAluguel(aluguelEncontrado);
+
+    List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+    List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+    // List<ClienteVO> clientesEncontrados =
+    // ClienteDAO.buscarPorAluguelId(clientes);
+
+    aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
+    aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
+    // aluguelEncontrado.setCliente(clienteEncontrados);
 
     return aluguelEncontrado;
   }
@@ -68,16 +80,26 @@ public class AluguelDAO extends BaseDAO {
 
       AluguelVO aluguel = new AluguelVO();
 
-      // ClienteVO cliente = ClienteDAO.buscarPorId(resposta.getInt("cliente_id"));
-      // LivroVO[] livros =AluguelLivroDAO.buscarPorAluguelId(resposta.getInt("id"));
-      // DiscoVO[] discos =AluguelDiscoDAO.buscarPorAluguelId(resposta.getInt("id"));
-
       aluguel.setId(resposta.getInt("id"));
       aluguel.setValor(resposta.getDouble("valor"));
       aluguel.setData(resposta.getDate("data").toLocalDate());
-      // aluguel.setCliente(cliente);
-      // aluguel.setLivros(livros);
-      // aluguel.setDiscos(discos);
+
+      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+      // ClienteVO clientes = new ClienteVO();
+
+      alugueisLivros.setAluguel(aluguel);
+      alugueisDiscos.setAluguel(aluguel);
+      // clientes.setAluguel(aluguel);
+
+      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+      // List<ClienteVO> clientesEncontrados =
+      // ClienteDAO.buscarPorAluguelId(clientes);
+
+      aluguel.setLivros(alugueisLivrosEncontrados);
+      aluguel.setDiscos(alugueisDiscosEncontrados);
+      // aluguel.setCliente(clienteEncontrados);
 
       alugueisEncontrados.add(aluguel);
     }
@@ -99,20 +121,30 @@ public class AluguelDAO extends BaseDAO {
 
     while (resposta.next()) {
 
-      AluguelVO aluguelEcontrado = new AluguelVO();
+      AluguelVO aluguelEncontrado = new AluguelVO();
 
-      // ClienteVO cliente = ClienteDAO.buscarPorId(resposta.getInt("cliente_id"));
-      // LivroVO[] livros =AluguelLivroDAO.buscarPorAluguelId(resposta.getInt("id"));
-      // DiscoVO[] discos =AluguelDiscoDAO.buscarPorAluguelId(resposta.getInt("id"));
+      aluguelEncontrado.setId(resposta.getInt("id"));
+      aluguelEncontrado.setValor(resposta.getDouble("valor"));
+      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
 
-      aluguelEcontrado.setId(resposta.getInt("id"));
-      aluguelEcontrado.setValor(resposta.getDouble("valor"));
-      aluguelEcontrado.setData(resposta.getDate("data").toLocalDate());
-      // aluguelEcontrado.setCliente(cliente);
-      // aluguelEcontrado.setLivros(livros);
-      // aluguelEcontrado.setDiscos(discos);
+      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+      // ClienteVO clientes = new ClienteVO();
 
-      alugueisEncontrados.add(aluguelEcontrado);
+      alugueisLivros.setAluguel(aluguelEncontrado);
+      alugueisDiscos.setAluguel(aluguelEncontrado);
+      // clientes.setAluguel(aluguelEncontrado);
+
+      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+      // List<ClienteVO> clientesEncontrados =
+      // ClienteDAO.buscarPorAluguelId(clientes);
+
+      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
+      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
+      // aluguelEncontrado.setCliente(clienteEncontrados);
+
+      alugueisEncontrados.add(aluguelEncontrado);
     }
 
     return alugueisEncontrados;
