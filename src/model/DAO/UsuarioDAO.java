@@ -14,9 +14,9 @@ public class UsuarioDAO extends BaseDAO  {
 	
 	
 	// Inserir usuarios.
-		public void inserir(UsuarioVO user) {
+		public static void inserir(UsuarioVO user) {
 			
-			String sql = "insert into usuarios (cpf,senha) values (?,?)";		
+			String sql = "INSERT INTO usuarios (cpf,senha) VALUES (?,?)";		
 			PreparedStatement ptst;
 			
 			try {
@@ -36,9 +36,9 @@ public class UsuarioDAO extends BaseDAO  {
 		
 		
 		// Remover usuarios cadastrados. 
-		public void removerPorId(UsuarioVO user) {
+		public static void removerPorId(UsuarioVO user) {
 			
-			String sql = "delete from usuarios where id = ?";
+			String sql = "DELETE FROM usuarios WHERE id = ?";
 			PreparedStatement ptst;
 			
 			try {
@@ -56,9 +56,9 @@ public class UsuarioDAO extends BaseDAO  {
 		
 		
 		// Editar usuarios cadastrados.
-		public void editar(UsuarioVO user) {
+		public static void editar(UsuarioVO user) {
 			
-			String sql = "Update usuarios SET cpf = ?, senha = ? where id = ? ";
+			String sql = "UPDATE usuarios SET cpf = ?, senha = ? WHERE id = ? ";
 			PreparedStatement ptst;
 			
 			try {
@@ -77,9 +77,9 @@ public class UsuarioDAO extends BaseDAO  {
 		}
 		
 		// Buscar todos os usuarios cadastrados.
-		public List<UsuarioVO> buscar() {
+		public static List<UsuarioVO> buscar() {
 			
-			String sql = "select * from usuarios";		
+			String sql = "SELECT * FROM usuarios";		
 			Statement st;
 			
 			List<UsuarioVO> livrosEncontrados = new ArrayList<UsuarioVO>();
