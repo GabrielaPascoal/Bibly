@@ -15,7 +15,7 @@ public class LivroDAO extends BaseDAO {
 	// Inserir livros.
 	public static void inserir(LivroVO livro) {
 
-		String sql = "insert into livros (titulo, autor, genero, ano, paginas, valor, quantidade) values (?,?,?,?,?,?,?)";
+		String sql = "INSERT INTO livros (titulo, autor, genero, ano, paginas, valor, quantidade) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
 
 		try {
@@ -41,7 +41,7 @@ public class LivroDAO extends BaseDAO {
 	// Remover livros cadastrados.
 	public static void removerPorId(LivroVO livro) {
 
-		String sql = "delete from livros where id = ?";
+		String sql = "DELETE FROM livros WHERE id = ?";
 		PreparedStatement ptst;
 
 		try {
@@ -60,7 +60,7 @@ public class LivroDAO extends BaseDAO {
 	// Editar livros cadastrados.
 	public static void editar(LivroVO livro) {
 
-		String sql = "update livros set titulo = ?, autor = ?, genero = ?, ano = ?, paginas = ?, valor = ?, quantidade = ? where id = ? ";
+		String sql = "UPDATE livros SET titulo = ?, autor = ?, genero = ?, ano = ?, paginas = ?, valor = ?, quantidade = ? WHERE id = ? ";
 		PreparedStatement ptst;
 
 		try {
@@ -86,7 +86,7 @@ public class LivroDAO extends BaseDAO {
 	// Buscar todos os livros cadastrados.
 	public static List<LivroVO> buscar() {
 
-		String sql = "select * from livros";
+		String sql = "SELECT * FROM livros";
 		Statement st;
 
 		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
