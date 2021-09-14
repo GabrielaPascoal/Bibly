@@ -11,126 +11,178 @@ import java.util.List;
 import model.VO.ClienteVO;
 
 public class ClienteDAO extends BaseDAO {
-	
-	public void inserir(ClienteVO vo) throws SQLException {
-	Connection connection = getConnection();
-	String query = "INSERT INTO clientes (nome, cpf, endereco, celular) VALUES(?, ?, ?, ?)";
-	PreparedStatement preparedStatement = connection.prepareStatement(query);
-	
-	preparedStatement.setString(1, vo.getNome());
-	preparedStatement.setString(2, vo.getCpf());
-	preparedStatement.setString(3, vo.getEndereco());
-	preparedStatement.setInt(4, vo.getCelular());
-	preparedStatement.execute();
-	
+
+	public static void inserir(ClienteVO vo) throws SQLException {
+		Connection connection = getConnection();
+		String query = "INSERT INTO clientes (nome, cpf, endereco, celular) VALUES(?, ?, ?, ?)";
+		PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+		preparedStatement.setString(1, vo.getNome());
+		preparedStatement.setString(2, vo.getCpf());
+		preparedStatement.setString(3, vo.getEndereco());
+		preparedStatement.setInt(4, vo.getCelular());
+		preparedStatement.execute();
+
 	}
-	// não está deletando
-	public void deletarPorID(ClienteVO vo) throws SQLException {
-		
+
+	// nï¿½o estï¿½ deletando
+	public static void deletarPorID(ClienteVO vo) throws SQLException {
+
 		Connection connection = getConnection();
 		String query = "DELETE FROM clientes WHERE id = ?";
 		try {
-		    PreparedStatement preparedStatement = connection.prepareStatement(query);
-		    preparedStatement.setInt(1, vo.getId());
-		    preparedStatement.executeUpdate();
-		    
+			PreparedStatement preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setInt(1, vo.getId());
+			preparedStatement.executeUpdate();
+
 		} catch (SQLException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
-		
-		
+
 	}
-	
-	public List<ClienteVO> listarClientes() throws SQLException {
-		
+
+	public static List<ClienteVO> listarClientes() throws SQLException {
+
 		Connection connection = getConnection();
 		String query = "SELECT * FROM clientes";
-		List<ClienteVO> clientes = new ArrayList <ClienteVO>();
-		
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
 		try {
-		    Statement st = connection.createStatement();
-		    ResultSet result = st.executeQuery(query);
-		    while(result.next()) {
-		    	ClienteVO vo = new ClienteVO();
-		    	vo.setId(result.getInt("id"));
-		    	vo.setNome(result.getString("nome"));
-		    	vo.setCpf(result.getString("cpf"));
-		    	vo.setEndereco(result.getString("endereco"));
-		    	
-		    	clientes.add(vo);    	
-			
-		}
+			Statement st = connection.createStatement();
+			ResultSet result = st.executeQuery(query);
+			while (result.next()) {
+				ClienteVO vo = new ClienteVO();
+				vo.setId(result.getInt("id"));
+				vo.setNome(result.getString("nome"));
+				vo.setCpf(result.getString("cpf"));
+				vo.setEndereco(result.getString("endereco"));
+
+				clientes.add(vo);
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		return clientes;
-			
-		
+
 	}
-	public void alterarCliente(ClienteVO vo) throws SQLException {
+
+	public static void alterarCliente(ClienteVO vo) throws SQLException {
 		Connection connection = getConnection();
 		String query = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?";
 		PreparedStatement preparedStatement;
 		try {
-		    preparedStatement = connection.prepareStatement(query);
-		    preparedStatement.setString(1, vo.getNome());
-		    preparedStatement.setString(2, vo.getCpf());
-		    preparedStatement.setString(1, vo.getEndereco());
-		    preparedStatement.executeUpdate();
-		    
+			preparedStatement = connection.prepareStatement(query);
+			preparedStatement.setString(1, vo.getNome());
+			preparedStatement.setString(2, vo.getCpf());
+			preparedStatement.setString(1, vo.getEndereco());
+			preparedStatement.executeUpdate();
+
 		} catch (SQLException e) {
-			e.printStackTrace(); 
+			e.printStackTrace();
 		}
-		
+
 	}
 
-	public ResultSet buscarPorNome(ClienteVO vo) {
-		String query = "SELECT * FROM clientes WHERE nome = ?";
+	public static ClienteVO buscarPorId(ClienteVO vo) throws SQLException {
+		String query = "SELECT * FROM clientes WHERE id = ?";
 		PreparedStatement preparedStatement;
 		ResultSet result = null;
-				
- 		try {
+
+		try {
+			preparedStatement = getConnection().prepareStatement(query);
+			preparedStatement.setInt(1, vo.getId());
+			result = preparedStatement.executeQuery();
+
+			if (!result.next()) {
+				return null;
+			}
+
+			vo.setId(result.getInt("id"));
+			vo.setNome(result.getString("nome"));
+			vo.setCpf(result.getString("cpf"));
+			vo.setEndereco(result.getString("endereco"));
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return vo;
+
+	}
+
+	public static List<ClienteVO> buscarPorNome(ClienteVO vo) throws SQLException {
+		String query = "SELECT * FROM clientes WHERE nome = ?";
+		PreparedStatement preparedStatement;
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+		ResultSet result = null;
+
+		try {
 			preparedStatement = getConnection().prepareStatement(query);
 			preparedStatement.setString(1, vo.getNome());
 			result = preparedStatement.executeQuery();
+			while (result.next()) {
+				vo.setId(result.getInt("id"));
+				vo.setNome(result.getString("nome"));
+				vo.setCpf(result.getString("cpf"));
+				vo.setEndereco(result.getString("endereco"));
+
+				clientes.add(vo);
+
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;		
-		
-		
+		return clientes;
+
 	}
-	
-	public ResultSet buscarPorCpf(ClienteVO vo) {
+
+	public static ClienteVO buscarPorCpf(ClienteVO vo) throws SQLException {
 		String query = "SELECT * FROM clientes WHERE cpf = ?";
 		PreparedStatement preparedStatement;
 		ResultSet result = null;
-				
- 		try {
+
+		try {
 			preparedStatement = getConnection().prepareStatement(query);
 			preparedStatement.setString(1, vo.getCpf());
 			result = preparedStatement.executeQuery();
+
+			if (!result.next()) {
+				return null;
+			}
+
+			vo.setId(result.getInt("id"));
+			vo.setNome(result.getString("nome"));
+			vo.setCpf(result.getString("cpf"));
+			vo.setEndereco(result.getString("endereco"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return result;	
-		
-	}
-	
+		return vo;
 
-    public ResultSet buscarPorEndereco(ClienteVO vo) {
-	   String query = "SELECT * FROM clientes WHERE endereco = ?";
-	   PreparedStatement preparedStatement;
-	   ResultSet result = null;
-	 		
+	}
+
+	public static List<ClienteVO> buscarPorEndereco(ClienteVO vo) throws SQLException {
+		String query = "SELECT * FROM clientes WHERE endereco = ?";
+		PreparedStatement preparedStatement;
+		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+		ResultSet result = null;
+
 		try {
-		    preparedStatement = getConnection().prepareStatement(query);
-		    preparedStatement.setString(1, vo.getEndereco());
-		    result = preparedStatement.executeQuery();
-	    } catch (SQLException e) {
-		    e.printStackTrace();
-	    }
-	    return result;
-	  
-    }
+			preparedStatement = getConnection().prepareStatement(query);
+			preparedStatement.setString(1, vo.getEndereco());
+			result = preparedStatement.executeQuery();
+			while (result.next()) {
+				vo.setId(result.getInt("id"));
+				vo.setNome(result.getString("nome"));
+				vo.setCpf(result.getString("cpf"));
+				vo.setEndereco(result.getString("endereco"));
+
+				clientes.add(vo);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return clientes;
+
+	}
 }

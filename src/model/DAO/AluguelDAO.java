@@ -13,8 +13,35 @@ import java.util.List;
 import model.VO.AluguelDiscoVO;
 import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
+import model.VO.ClienteVO;
 
 public class AluguelDAO extends BaseDAO {
+
+  private static AluguelVO formatarResposta(ResultSet resposta) throws SQLException {
+    AluguelVO aluguel = new AluguelVO();
+
+    aluguel.setId(resposta.getInt("id"));
+    aluguel.setValor(resposta.getDouble("valor"));
+    aluguel.setData(resposta.getDate("data").toLocalDate());
+
+    AluguelLivroVO alugueisLivros = new AluguelLivroVO();
+    AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
+    ClienteVO cliente = new ClienteVO();
+
+    alugueisLivros.setAluguel(aluguel);
+    alugueisDiscos.setAluguel(aluguel);
+    cliente.setId(resposta.getInt("cliente_id"));
+
+    List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
+    List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
+    ClienteVO clienteEncontrado = ClienteDAO.buscarPorId(cliente);
+
+    aluguel.setLivros(alugueisLivrosEncontrados);
+    aluguel.setDiscos(alugueisDiscosEncontrados);
+    aluguel.setCliente(clienteEncontrado);
+
+    return aluguel;
+  }
 
   public static void inserir(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
@@ -42,30 +69,9 @@ public class AluguelDAO extends BaseDAO {
       return null;
     }
 
-    AluguelVO aluguelEncontrado = new AluguelVO();
+    aluguel = formatarResposta(resposta);
 
-    aluguelEncontrado.setId(resposta.getInt("id"));
-    aluguelEncontrado.setValor(resposta.getDouble("valor"));
-    aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
-
-    AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-    AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-    // ClienteVO clientes = new ClienteVO();
-
-    alugueisLivros.setAluguel(aluguelEncontrado);
-    alugueisDiscos.setAluguel(aluguelEncontrado);
-    // clientes.setAluguel(aluguelEncontrado);
-
-    List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-    List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-    // List<ClienteVO> clientesEncontrados =
-    // ClienteDAO.buscarPorAluguelId(clientes);
-
-    aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
-    aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
-    // aluguelEncontrado.setCliente(clienteEncontrados);
-
-    return aluguelEncontrado;
+    return aluguel;
   }
 
   public static List<AluguelVO> buscarTodos() throws SQLException {
@@ -82,26 +88,7 @@ public class AluguelDAO extends BaseDAO {
 
       AluguelVO aluguel = new AluguelVO();
 
-      aluguel.setId(resposta.getInt("id"));
-      aluguel.setValor(resposta.getDouble("valor"));
-      aluguel.setData(resposta.getDate("data").toLocalDate());
-
-      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-      // ClienteVO clientes = new ClienteVO();
-
-      alugueisLivros.setAluguel(aluguel);
-      alugueisDiscos.setAluguel(aluguel);
-      // clientes.setAluguel(aluguel);
-
-      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-      // List<ClienteVO> clientesEncontrados =
-      // ClienteDAO.buscarPorAluguelId(clientes);
-
-      aluguel.setLivros(alugueisLivrosEncontrados);
-      aluguel.setDiscos(alugueisDiscosEncontrados);
-      // aluguel.setCliente(clienteEncontrados);
+      aluguel = formatarResposta(resposta);
 
       alugueisEncontrados.add(aluguel);
     }
@@ -125,26 +112,7 @@ public class AluguelDAO extends BaseDAO {
 
       AluguelVO aluguelEncontrado = new AluguelVO();
 
-      aluguelEncontrado.setId(resposta.getInt("id"));
-      aluguelEncontrado.setValor(resposta.getDouble("valor"));
-      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
-
-      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-      // ClienteVO clientes = new ClienteVO();
-
-      alugueisLivros.setAluguel(aluguelEncontrado);
-      alugueisDiscos.setAluguel(aluguelEncontrado);
-      // clientes.setAluguel(aluguelEncontrado);
-
-      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-      // List<ClienteVO> clientesEncontrados =
-      // ClienteDAO.buscarPorAluguelId(clientes);
-
-      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
-      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
-      // aluguelEncontrado.setCliente(clienteEncontrados);
+      aluguelEncontrado = formatarResposta(resposta);
 
       alugueisEncontrados.add(aluguelEncontrado);
     }
@@ -168,26 +136,7 @@ public class AluguelDAO extends BaseDAO {
 
       AluguelVO aluguelEncontrado = new AluguelVO();
 
-      aluguelEncontrado.setId(resposta.getInt("id"));
-      aluguelEncontrado.setValor(resposta.getDouble("valor"));
-      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
-
-      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-      // ClienteVO clientes = new ClienteVO();
-
-      alugueisLivros.setAluguel(aluguelEncontrado);
-      alugueisDiscos.setAluguel(aluguelEncontrado);
-      // clientes.setAluguel(aluguelEncontrado);
-
-      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-      // List<ClienteVO> clientesEncontrados =
-      // ClienteDAO.buscarPorAluguelId(clientes);
-
-      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
-      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
-      // aluguelEncontrado.setCliente(clienteEncontrados);
+      aluguelEncontrado = formatarResposta(resposta);
 
       alugueisEncontrados.add(aluguelEncontrado);
     }
@@ -212,26 +161,7 @@ public class AluguelDAO extends BaseDAO {
 
       AluguelVO aluguelEncontrado = new AluguelVO();
 
-      aluguelEncontrado.setId(resposta.getInt("id"));
-      aluguelEncontrado.setValor(resposta.getDouble("valor"));
-      aluguelEncontrado.setData(resposta.getDate("data").toLocalDate());
-
-      AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-      AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-      // ClienteVO clientes = new ClienteVO();
-
-      alugueisLivros.setAluguel(aluguelEncontrado);
-      alugueisDiscos.setAluguel(aluguelEncontrado);
-      // clientes.setAluguel(aluguelEncontrado);
-
-      List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-      List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-      // List<ClienteVO> clientesEncontrados =
-      // ClienteDAO.buscarPorAluguelId(clientes);
-
-      aluguelEncontrado.setLivros(alugueisLivrosEncontrados);
-      aluguelEncontrado.setDiscos(alugueisDiscosEncontrados);
-      // aluguelEncontrado.setCliente(clienteEncontrados);
+      aluguelEncontrado = formatarResposta(resposta);
 
       alugueisEncontrados.add(aluguelEncontrado);
     }
@@ -239,4 +169,35 @@ public class AluguelDAO extends BaseDAO {
     return alugueisEncontrados;
   }
 
+  public static void editar(AluguelVO aluguel) {
+
+    String sql = "Update alugueis SET cliente_id = ?, valor = ?, data = ? where id = ? ";
+    PreparedStatement preparedStatement;
+
+    try {
+
+      Connection connection = getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setInt(1, aluguel.getCliente().getId());
+      preparedStatement.setDouble(2, aluguel.getValor());
+      preparedStatement.setDate(3, Date.valueOf(aluguel.getData()));
+      preparedStatement.setInt(4, aluguel.getId());
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+
+      e.printStackTrace();
+    }
+  }
+
+  public static void remover(AluguelVO aluguel) throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "DELETE FROM aluguel_discos WHERE id=?";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    preparedStatement.setInt(1, aluguel.getId());
+
+    preparedStatement.execute();
+  }
 }

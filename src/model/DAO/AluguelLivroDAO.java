@@ -9,6 +9,7 @@ import java.util.List;
 
 import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
+import model.VO.LivroVO;
 
 public class AluguelLivroDAO extends BaseDAO {
 
@@ -40,19 +41,41 @@ public class AluguelLivroDAO extends BaseDAO {
     while (resposta.next()) {
       AluguelLivroVO aluguelLivroEncontrado = new AluguelLivroVO();
       AluguelVO aluguel = new AluguelVO();
-      // LivroVO livro = new LivroVO();
+      LivroVO livro = new LivroVO();
 
       aluguel.setId(resposta.getInt("aluguel_id"));
-      // livro.setId(resposta.getInt("livro_id"));
+      livro.setId(resposta.getInt("livro_id"));
+
+      livro = LivroDAO.buscarPorId(livro);
 
       aluguelLivroEncontrado.setAluguel(aluguel);
-      // aluguelLivroEncontrado.setLivro(livro);
+      aluguelLivroEncontrado.setProduto(livro);
       aluguelLivroEncontrado.setQuantidade(resposta.getInt("quantidade"));
 
       alugueisLivrosEncontrados.add(aluguelLivroEncontrado);
     }
 
     return alugueisLivrosEncontrados;
+  }
+
+  public static void editar(AluguelLivroVO aluguelLivro) {
+
+    String sql = "Update aluguel_livros SET quantidade = ? where aluguel_id = ? AND livro_id=? ";
+    PreparedStatement preparedStatement;
+
+    try {
+
+      Connection connection = getConnection();
+      preparedStatement = connection.prepareStatement(sql);
+      preparedStatement.setInt(1, aluguelLivro.getQuantidade());
+      preparedStatement.setInt(2, aluguelLivro.getAluguel().getId());
+      preparedStatement.setInt(3, aluguelLivro.getProduto().getId());
+      preparedStatement.executeUpdate();
+
+    } catch (SQLException e) {
+
+      e.printStackTrace();
+    }
   }
 
   public static void remover(AluguelLivroVO aluguelLivro) throws SQLException {

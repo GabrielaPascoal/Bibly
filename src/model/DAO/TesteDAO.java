@@ -10,14 +10,23 @@ public class TesteDAO {
 
   public static void main(String[] args) throws SQLException {
     AluguelVO aluguel = new AluguelVO();
-    ClienteVO cliente = new ClienteVO();
+    AluguelLivroVO aluguelLivro = new AluguelLivroVO();
+    AluguelDiscoVO aluguelDisco = new AluguelDiscoVO();
+    LivroVO livro = new LivroVO();
+    DiscoVO disco = new DiscoVO();
 
-    cliente.setId(1);
-    aluguel.setCliente(cliente);
+    aluguel.setId(3);
+    livro.setId(3);
+    disco.setId(2);
+    aluguelLivro.setAluguel(aluguel);
+    aluguelLivro.setProduto(livro);
+    aluguelLivro.setQuantidade(3);
+    aluguelDisco.setAluguel(aluguel);
+    aluguelDisco.setProduto(disco);
+    aluguelDisco.setQuantidade(5);
+    aluguel.setValor(49.95);
 
-    List<AluguelVO> alugueis = AluguelDAO.buscarPorIntervaloDeDias(LocalDate.of(2021, 8, 10),
-        LocalDate.of(2021, 8, 11));
-
-    System.out.println(alugueis);
+    AluguelLivroDAO.editar(aluguelLivro);
+    AluguelDiscoDAO.editar(aluguelDisco);
   }
 }
