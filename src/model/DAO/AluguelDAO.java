@@ -10,12 +10,9 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-import model.VO.AluguelDiscoVO;
-import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
-import model.VO.ClienteVO;
 
-public class AluguelDAO extends BaseDAO {
+public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<AluguelVO> {
 
   private static AluguelVO formatarResposta(ResultSet resposta) throws SQLException {
     AluguelVO aluguel = new AluguelVO();
@@ -24,26 +21,10 @@ public class AluguelDAO extends BaseDAO {
     aluguel.setValor(resposta.getDouble("valor"));
     aluguel.setData(resposta.getDate("data").toLocalDate());
 
-    AluguelLivroVO alugueisLivros = new AluguelLivroVO();
-    AluguelDiscoVO alugueisDiscos = new AluguelDiscoVO();
-    ClienteVO cliente = new ClienteVO();
-
-    alugueisLivros.setAluguel(aluguel);
-    alugueisDiscos.setAluguel(aluguel);
-    cliente.setId(resposta.getInt("cliente_id"));
-
-    List<AluguelLivroVO> alugueisLivrosEncontrados = AluguelLivroDAO.buscarPorAluguelId(alugueisLivros);
-    List<AluguelDiscoVO> alugueisDiscosEncontrados = AluguelDiscoDAO.buscarPorAluguelId(alugueisDiscos);
-    ClienteVO clienteEncontrado = ClienteDAO.buscarPorId(cliente);
-
-    aluguel.setLivros(alugueisLivrosEncontrados);
-    aluguel.setDiscos(alugueisDiscosEncontrados);
-    aluguel.setCliente(clienteEncontrado);
-
     return aluguel;
   }
 
-  public static void inserir(AluguelVO aluguel) throws SQLException {
+  public void inserir(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
 
     String query = "INSERT INTO alugueis (cliente_id, valor) VALUES(?, ?)";
@@ -55,7 +36,7 @@ public class AluguelDAO extends BaseDAO {
     preparedStatement.execute();
   }
 
-  public static AluguelVO buscarPorId(AluguelVO aluguel) throws SQLException {
+  public ResultSet buscarPorId(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE id=?";
@@ -65,16 +46,10 @@ public class AluguelDAO extends BaseDAO {
 
     ResultSet resposta = preparedStatement.executeQuery();
 
-    if (!resposta.next()) {
-      return null;
-    }
-
-    aluguel = formatarResposta(resposta);
-
-    return aluguel;
+    return resposta;
   }
 
-  public static List<AluguelVO> buscarTodos() throws SQLException {
+  public ResultSet buscarTodos() throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis";
@@ -82,21 +57,10 @@ public class AluguelDAO extends BaseDAO {
     Statement statement = connection.createStatement();
     ResultSet resposta = statement.executeQuery(query);
 
-    List<AluguelVO> alugueisEncontrados = new ArrayList<AluguelVO>();
-
-    while (resposta.next()) {
-
-      AluguelVO aluguel = new AluguelVO();
-
-      aluguel = formatarResposta(resposta);
-
-      alugueisEncontrados.add(aluguel);
-    }
-
-    return alugueisEncontrados;
+    return resposta;
   }
 
-  public static List<AluguelVO> buscarPorMes(Integer Mes) throws SQLException {
+  public List<AluguelVO> buscarPorMes(Integer Mes) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE EXTRACT(MONTH FROM data) = ?";
@@ -120,7 +84,7 @@ public class AluguelDAO extends BaseDAO {
     return alugueisEncontrados;
   }
 
-  public static List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
+  public List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE cliente_id= ?";
@@ -144,7 +108,7 @@ public class AluguelDAO extends BaseDAO {
     return alugueisEncontrados;
   }
 
-  public static List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
+  public List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE (? <= data AND data <= ?)";
@@ -169,7 +133,7 @@ public class AluguelDAO extends BaseDAO {
     return alugueisEncontrados;
   }
 
-  public static void editar(AluguelVO aluguel) {
+  public void editar(AluguelVO aluguel) {
 
     String sql = "Update alugueis SET cliente_id = ?, valor = ?, data = ? where id = ? ";
     PreparedStatement preparedStatement;
@@ -190,7 +154,7 @@ public class AluguelDAO extends BaseDAO {
     }
   }
 
-  public static void remover(AluguelVO aluguel) throws SQLException {
+  public void remover(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
 
     String query = "DELETE FROM aluguel_discos WHERE id=?";

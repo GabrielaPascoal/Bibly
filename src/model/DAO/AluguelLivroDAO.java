@@ -4,16 +4,12 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
+import java.sql.Statement;
 import model.VO.AluguelLivroVO;
-import model.VO.AluguelVO;
-import model.VO.LivroVO;
 
-public class AluguelLivroDAO extends BaseDAO {
+public class AluguelLivroDAO extends BaseDAO<AluguelLivroVO> implements AluguelProdutoInterDAO<AluguelLivroVO> {
 
-  public static void inserir(AluguelLivroVO aluguelLivro) throws SQLException {
+  public void inserir(AluguelLivroVO aluguelLivro) throws SQLException {
     Connection connection = getConnection();
 
     String query = "INSERT INTO aluguel_livros (aluguel_id, livro_id, quantidade) VALUES(?, ?, ?)";
@@ -26,7 +22,7 @@ public class AluguelLivroDAO extends BaseDAO {
     preparedStatement.execute();
   }
 
-  public static List<AluguelLivroVO> buscarPorAluguelId(AluguelLivroVO aluguelLivro) throws SQLException {
+  public ResultSet buscarPorAluguelId(AluguelLivroVO aluguelLivro) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM aluguel_livros WHERE aluguel_id=?";
@@ -36,29 +32,21 @@ public class AluguelLivroDAO extends BaseDAO {
 
     ResultSet resposta = preparedStatement.executeQuery();
 
-    List<AluguelLivroVO> alugueisLivrosEncontrados = new ArrayList<AluguelLivroVO>();
-
-    while (resposta.next()) {
-      AluguelLivroVO aluguelLivroEncontrado = new AluguelLivroVO();
-      AluguelVO aluguel = new AluguelVO();
-      LivroVO livro = new LivroVO();
-
-      aluguel.setId(resposta.getInt("aluguel_id"));
-      livro.setId(resposta.getInt("livro_id"));
-
-      livro = LivroDAO.buscarPorId(livro);
-
-      aluguelLivroEncontrado.setAluguel(aluguel);
-      aluguelLivroEncontrado.setProduto(livro);
-      aluguelLivroEncontrado.setQuantidade(resposta.getInt("quantidade"));
-
-      alugueisLivrosEncontrados.add(aluguelLivroEncontrado);
-    }
-
-    return alugueisLivrosEncontrados;
+    return resposta;
   }
 
-  public static void editar(AluguelLivroVO aluguelLivro) {
+  public ResultSet buscarTodos() throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM aluguel_livros";
+
+    Statement statement = connection.createStatement();
+    ResultSet resposta = statement.executeQuery(query);
+
+    return resposta;
+  }
+
+  public void editar(AluguelLivroVO aluguelLivro) {
 
     String sql = "Update aluguel_livros SET quantidade = ? where aluguel_id = ? AND livro_id=? ";
     PreparedStatement preparedStatement;
@@ -78,7 +66,7 @@ public class AluguelLivroDAO extends BaseDAO {
     }
   }
 
-  public static void remover(AluguelLivroVO aluguelLivro) throws SQLException {
+  public void remover(AluguelLivroVO aluguelLivro) throws SQLException {
     Connection connection = getConnection();
 
     String query = "DELETE FROM aluguel_livros WHERE aluguel_id=? AND livro_id=?";
