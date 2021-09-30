@@ -10,10 +10,10 @@ import java.util.List;
 
 import model.VO.LivroVO;
 
-public class LivroDAO extends BaseDAO {
+public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO> {
 
 	// Inserir livros.
-	public static void inserir(LivroVO livro) {
+	public void inserir(LivroVO livro) {
 
 		String sql = "INSERT INTO livros (titulo, autor, genero, ano, paginas, valor, quantidade) VALUES (?,?,?,?,?,?,?)";
 		PreparedStatement ptst;
@@ -39,7 +39,7 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Remover livros cadastrados.
-	public static void removerPorId(LivroVO livro) {
+	public void remover(LivroVO livro) {
 
 		String sql = "DELETE FROM livros WHERE id = ?";
 		PreparedStatement ptst;
@@ -58,7 +58,7 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Editar livros cadastrados.
-	public static void editar(LivroVO livro) {
+	public void editar(LivroVO livro) {
 
 		String sql = "UPDATE livros SET titulo = ?, autor = ?, genero = ?, ano = ?, paginas = ?, valor = ?, quantidade = ? WHERE id = ? ";
 		PreparedStatement ptst;
@@ -84,80 +84,49 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Buscar todos os livros cadastrados.
-	public static List<LivroVO> buscar() {
+	public ResultSet buscarTodos() {
 
 		String sql = "SELECT * FROM livros";
 		Statement st;
-
-		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
+		ResultSet resposta = null;
+		
 
 		try {
 
 			Connection connection = getConnection();
 			st = connection.createStatement();
-			ResultSet resposta = st.executeQuery(sql);
-
-			while (resposta.next()) {
-
-				LivroVO buscarLivro = new LivroVO();
-
-				buscarLivro.setId(resposta.getInt("id"));
-				buscarLivro.setTitulo(resposta.getString("titulo"));
-				buscarLivro.setAutor(resposta.getString("autor"));
-				buscarLivro.setEstilo(resposta.getString("genero"));
-				buscarLivro.setAno(resposta.getInt("ano"));
-				buscarLivro.setPagina(resposta.getInt("paginas"));
-				buscarLivro.setValor(resposta.getDouble("valor"));
-				buscarLivro.setQuantidade(resposta.getInt("quantidade"));
-
-				// adicionando a lista.
-				livrosEncontrados.add(buscarLivro);
-
-			}
+			resposta = st.executeQuery(sql);
 
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 
-		return livrosEncontrados;
+		return resposta;
 	}
 
 	// Buscar livros cadastrados por id.
-	public static LivroVO buscarPorId(LivroVO livro) {
+	public ResultSet buscarPorId(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE id=?";
 		PreparedStatement ptst;
-
+		ResultSet resposta = null;
 		try {
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
 			ptst.setInt(1, livro.getId());
-			ResultSet resposta = ptst.executeQuery();
-
-			if (!resposta.next()) {
-				return null;
-			}
-
-			livro.setId(resposta.getInt("id"));
-			livro.setTitulo(resposta.getString("titulo"));
-			livro.setAutor(resposta.getString("autor"));
-			livro.setEstilo(resposta.getString("genero"));
-			livro.setAno(resposta.getInt("ano"));
-			livro.setPagina(resposta.getInt("paginas"));
-			livro.setValor(resposta.getDouble("valor"));
-			livro.setQuantidade(resposta.getInt("quantidade"));
+			resposta = ptst.executeQuery();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 
-		return livro;
+		return resposta;
 	}
 
 	// Buscar livros cadastrados por autor.
-	public static List<LivroVO> buscarPorAutor(LivroVO livro) {
+	public List<LivroVO> buscarPorAutor(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE autor = ?";
 		PreparedStatement ptst;
@@ -196,7 +165,7 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Buscar livros cadastrados por titulo.
-	public static List<LivroVO> buscarPorTitulo(LivroVO livro) {
+	public List<LivroVO> buscarPorTitulo(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE titulo = ?";
 		PreparedStatement ptst;
@@ -235,7 +204,7 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Buscar livros cadastrados por genero.
-	public static List<LivroVO> buscarPorGenero(LivroVO livro) {
+	public List<LivroVO> buscarPorGenero(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE genero = ?";
 		PreparedStatement ptst;
@@ -274,7 +243,7 @@ public class LivroDAO extends BaseDAO {
 	}
 
 	// Buscar livros cadastrados por ano.
-	public static List<LivroVO> buscarPorAno(LivroVO livro) {
+	public List<LivroVO> buscarPorAno(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE ano = ?";
 		PreparedStatement ptst;
