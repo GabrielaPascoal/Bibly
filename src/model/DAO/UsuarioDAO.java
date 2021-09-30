@@ -5,16 +5,15 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import model.VO.UsuarioVO;
 
-public class UsuarioDAO extends BaseDAO  {
+public class UsuarioDAO extends BaseDAO<UsuarioVO>   {
 	
 	
 	// Inserir usuarios.
-		public static void inserir(UsuarioVO user) {
+		public void inserir(UsuarioVO user) {
 			
 			String sql = "INSERT INTO usuarios (cpf,senha) VALUES (?,?)";		
 			PreparedStatement ptst;
@@ -36,7 +35,7 @@ public class UsuarioDAO extends BaseDAO  {
 		
 		
 		// Remover usuarios cadastrados. 
-		public static void removerPorId(UsuarioVO user) {
+		public void remover(UsuarioVO user) {
 			
 			String sql = "DELETE FROM usuarios WHERE id = ?";
 			PreparedStatement ptst;
@@ -56,7 +55,7 @@ public class UsuarioDAO extends BaseDAO  {
 		
 		
 		// Editar usuarios cadastrados.
-		public static void editar(UsuarioVO user) {
+		public void editar(UsuarioVO user) {
 			
 			String sql = "UPDATE usuarios SET cpf = ?, senha = ? WHERE id = ? ";
 			PreparedStatement ptst;
@@ -77,38 +76,24 @@ public class UsuarioDAO extends BaseDAO  {
 		}
 		
 		// Buscar todos os usuarios cadastrados.
-		public static List<UsuarioVO> buscar() {
+		public ResultSet buscarTodos() {
 			
 			String sql = "SELECT * FROM usuarios";		
 			Statement st;
-			
-			List<UsuarioVO> livrosEncontrados = new ArrayList<UsuarioVO>();
+			ResultSet resposta = null;
 			
 			try {
 				
 				Connection connection = getConnection();
 				st = connection.createStatement();
-				ResultSet resposta = st.executeQuery(sql);
-				
-				while (resposta.next()) {
-					
-					UsuarioVO buscarUser = new UsuarioVO();
-					
-					buscarUser.setId(resposta.getInt("id"));
-					buscarUser.setCpf(resposta.getString("cpf"));
-					buscarUser.setSenha(resposta.getString("senha"));
-					
-					//adicionando a lista.
-					livrosEncontrados.add(buscarUser);
-					
-				}
+				resposta = st.executeQuery(sql);
 				
 			} catch (SQLException e) {
 				
 				e.printStackTrace();
 			}	
 			
-			return livrosEncontrados;
+			return resposta;
 		}
 		
 }
