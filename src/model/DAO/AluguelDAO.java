@@ -133,7 +133,7 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
     return alugueisEncontrados;
   }
 
-  public void editar(AluguelVO aluguel) {
+  public void editar(AluguelVO aluguel) throws SQLException {
 
     String sql = "Update alugueis SET cliente_id = ?, valor = ?, data = ? where id = ? ";
     PreparedStatement preparedStatement;

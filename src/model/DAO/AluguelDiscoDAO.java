@@ -47,7 +47,7 @@ public class AluguelDiscoDAO extends BaseDAO<AluguelDiscoVO> implements AluguelP
     return resposta;
   }
 
-  public void editar(AluguelDiscoVO aluguelDisco) {
+  public void editar(AluguelDiscoVO aluguelDisco) throws SQLException {
 
     String sql = "Update aluguel_discos SET quantidade = ? where aluguel_id = ? AND disco_id=? ";
     PreparedStatement preparedStatement;
