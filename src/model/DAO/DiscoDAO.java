@@ -10,10 +10,10 @@ import java.util.List;
 
 import model.VO.DiscoVO;
 
-public class DiscoDAO extends BaseDAO {
+public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO>{
 
 	// INSERIR
-	public static void inserir(DiscoVO vo) throws SQLException {
+	public void inserir(DiscoVO vo) throws SQLException {
 
 		Connection connection = getConnection();
 		String query = "INSERT INTO discos (titulo, artista, estilo, valor, quantidade) VALUES(?, ?, ?, ?, ?)";
@@ -29,7 +29,7 @@ public class DiscoDAO extends BaseDAO {
 	}
 
 	// DELETAR
-	public static void deletarPorId(DiscoVO vo) throws SQLException {
+	public void remover(DiscoVO vo) throws SQLException {
 
 		String query = "DELETE FROM discos WHERE id = ?";
 		PreparedStatement preparedStatement;
@@ -79,7 +79,7 @@ public class DiscoDAO extends BaseDAO {
 	}
 
 	// ALTERAR
-	public static void alterarDisco(DiscoVO vo) throws SQLException {
+	public void editar(DiscoVO vo) throws SQLException {
 
 		String query = "UPDATE discos SET titulo = ?, artista = ?, estilo = ?, valor = ?, quantidade = ?, WHERE id = ? ";
 		PreparedStatement preparedStatement;
@@ -102,7 +102,7 @@ public class DiscoDAO extends BaseDAO {
 	}
 
 	// BUSCAR POR ID
-	public static DiscoVO buscarPorId(DiscoVO vo) throws SQLException {
+	public ResultSet buscarPorId(DiscoVO vo) throws SQLException {
 		String query = "SELECT * FROM discos WHERE id = ?";
 		PreparedStatement preparedStatement;
 		ResultSet result = null;
@@ -126,7 +126,7 @@ public class DiscoDAO extends BaseDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return vo;
+		return result;
 
 	}
 
@@ -221,5 +221,16 @@ public class DiscoDAO extends BaseDAO {
 		return discos;
 
 	}
+	// BUSCAR TODOS
+    public ResultSet buscarTodos() throws SQLException {
+            Connection connection = getConnection();
+
+            String query = "SELECT * FROM discos";
+
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            return result;
+          }
 
 }

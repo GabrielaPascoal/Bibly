@@ -10,9 +10,9 @@ import java.util.List;
 
 import model.VO.ClienteVO;
 
-public class ClienteDAO extends BaseDAO {
+public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<ClienteVO> {
 
-	public static void inserir(ClienteVO vo) throws SQLException {
+	public void inserir(ClienteVO vo) throws SQLException {
 		Connection connection = getConnection();
 		String query = "INSERT INTO clientes (nome, cpf, endereco, celular) VALUES(?, ?, ?, ?)";
 		PreparedStatement preparedStatement = connection.prepareStatement(query);
@@ -26,7 +26,7 @@ public class ClienteDAO extends BaseDAO {
 	}
 
 	// n�o est� deletando
-	public static void deletarPorID(ClienteVO vo) throws SQLException {
+	public void remover(ClienteVO vo) throws SQLException {
 
 		Connection connection = getConnection();
 		String query = "DELETE FROM clientes WHERE id = ?";
@@ -67,7 +67,7 @@ public class ClienteDAO extends BaseDAO {
 
 	}
 
-	public static void alterarCliente(ClienteVO vo) throws SQLException {
+	public void editar(ClienteVO vo) throws SQLException {
 		Connection connection = getConnection();
 		String query = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?";
 		PreparedStatement preparedStatement;
@@ -84,7 +84,7 @@ public class ClienteDAO extends BaseDAO {
 
 	}
 
-	public static ClienteVO buscarPorId(ClienteVO vo) throws SQLException {
+	public ResultSet buscarPorId(ClienteVO vo) throws SQLException {
 		String query = "SELECT * FROM clientes WHERE id = ?";
 		PreparedStatement preparedStatement;
 		ResultSet result = null;
@@ -105,7 +105,7 @@ public class ClienteDAO extends BaseDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		return vo;
+		return result;
 
 	}
 
@@ -185,4 +185,15 @@ public class ClienteDAO extends BaseDAO {
 		return clientes;
 
 	}
+	// BUSCAR TODOS
+    public ResultSet buscarTodos() throws SQLException {
+            Connection connection = getConnection();
+
+            String query = "SELECT * FROM clientes";
+
+            Statement statement = connection.createStatement();
+            ResultSet result = statement.executeQuery(query);
+
+            return result;
+        }
 }
