@@ -43,9 +43,9 @@ public class ClienteBO implements BaseInterBO<ClienteVO>{
 		        throw new Exception("Defina um id valido.");
 		      }
 
-		      ResultSet resposta = ClienteDAO.buscarPorId(entidade);
+		      ResultSet result = ClienteDAO.buscarPorId(entidade);
 
-		      if (!resposta.next()) {
+		      if (!result.next()) {
 		        throw new Exception("Cliente não existente");
 		      }
 
