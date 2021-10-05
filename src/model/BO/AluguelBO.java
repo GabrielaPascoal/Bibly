@@ -12,9 +12,11 @@ import model.VO.AluguelDiscoVO;
 import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
 
-public class AluguelBO {
-  public static AluguelVO getAluguel(ResultSet resposta) throws SQLException {
+public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<AluguelVO> {
+  public AluguelVO getAluguel(ResultSet resposta) throws SQLException {
     AluguelVO aluguel = new AluguelVO();
+    AluguelLivroBO aluguelLivroBO = new AluguelLivroBO();
+    AluguelDiscoBO aluguelDiscoBO = new AluguelDiscoBO();
 
     AluguelLivroVO livro = new AluguelLivroVO();
     AluguelDiscoVO disco = new AluguelDiscoVO();
@@ -25,8 +27,8 @@ public class AluguelBO {
 
     livro.setAluguel(aluguel);
 
-    List<AluguelLivroVO> livros = AluguelLivroBO.buscarPorAluguelId(livro);
-    List<AluguelDiscoVO> discos = AluguelDiscoBO.buscarPorAluguelId(disco);
+    List<AluguelLivroVO> livros = aluguelLivroBO.buscarPorAluguelId(livro);
+    List<AluguelDiscoVO> discos = aluguelDiscoBO.buscarPorAluguelId(disco);
 
     aluguel.setLivros(livros);
     aluguel.setDiscos(discos);
@@ -35,7 +37,7 @@ public class AluguelBO {
     return aluguel;
   }
 
-  public static void inserir(AluguelVO aluguel) throws SQLException {
+  public void inserir(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
       ClienteDAO clienteDAO = new ClienteDAO();
@@ -60,7 +62,7 @@ public class AluguelBO {
     }
   }
 
-  public static AluguelVO buscarPorId(AluguelVO aluguel) throws SQLException {
+  public AluguelVO buscarPorId(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
 
@@ -81,7 +83,7 @@ public class AluguelBO {
     }
   }
 
-  public static List<AluguelVO> buscarTodos() throws SQLException {
+  public List<AluguelVO> buscarTodos() throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
       ResultSet resposta = aluguelDAO.buscarTodos();
@@ -100,7 +102,7 @@ public class AluguelBO {
     }
   }
 
-  public static List<AluguelVO> buscarPorMes(Integer mes) throws SQLException {
+  public List<AluguelVO> buscarPorMes(Integer mes) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
 
@@ -115,7 +117,7 @@ public class AluguelBO {
     }
   }
 
-  public static List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
+  public List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
 
@@ -130,7 +132,7 @@ public class AluguelBO {
     }
   }
 
-  public static List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
+  public List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
 
@@ -145,7 +147,7 @@ public class AluguelBO {
     }
   }
 
-  public static void editar(AluguelVO aluguel) throws SQLException {
+  public void editar(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
       ClienteDAO clienteDAO = new ClienteDAO();
@@ -182,7 +184,7 @@ public class AluguelBO {
     }
   }
 
-  public static void remover(AluguelVO aluguel) throws SQLException {
+  public void remover(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
 

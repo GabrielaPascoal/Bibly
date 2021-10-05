@@ -12,8 +12,8 @@ import model.VO.AluguelDiscoVO;
 import model.VO.AluguelVO;
 import model.VO.DiscoVO;
 
-public class AluguelDiscoBO {
-  public static AluguelDiscoVO getAluguelDisco(ResultSet resposta) throws SQLException {
+public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelProdutoInterBO<AluguelDiscoVO> {
+  public AluguelDiscoVO getAluguelDisco(ResultSet resposta) throws SQLException {
     AluguelDiscoVO aluguelDisco = new AluguelDiscoVO();
     AluguelVO aluguel = new AluguelVO();
     DiscoVO disco = new DiscoVO();
@@ -28,7 +28,7 @@ public class AluguelDiscoBO {
     return aluguelDisco;
   }
 
-  public static void alugar(AluguelDiscoVO aluguel) throws SQLException {
+  public void inserir(AluguelDiscoVO aluguel) throws SQLException {
     try {
       AluguelDiscoDAO aluguelDiscoDAO = new AluguelDiscoDAO();
       DiscoDAO discoDAO = new DiscoDAO();
@@ -78,7 +78,7 @@ public class AluguelDiscoBO {
     }
   }
 
-  public static void devolver(AluguelDiscoVO aluguel) throws SQLException {
+  public void devolver(AluguelDiscoVO aluguel) throws SQLException {
     try {
       DiscoDAO discoDAO = new DiscoDAO();
 
@@ -102,7 +102,7 @@ public class AluguelDiscoBO {
     }
   }
 
-  public static List<AluguelDiscoVO> buscarTodos() throws SQLException {
+  public List<AluguelDiscoVO> buscarTodos() throws SQLException {
     try {
       AluguelDiscoDAO aluguelDiscoDAO = new AluguelDiscoDAO();
 
@@ -122,7 +122,7 @@ public class AluguelDiscoBO {
     }
   }
 
-  public static List<AluguelDiscoVO> buscarPorAluguelId(AluguelDiscoVO aluguel) throws SQLException {
+  public List<AluguelDiscoVO> buscarPorAluguelId(AluguelDiscoVO aluguel) throws SQLException {
     try {
       AluguelDiscoDAO aluguelDiscoDAO = new AluguelDiscoDAO();
       AluguelDAO aluguelDAO = new AluguelDAO();
@@ -153,7 +153,7 @@ public class AluguelDiscoBO {
     }
   }
 
-  public static void editar(AluguelDiscoVO aluguel) throws SQLException {
+  public void editar(AluguelDiscoVO aluguel) throws SQLException {
     try {
       AluguelDiscoDAO aluguelDiscoDAO = new AluguelDiscoDAO();
       DiscoDAO discoDAO = new DiscoDAO();
@@ -218,7 +218,7 @@ public class AluguelDiscoBO {
     }
   }
 
-  public static void remover(AluguelDiscoVO aluguel) throws SQLException {
+  public void remover(AluguelDiscoVO aluguel) throws SQLException {
     try {
       AluguelDiscoDAO aluguelDiscoDAO = new AluguelDiscoDAO();
 

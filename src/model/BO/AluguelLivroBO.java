@@ -12,8 +12,8 @@ import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
 import model.VO.LivroVO;
 
-public class AluguelLivroBO {
-  public static AluguelLivroVO getAluguelLivro(ResultSet resposta) throws SQLException {
+public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelProdutoInterBO<AluguelLivroVO> {
+  public AluguelLivroVO getAluguelLivro(ResultSet resposta) throws SQLException {
     AluguelLivroVO aluguelLivro = new AluguelLivroVO();
     AluguelVO aluguel = new AluguelVO();
     LivroVO livro = new LivroVO();
@@ -28,7 +28,7 @@ public class AluguelLivroBO {
     return aluguelLivro;
   }
 
-  public static void alugar(AluguelLivroVO aluguel) throws SQLException {
+  public void inserir(AluguelLivroVO aluguel) throws SQLException {
     try {
       AluguelLivroDAO aluguelLivroDAO = new AluguelLivroDAO();
       LivroDAO livroDAO = new LivroDAO();
@@ -80,7 +80,7 @@ public class AluguelLivroBO {
     }
   }
 
-  public static void devolver(AluguelLivroVO aluguel) throws SQLException {
+  public void devolver(AluguelLivroVO aluguel) throws SQLException {
     try {
       LivroDAO livroDAO = new LivroDAO();
 
@@ -106,7 +106,7 @@ public class AluguelLivroBO {
     }
   }
 
-  public static List<AluguelLivroVO> buscarTodos() throws SQLException {
+  public List<AluguelLivroVO> buscarTodos() throws SQLException {
     try {
       AluguelLivroDAO aluguelLivroDAO = new AluguelLivroDAO();
 
@@ -126,7 +126,7 @@ public class AluguelLivroBO {
     }
   }
 
-  public static List<AluguelLivroVO> buscarPorAluguelId(AluguelLivroVO aluguel) throws SQLException {
+  public List<AluguelLivroVO> buscarPorAluguelId(AluguelLivroVO aluguel) throws SQLException {
     try {
       AluguelLivroDAO aluguelLivroDAO = new AluguelLivroDAO();
       AluguelDAO aluguelDAO = new AluguelDAO();
@@ -157,7 +157,7 @@ public class AluguelLivroBO {
     }
   }
 
-  public static void editar(AluguelLivroVO aluguel) throws SQLException {
+  public void editar(AluguelLivroVO aluguel) throws SQLException {
     try {
       AluguelLivroDAO aluguelLivroDAO = new AluguelLivroDAO();
       LivroDAO livroDAO = new LivroDAO();
@@ -224,7 +224,7 @@ public class AluguelLivroBO {
     }
   }
 
-  public static void remover(AluguelLivroVO aluguel) throws SQLException {
+  public void remover(AluguelLivroVO aluguel) throws SQLException {
     try {
       AluguelLivroDAO aluguelLivroDAO = new AluguelLivroDAO();
       if (aluguel.getAluguel().getId() <= 0) {
