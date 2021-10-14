@@ -1,13 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.image.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.text.*?>
-<?import javafx.scene.effect.*?>
-<?import java.lang.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.Controler">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: #0A0808;">
          <effect>
@@ -44,7 +49,7 @@
                      <image>
                         <Image url="@../../assets/user.png" />
                      </image></ImageView>
-                  <TextField prefHeight="36.0" prefWidth="206.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
+                  <TextField fx:id="cpf" prefHeight="36.0" prefWidth="206.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
@@ -56,13 +61,13 @@
                      <image>
                         <Image url="@../../assets/key.png" />
                      </image></ImageView>
-                  <PasswordField prefHeight="36.0" prefWidth="206.0" promptText="SENHA" style="-fx-background-color: transparent;">
+                  <PasswordField fx:id="senha" prefHeight="36.0" prefWidth="206.0" promptText="SENHA" style="-fx-background-color: transparent;">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></PasswordField>
                </children>
             </HBox>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
+            <Button fx:id="buttonEntrar" contentDisplay="RIGHT" mnemonicParsing="false" onAction="#autenticar" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font>

@@ -96,4 +96,46 @@ public class UsuarioDAO extends BaseDAO<UsuarioVO>   {
 			return resposta;
 		}
 		
+		public ResultSet buscarPorCpf(UsuarioVO user) {
+			
+			String sql = "SELECT * FROM usuarios WHERE cpf=?";		
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+			
+			try {
+				
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setString(1, user.getCpf());
+				resposta = ptst.executeQuery();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}	
+			
+			return resposta;
+		}
+		
+		public ResultSet buscarPorId(UsuarioVO user) {
+			
+			String sql = "SELECT * FROM usuarios WHERE id=?";		
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+			
+			try {
+				
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setInt(1, user.getId());
+				resposta = ptst.executeQuery();
+				
+			} catch (SQLException e) {
+				
+				e.printStackTrace();
+			}	
+			
+			return resposta;
+		}
+		
 }
