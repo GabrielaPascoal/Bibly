@@ -8,47 +8,47 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="55.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
+      <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
          <children>
-            <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="15.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="68.0" style="-fx-background-color: #7159c1; -fx-background-radius: 15px; -fx-alignment: center;" text="voltar" textFill="WHITE">
+            <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="voltar" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
             </Button>
          </children>
       </AnchorPane>
-      <AnchorPane prefHeight="410.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
+      <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
          <children>
-            <TextField layoutX="14.0" layoutY="23.0" prefHeight="31.0" prefWidth="385.0" promptText="Digite a informação do produto" style="-fx-border-radius: 2px 0 0 2px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField layoutX="14.0" layoutY="24.0" prefHeight="51.0" prefWidth="882.0" promptText="Digite a informação do produto" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </TextField>
-            <MenuButton layoutX="399.0" layoutY="23.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="108.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">
+            <MenuButton layoutX="895.0" layoutY="24.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">
               <items>
                 <MenuItem mnemonicParsing="false" text="Action 1" />
                 <MenuItem mnemonicParsing="false" text="Action 2" />
               </items>
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </MenuButton>
-            <TableView layoutX="14.0" layoutY="71.0" prefHeight="308.0" prefWidth="496.0" stylesheets="@styles/tableStyle.css">
+            <TableView layoutX="14.0" layoutY="103.0" prefHeight="583.0" prefWidth="1074.0" stylesheets="@styles/tableStyle.css">
               <columns>
-                <TableColumn prefWidth="106.0" text="Id" />
-                <TableColumn prefWidth="185.0" text="Produto" />
-                  <TableColumn prefWidth="93.0" text="Quantidade" />
-                  <TableColumn prefWidth="73.0" text="Valor" />
-                  <TableColumn prefWidth="37.0" />
+                <TableColumn prefWidth="331.0" text="Id" />
+                <TableColumn prefWidth="403.0" text="Produto" />
+                  <TableColumn prefWidth="173.0" text="Quantidade" />
+                  <TableColumn prefWidth="104.0" text="Valor" />
+                  <TableColumn prefWidth="59.0" />
               </columns>
             </TableView>
-            <VBox layoutX="509.0" layoutY="23.0" prefHeight="214.0" prefWidth="201.0" style="-fx-alignment: top-center; -fx-spacing: 10px;">
+            <VBox layoutX="1111.0" layoutY="23.0" prefHeight="214.0" prefWidth="240.0" style="-fx-alignment: top-center; -fx-spacing: 24px;">
                <children>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 6px; -fx-alignment: center-left;" text="Clientes" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px; -fx-alignment: center-left;" text="Clientes" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -57,9 +57,9 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 6px; -fx-alignment: center-left;" text="Devolver" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px; -fx-alignment: center-left;" text="Devolver" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -68,9 +68,9 @@
                            </image></ImageView>
                      </graphic>
                   </Button>
-                  <Button mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 6px; -fx-alignment: center-left;" text="Alugar" textFill="WHITE">
+                  <Button mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px; -fx-alignment: center-left;" text="Alugar" textFill="WHITE">
                      <font>
-                        <Font name="System Bold" size="16.0" />
+                        <Font name="System Bold" size="24.0" />
                      </font>
                      <graphic>
                         <ImageView fitHeight="34.0" fitWidth="34.0" pickOnBounds="true" preserveRatio="true">
@@ -81,9 +81,9 @@
                   </Button>
                </children>
             </VBox>
-            <Button layoutX="530.0" layoutY="333.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 6px; -fx-alignment: center;" text="Relatorios" textFill="WHITE">
+            <Button layoutX="1111.0" layoutY="626.0" mnemonicParsing="false" prefHeight="60.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px; -fx-alignment: center;" text="Relatorios" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="16.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Button>
          </children>

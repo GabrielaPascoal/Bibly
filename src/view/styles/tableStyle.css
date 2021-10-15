@@ -16,3 +16,8 @@
 .table-view .column-header, .table-view .filter {
   -fx-background-color: transparent;
 }
+
+.table-view .table-cell, .table-view .column-header-background .label {
+  -fx-font-weight: bold;
+  -fx-font-size: 20px;  
+}

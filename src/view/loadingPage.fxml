@@ -7,24 +7,23 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="465.0" prefWidth="726.0" style="-fx-background-color: #0A0808;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" style="-fx-background-color: #0A0808;" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Label layoutX="433.0" layoutY="319.0" text="LY" textFill="#04d361">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <Label layoutX="387.0" layoutY="319.0" text="BIB" textFill="#eeeeee">
-         <font>
-            <Font name="System Bold" size="24.0" />
-         </font>
-      </Label>
-      <ImageView fitHeight="191.0" fitWidth="200.0" layoutX="260.0" layoutY="117.0">
+      <ImageView fitHeight="200.0" fitWidth="240.0" layoutX="537.0" layoutY="264.0">
          <image>
             <Image url="@../../assets/logo.png" />
          </image>
       </ImageView>
+      <Label layoutX="786.0" layoutY="464.0" text="LY" textFill="#04d361">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
+      <Label layoutX="725.0" layoutY="464.0" text="BIB" textFill="#eeeeee">
+         <font>
+            <Font name="System Bold" size="32.0" />
+         </font>
+      </Label>
    </children>
    <effect>
       <DropShadow blurType="TWO_PASS_BOX" />

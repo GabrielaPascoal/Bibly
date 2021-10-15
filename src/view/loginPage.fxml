@@ -7,64 +7,64 @@
 <?import java.lang.*?>
 <?import javafx.scene.layout.*?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="465.0" prefWidth="710.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <AnchorPane prefHeight="200.0" prefWidth="320.0" style="-fx-background-color: #0A0808;">
+      <AnchorPane prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #0A0808;">
          <effect>
             <DropShadow blurType="TWO_PASS_BOX" />
          </effect>
          <children>
-            <Label layoutX="230.0" layoutY="319.0" text="LY" textFill="#04d361">
+            <Label layoutX="342.0" layoutY="464.0" text="BIB" textFill="#eeeeee">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <Label layoutX="184.0" layoutY="319.0" text="BIB" textFill="#eeeeee">
+            <Label layoutX="403.0" layoutY="464.0" text="LY" textFill="#04d361">
                <font>
-                  <Font name="System Bold" size="24.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <ImageView fitHeight="191.0" fitWidth="200.0" layoutX="57.0" layoutY="117.0">
+            <ImageView fitHeight="200.0" fitWidth="240.0" layoutX="154.0" layoutY="264.0">
                <image>
                   <Image url="@../../assets/logo.png" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <VBox prefWidth="390.0" style="-fx-alignment: center; -fx-spacing: 20px;">
+      <VBox prefWidth="766.0" style="-fx-alignment: center; -fx-spacing: 36px;">
          <children>
             <Label text="LOGIN" textFill="#0a0808">
                <font>
-                  <Font name="System Bold" size="18.0" />
+                  <Font name="System Bold" size="24.0" />
                </font>
             </Label>
-            <HBox maxWidth="200.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
+            <HBox maxWidth="-Infinity" prefHeight="46.0" prefWidth="340.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
                <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../assets/user.png" />
                      </image></ImageView>
-                  <TextField prefHeight="36.0" prefWidth="206.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
+                  <TextField prefHeight="36.0" prefWidth="340.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font></TextField>
                </children>
             </HBox>
-            <HBox maxWidth="200.0" prefHeight="44.0" prefWidth="200.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
+            <HBox maxWidth="-Infinity" prefHeight="46.0" prefWidth="340.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
                <children>
-                  <ImageView fitHeight="20.0" fitWidth="20.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../assets/key.png" />
                      </image></ImageView>
-                  <PasswordField prefHeight="36.0" prefWidth="206.0" promptText="SENHA" style="-fx-background-color: transparent;">
+                  <PasswordField prefHeight="36.0" prefWidth="340.0" promptText="SENHA" style="-fx-background-color: transparent;">
                      <font>
-                        <Font name="System Bold" size="12.0" />
+                        <Font name="System Bold" size="20.0" />
                      </font></PasswordField>
                </children>
             </HBox>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="36.0" prefWidth="116.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 20px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="20.0" />
                </font>
             </Button>
          </children>
