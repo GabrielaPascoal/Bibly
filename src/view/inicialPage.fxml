@@ -12,14 +12,14 @@
    <children>
       <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
          <children>
-            <Label layoutX="14.0" layoutY="17.0" text="BIB">
+            <Label layoutX="14.0" layoutY="14.0" text="BIB">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="17.0" text="LY" textFill="#04d361">
+            <Label layoutX="75.0" layoutY="14.0" text="LY" textFill="#04d361">
                <font>
-                  <Font name="System Bold" size="28.0" />
+                  <Font name="System Bold" size="32.0" />
                </font>
             </Label>
             <Button layoutX="1316.0" layoutY="16.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px;">
