@@ -5,8 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
-import java.util.ArrayList;
-import java.util.List;
+
 
 import model.VO.LivroVO;
 
@@ -126,158 +125,96 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 	}
 
 	// Buscar livros cadastrados por autor.
-	public List<LivroVO> buscarPorAutor(LivroVO livro) {
+	public ResultSet buscarPorAutor(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE autor = ?";
 		PreparedStatement ptst;
-
-		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
+		ResultSet resposta = null;
+		
 
 		try {
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
 			ptst.setString(1, livro.getAutor());
-			ResultSet resposta = ptst.executeQuery();
+			resposta = ptst.executeQuery();
 
-			while (resposta.next()) {
-				LivroVO buscarLivro = new LivroVO();
-
-				buscarLivro.setId(resposta.getInt("id"));
-				buscarLivro.setTitulo(resposta.getString("titulo"));
-				buscarLivro.setAutor(resposta.getString("autor"));
-				buscarLivro.setEstilo(resposta.getString("genero"));
-				buscarLivro.setAno(resposta.getInt("ano"));
-				buscarLivro.setPagina(resposta.getInt("paginas"));
-				buscarLivro.setValor(resposta.getDouble("valor"));
-				buscarLivro.setQuantidade(resposta.getInt("quantidade"));
-
-				livrosEncontrados.add(buscarLivro);
-
-			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 
-		return livrosEncontrados;
-
+		return resposta;
 	}
 
 	// Buscar livros cadastrados por titulo.
-	public List<LivroVO> buscarPorTitulo(LivroVO livro) {
+	public ResultSet buscarPorTitulo(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE titulo = ?";
 		PreparedStatement ptst;
-
-		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
+		ResultSet resposta = null;
 
 		try {
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
 			ptst.setString(1, livro.getTitulo());
-			ResultSet resposta = ptst.executeQuery();
+			resposta = ptst.executeQuery();
 
-			while (resposta.next()) {
-				LivroVO buscarLivro = new LivroVO();
 
-				buscarLivro.setId(resposta.getInt("id"));
-				buscarLivro.setTitulo(resposta.getString("titulo"));
-				buscarLivro.setAutor(resposta.getString("autor"));
-				buscarLivro.setEstilo(resposta.getString("genero"));
-				buscarLivro.setAno(resposta.getInt("ano"));
-				buscarLivro.setPagina(resposta.getInt("paginas"));
-				buscarLivro.setValor(resposta.getDouble("valor"));
-				buscarLivro.setQuantidade(resposta.getInt("quantidade"));
-
-				livrosEncontrados.add(buscarLivro);
-
-			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 
-		return livrosEncontrados;
+		return resposta;
 
 	}
 
 	// Buscar livros cadastrados por genero.
-	public List<LivroVO> buscarPorGenero(LivroVO livro) {
+	public ResultSet buscarPorGenero(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE genero = ?";
 		PreparedStatement ptst;
-
-		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
+		ResultSet resposta = null;
 
 		try {
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
 			ptst.setString(1, livro.getEstilo());
-			ResultSet resposta = ptst.executeQuery();
+			resposta = ptst.executeQuery();
 
-			while (resposta.next()) {
-				LivroVO buscarLivro = new LivroVO();
-
-				buscarLivro.setId(resposta.getInt("id"));
-				buscarLivro.setTitulo(resposta.getString("titulo"));
-				buscarLivro.setAutor(resposta.getString("autor"));
-				buscarLivro.setEstilo(resposta.getString("genero"));
-				buscarLivro.setAno(resposta.getInt("ano"));
-				buscarLivro.setPagina(resposta.getInt("paginas"));
-				buscarLivro.setValor(resposta.getDouble("valor"));
-				buscarLivro.setQuantidade(resposta.getInt("quantidade"));
-
-				livrosEncontrados.add(buscarLivro);
-
-			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 
-		return livrosEncontrados;
+		return resposta;
 
 	}
 
 	// Buscar livros cadastrados por ano.
-	public List<LivroVO> buscarPorAno(LivroVO livro) {
+	public ResultSet buscarPorAno(LivroVO livro) {
 
 		String sql = "SELECT * FROM livros WHERE ano = ?";
 		PreparedStatement ptst;
-
-		List<LivroVO> livrosEncontrados = new ArrayList<LivroVO>();
+		ResultSet resposta = null;
+		
 
 		try {
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
 			ptst.setInt(1, livro.getAno());
-			ResultSet resposta = ptst.executeQuery();
+			resposta = ptst.executeQuery();
 
-			while (resposta.next()) {
-				LivroVO buscarLivro = new LivroVO();
-
-				buscarLivro.setId(resposta.getInt("id"));
-				buscarLivro.setTitulo(resposta.getString("titulo"));
-				buscarLivro.setAutor(resposta.getString("autor"));
-				buscarLivro.setEstilo(resposta.getString("genero"));
-				buscarLivro.setAno(resposta.getInt("ano"));
-				buscarLivro.setPagina(resposta.getInt("paginas"));
-				buscarLivro.setValor(resposta.getDouble("valor"));
-				buscarLivro.setQuantidade(resposta.getInt("quantidade"));
-
-				livrosEncontrados.add(buscarLivro);
-
-			}
 		} catch (SQLException e) {
 
 			e.printStackTrace();
 		}
 
-		return livrosEncontrados;
+		return resposta;
 
 	}
 }

@@ -6,7 +6,7 @@ import java.sql.SQLException;
 
 public abstract class BaseDAO<VO> implements BaseInterDAO<VO> {
   private static Connection connection = null;
-  private static final String url = "jdbc:postgresql://localhost:5432/bibly";
+  private static final String url = "jdbc:postgresql://localhost:5432/Bibly";
   private static final String user = "postgres";
   private static final String senha = "postgres";
 

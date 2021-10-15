@@ -31,22 +31,10 @@ public class UsuarioVO {
   }
 
   public void setCpf(String cpf) {
-    try {
-      if ((cpf == null) || (cpf.equals(""))) {
-        throw new Exception("O usu�rio deve informar um CPF.");
-      }
-
-      if (cpf.length() != 11) {
-        throw new Exception("o usu�rio deve informar um CPF v�lido.");
-      }
-
+    
       this.cpf = cpf;
 
-    } catch (Exception erro) {
-
-      System.err.println(erro);
-
-    }
+    
   }
 
   public String getSenha() {
@@ -54,18 +42,11 @@ public class UsuarioVO {
   }
 
   public void setSenha(String senha) {
-    try {
-      if ((senha == null) || (senha.equals(""))) {
-        throw new Exception("O usu�rio deve apresentar uma senha.");
-      }
+   
 
       this.senha = senha;
 
-    } catch (Exception erro) {
-
-      System.err.println(erro);
-
-    }
+   
   }
 
   public String toString() {
