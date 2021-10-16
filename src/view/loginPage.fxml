@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<HBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.Controler">
    <children>
       <AnchorPane prefHeight="200.0" prefWidth="600.0" style="-fx-background-color: #0A0808;">
          <effect>
@@ -49,7 +49,7 @@
                      <image>
                         <Image url="@../../assets/user.png" />
                      </image></ImageView>
-                  <TextField prefHeight="36.0" prefWidth="340.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
+                  <TextField fx:id="cpf" onKeyPressed="#cpfKeyPressed" prefHeight="36.0" prefWidth="340.0" promptText="CPF" style="-fx-background-color: transparent; -fx-background-radius: 0;">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></TextField>
@@ -61,17 +61,22 @@
                      <image>
                         <Image url="@../../assets/key.png" />
                      </image></ImageView>
-                  <PasswordField prefHeight="36.0" prefWidth="340.0" promptText="SENHA" style="-fx-background-color: transparent;">
+                  <PasswordField fx:id="senha" onAction="#autenticar" prefHeight="36.0" prefWidth="340.0" promptText="SENHA" style="-fx-background-color: transparent;">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font></PasswordField>
                </children>
             </HBox>
-            <Button contentDisplay="RIGHT" mnemonicParsing="false" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 20px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
+            <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#autenticar" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 20px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Button>
+            <Label fx:id="erro" textFill="RED">
+               <font>
+                  <Font size="15.0" />
+               </font>
+            </Label>
          </children>
       </VBox>
    </children>

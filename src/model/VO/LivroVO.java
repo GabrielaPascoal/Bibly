@@ -4,7 +4,7 @@ public class LivroVO {
   private int id;
   private String titulo;
   private String autor;
-  private String estilo;
+  private String genero;
   private int ano;
   private int paginas;
   private double valor;
@@ -69,17 +69,17 @@ public class LivroVO {
     }
   }
 
-  public String getEstilo() {
-    return this.estilo;
+  public String getGenero() {
+    return this.genero;
   }
 
-  public void setEstilo(String estilo) {
+  public void setGenero(String estilo) {
     try {
       if ((estilo == null) || (estilo.equals(""))) {
         throw new Exception("O livro deve possuir um estilo.");
       }
 
-      this.estilo = estilo;
+      this.genero = estilo;
 
     } catch (Exception erro) {
 
@@ -175,7 +175,7 @@ public class LivroVO {
     obj = "id: " + this.id + '\n';
     obj += "titulo: " + this.titulo + '\n';
     obj += "autor: " + this.autor + '\n';
-    obj += "estilo: " + this.estilo + '\n';
+    obj += "estilo: " + this.genero + '\n';
     obj += "ano: " + this.ano + '\n';
     obj += "paginas: " + this.paginas + '\n';
     obj += "valor: " + this.valor + '\n';

@@ -67,7 +67,7 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
       livro.setId(respostaLivro.getInt("id"));
       livro.setTitulo(respostaLivro.getString("titulo"));
       livro.setAutor(respostaLivro.getString("autor"));
-      livro.setEstilo(respostaLivro.getString("genero"));
+      livro.setGenero(respostaLivro.getString("genero"));
       livro.setAno(respostaLivro.getInt("ano"));
       livro.setPagina(respostaLivro.getInt("paginas"));
       livro.setValor(respostaLivro.getDouble("valor"));
@@ -94,7 +94,7 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
       livro.setId(resposta.getInt("id"));
       livro.setTitulo(resposta.getString("titulo"));
       livro.setAutor(resposta.getString("autor"));
-      livro.setEstilo(resposta.getString("genero"));
+      livro.setGenero(resposta.getString("genero"));
       livro.setAno(resposta.getInt("ano"));
       livro.setPagina(resposta.getInt("paginas"));
       livro.setValor(resposta.getDouble("valor"));
@@ -211,7 +211,7 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
       livro.setId(respostaLivro.getInt("id"));
       livro.setTitulo(respostaLivro.getString("titulo"));
       livro.setAutor(respostaLivro.getString("autor"));
-      livro.setEstilo(respostaLivro.getString("genero"));
+      livro.setGenero(respostaLivro.getString("genero"));
       livro.setAno(respostaLivro.getInt("ano"));
       livro.setPagina(respostaLivro.getInt("paginas"));
       livro.setValor(respostaLivro.getDouble("valor"));

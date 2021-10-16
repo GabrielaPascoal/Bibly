@@ -3,6 +3,7 @@ package model.BO;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 import model.DAO.BaseInterDAO;
@@ -81,7 +82,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 			}
 			else {
 				
-				List<LivroVO> livros = new ArrayList<LivroVO>();
+				List<LivroVO> livros = new LinkedList<LivroVO>();
 				
 				while(resposta.next()) {
 					
@@ -90,7 +91,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setEstilo(resposta.getString("genero"));
+					livroRecebe.setGenero(resposta.getString("genero"));
 					livroRecebe.setAno(resposta.getInt("ano"));
 					livroRecebe.setPagina(resposta.getInt("paginas"));
 					livroRecebe.setValor(resposta.getDouble("valor"));
@@ -129,7 +130,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setEstilo(resposta.getString("genero"));
+					livroRecebe.setGenero(resposta.getString("genero"));
 					livroRecebe.setAno(resposta.getInt("ano"));
 					livroRecebe.setPagina(resposta.getInt("paginas"));
 					livroRecebe.setValor(resposta.getDouble("valor"));
@@ -167,7 +168,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setEstilo(resposta.getString("genero"));
+					livroRecebe.setGenero(resposta.getString("genero"));
 					livroRecebe.setAno(resposta.getInt("ano"));
 					livroRecebe.setPagina(resposta.getInt("paginas"));
 					livroRecebe.setValor(resposta.getDouble("valor"));
@@ -205,7 +206,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setEstilo(resposta.getString("genero"));
+					livroRecebe.setGenero(resposta.getString("genero"));
 					livroRecebe.setAno(resposta.getInt("ano"));
 					livroRecebe.setPagina(resposta.getInt("paginas"));
 					livroRecebe.setValor(resposta.getDouble("valor"));
@@ -243,7 +244,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 				livroRecebe.setId(resposta.getInt("id"));
 				livroRecebe.setTitulo(resposta.getString("titulo"));
 				livroRecebe.setAutor(resposta.getString("autor"));
-				livroRecebe.setEstilo(resposta.getString("genero"));
+				livroRecebe.setGenero(resposta.getString("genero"));
 				livroRecebe.setAno(resposta.getInt("ano"));
 				livroRecebe.setPagina(resposta.getInt("paginas"));
 				livroRecebe.setValor(resposta.getDouble("valor"));
@@ -260,4 +261,43 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 	      return null;
 	}
   }
+	
+	public List<LivroVO> buscarPorId(LivroVO liv) throws SQLException {
+		
+		LivroDAO livro = new LivroDAO();
+		
+		try {
+			ResultSet resposta = livro.buscarPorId(liv);
+			if (!resposta.next()) {
+				throw new Exception("Não existe nenhum livro cadastrado com esse titulo.");
+			}
+			else {
+				
+				List<LivroVO> livros = new ArrayList<LivroVO>();
+				
+				while(resposta.next()) {
+					
+					LivroVO livroRecebe = new LivroVO();
+					
+					livroRecebe.setId(resposta.getInt("id"));
+					livroRecebe.setTitulo(resposta.getString("titulo"));
+					livroRecebe.setAutor(resposta.getString("autor"));
+					livroRecebe.setGenero(resposta.getString("genero"));
+					livroRecebe.setAno(resposta.getInt("ano"));
+					livroRecebe.setPagina(resposta.getInt("paginas"));
+					livroRecebe.setValor(resposta.getDouble("valor"));
+					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
+					livros.add(livroRecebe);
+					
+				}
+				
+				return livros;
+			}
+		}
+		catch (Exception erro) {
+		      System.err.println(erro);
+		      return null;
+		}
+	
+	}
 }

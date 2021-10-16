@@ -23,7 +23,7 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 			ptst = connection.prepareStatement(sql);
 			ptst.setString(1, livro.getTitulo());
 			ptst.setString(2, livro.getAutor());
-			ptst.setString(3, livro.getEstilo());
+			ptst.setString(3, livro.getGenero());
 			ptst.setInt(4, livro.getAno());
 			ptst.setInt(5, livro.getPagina());
 			ptst.setDouble(6, livro.getValor());
@@ -68,7 +68,7 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 			ptst = connection.prepareStatement(sql);
 			ptst.setString(1, livro.getTitulo());
 			ptst.setString(2, livro.getAutor());
-			ptst.setString(3, livro.getEstilo());
+			ptst.setString(3, livro.getGenero());
 			ptst.setInt(4, livro.getAno());
 			ptst.setInt(5, livro.getPagina());
 			ptst.setDouble(6, livro.getValor());
@@ -182,7 +182,7 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 
 			Connection connection = getConnection();
 			ptst = connection.prepareStatement(sql);
-			ptst.setString(1, livro.getEstilo());
+			ptst.setString(1, livro.getGenero());
 			resposta = ptst.executeQuery();
 
 		} catch (SQLException e) {
