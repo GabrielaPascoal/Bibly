@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.MenuButton?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+   <children>
+      <AnchorPane prefHeight="788.0" prefWidth="1386.0">
+         <children>
+            <VBox layoutX="-2.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="788.0" prefWidth="1394.0">
+               <children>
+                  <AnchorPane prefHeight="76.0" prefWidth="1382.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
+                     <children>
+                        <Button fx:id="inserirCliente" layoutX="1316.0" layoutY="16.0" mnemonicParsing="false" onAction="#inserirLivro" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px; -fx-cursor: Hand;">
+                           <graphic>
+                              <ImageView fitHeight="26.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/Vector.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="voltar" contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltarDisco" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="voltar" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="16.0" />
+                           </font>
+                        </Button>
+                     </children>
+                  </AnchorPane>
+                  <AnchorPane prefHeight="714.0" prefWidth="1376.0" style="-fx-background-color: #D6D3D3;">
+                     <children>
+                        <TableView fx:id="tableLivros" layoutX="14.0" layoutY="86.0" prefHeight="600.0" prefWidth="1340.0" stylesheets="@styles/tableStyle.css">
+                           <columns>
+                              <TableColumn fx:id="nome" prefWidth="367.00001525878906" text="Nome" />
+                              <TableColumn fx:id="cpf" prefWidth="185.0" text="CPF" />
+                              <TableColumn fx:id="endereco" prefWidth="320.0" text="Endereço" />
+                              <TableColumn fx:id="celular" prefWidth="113.0" text="Celular" />
+                              <TableColumn minWidth="0.0" prefWidth="3.0" />
+                           </columns>
+                        </TableView>
+                        <TextField fx:id="buscar" layoutX="14.0" layoutY="16.0" prefHeight="51.0" prefWidth="1145.0" promptText="Buscar por nome ou CPF" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </TextField>
+                        <MenuButton layoutX="1159.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                           <items>
+                              <MenuItem mnemonicParsing="false" text="Título" />
+                              <MenuItem mnemonicParsing="false" text="Autor" />
+                           </items>
+                        </MenuButton>
+                     </children>
+                  </AnchorPane>
+               </children>
+            </VBox>
+         </children>
+      </AnchorPane>
+   </children>
+</AnchorPane>
