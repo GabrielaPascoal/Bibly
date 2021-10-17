@@ -73,6 +73,38 @@ public class Telas extends Application {
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
 	}
+	
+   public static void telaDisco() throws IOException {
+		
+	    Parent root = FXMLLoader.load(Telas.class.getResource("DiscoPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+			
+		}
+		    
+	public static void telaInserirDisco() throws IOException {
+				
+		Parent root = FXMLLoader.load(Telas.class.getResource("inserirDiscoPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+		
+		}
+		
+	public static void telaCliente() throws IOException {
+				
+		Parent root = FXMLLoader.load(Telas.class.getResource("ClientePage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+				
+		}
+	
+	public static void telaInserirCliente() throws IOException {
+			
+		Parent root = FXMLLoader.load(Telas.class.getResource("inserirClientePage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+		
+		}
 
 	public static void main(String[] args) {
 		launch();
