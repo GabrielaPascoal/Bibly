@@ -112,7 +112,7 @@ public class LivroVO {
     }
   }
 
-  public int getPagina() {
+  public int getPaginas() {
     return this.paginas;
   }
 

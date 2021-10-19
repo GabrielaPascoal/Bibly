@@ -19,7 +19,7 @@ public class ControllerInserirCliente {
 	
 	@FXML
 	public void voltar(ActionEvent event) throws IOException {
-		Telas.telaInicial();
+		Telas.telaCliente();
 	}
 	
 	@FXML 

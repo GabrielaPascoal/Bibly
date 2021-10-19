@@ -20,12 +20,13 @@ public class ControllerInserirDiscos {
 	
 	@FXML
 	public void voltar(ActionEvent event) throws IOException {
-		Telas.telaInicial();
+		Telas.telaDisco();
 	}
 	
 	@FXML 
-	public void salvarDisco(ActionEvent event) {
+	public void salvar(ActionEvent event) {
 
 	}
-
+	
+	
 }

@@ -25,7 +25,7 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 			ptst.setString(2, livro.getAutor());
 			ptst.setString(3, livro.getGenero());
 			ptst.setInt(4, livro.getAno());
-			ptst.setInt(5, livro.getPagina());
+			ptst.setInt(5, livro.getPaginas());
 			ptst.setDouble(6, livro.getValor());
 			ptst.setInt(7, livro.getQuantidade());
 			ptst.execute();
@@ -70,7 +70,7 @@ public class LivroDAO extends BaseDAO<LivroVO> implements BuscarInterDAO<LivroVO
 			ptst.setString(2, livro.getAutor());
 			ptst.setString(3, livro.getGenero());
 			ptst.setInt(4, livro.getAno());
-			ptst.setInt(5, livro.getPagina());
+			ptst.setInt(5, livro.getPaginas());
 			ptst.setDouble(6, livro.getValor());
 			ptst.setInt(7, livro.getQuantidade());
 			ptst.setInt(8, livro.getId());

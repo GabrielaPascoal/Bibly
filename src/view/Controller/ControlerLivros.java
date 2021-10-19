@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
+
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -18,8 +19,7 @@ import view.Telas;
 
 public class ControlerLivros implements Initializable {
 
-	@FXML
-	private TableView<LivroVO> tableLivros;
+	@FXML private TableView<LivroVO> tableLivros;
 
 	@FXML private TableColumn<LivroVO, String> clnAutor;
 	@FXML private TableColumn<LivroVO, String> clnTitulo;
@@ -58,8 +58,9 @@ public class ControlerLivros implements Initializable {
 		clnGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
 		clnAno.setCellValueFactory(new PropertyValueFactory<>("ano"));
 		clnPaginas.setCellValueFactory(new PropertyValueFactory<>("paginas"));
-		clnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
 		clnQt.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
+		clnValor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+		
 		tableLivros.setItems(atualizarTable());
 
 	}

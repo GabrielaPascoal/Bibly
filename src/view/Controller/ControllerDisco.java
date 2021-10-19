@@ -18,9 +18,8 @@ import model.VO.DiscoVO;
 import view.Telas;
 
 public class ControllerDisco implements Initializable {
-	
-	@FXML
-	private TableView<DiscoVO> tabelaDiscos;
+
+	@FXML private TableView<DiscoVO> tabelaDiscos;
 	
 	@FXML private TableColumn<DiscoVO, String> titulo;
 	@FXML private TableColumn<DiscoVO, String> nome;
@@ -28,14 +27,6 @@ public class ControllerDisco implements Initializable {
 	@FXML private TableColumn<DiscoVO, Integer> quantidade;
 	@FXML private TableColumn<DiscoVO, Double> valor;
 	
-
-
-	@FXML
-	public void voltar(ActionEvent event) throws IOException {
-		Telas.telaInicial();
-	}
-
-
 	@Override
 	public void initialize(URL arg0, ResourceBundle arg1) {
 		try {
@@ -44,25 +35,35 @@ public class ControllerDisco implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	
 	}
-
+	
+	@FXML
+	public void voltar(ActionEvent event) throws IOException {
+		Telas.telaInicial();
+	}
+	
+	@FXML 
+	public void inserirDisco(ActionEvent event) throws IOException {
+		Telas.telaInserirDisco();
+	}
+	
+	@FXML
 	private void initTable() throws SQLException {
 		// TODO Auto-generated method stub
 		titulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
-		nome.setCellValueFactory(new PropertyValueFactory<>("nome"));
+		nome.setCellValueFactory(new PropertyValueFactory<>("artista"));
 		estilo.setCellValueFactory(new PropertyValueFactory<>("estilo"));
-		quantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 		valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
+		quantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
 		tabelaDiscos.setItems(atualizar());
-		
+
 	}
+
 	@FXML
 	public ObservableList<DiscoVO> atualizar() throws SQLException {
 
 		DiscoBO disco = new DiscoBO();
 		return FXCollections.observableArrayList(disco.buscarTodos());
-	
-	
-}
+
+	}
 }

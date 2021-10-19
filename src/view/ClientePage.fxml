@@ -12,8 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerCliente">
    <children>
       <AnchorPane prefHeight="788.0" prefWidth="1386.0">
          <children>
@@ -21,7 +20,7 @@
                <children>
                   <AnchorPane prefHeight="76.0" prefWidth="1382.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
                      <children>
-                        <Button fx:id="inserirCliente" layoutX="1316.0" layoutY="16.0" mnemonicParsing="false" onAction="#inserirLivro" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px; -fx-cursor: Hand;">
+                        <Button fx:id="inserirCliente" layoutX="1316.0" layoutY="16.0" mnemonicParsing="false" onAction="#inserirCliente" prefHeight="36.0" prefWidth="36.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18px; -fx-cursor: Hand;">
                            <graphic>
                               <ImageView fitHeight="26.0" fitWidth="18.0" pickOnBounds="true" preserveRatio="true">
                                  <image>
@@ -30,7 +29,7 @@
                               </ImageView>
                            </graphic>
                         </Button>
-                        <Button fx:id="voltar" contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltarDisco" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="voltar" textFill="WHITE">
+                        <Button fx:id="voltar" contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="voltar" textFill="WHITE">
                            <font>
                               <Font name="System Bold" size="16.0" />
                            </font>
@@ -39,7 +38,7 @@
                   </AnchorPane>
                   <AnchorPane prefHeight="714.0" prefWidth="1376.0" style="-fx-background-color: #D6D3D3;">
                      <children>
-                        <TableView fx:id="tableLivros" layoutX="14.0" layoutY="86.0" prefHeight="600.0" prefWidth="1340.0" stylesheets="@styles/tableStyle.css">
+                        <TableView fx:id="tabelaClientes" layoutX="14.0" layoutY="86.0" prefHeight="600.0" prefWidth="1340.0" stylesheets="@styles/tableStyle.css">
                            <columns>
                               <TableColumn fx:id="nome" prefWidth="367.00001525878906" text="Nome" />
                               <TableColumn fx:id="cpf" prefWidth="185.0" text="CPF" />

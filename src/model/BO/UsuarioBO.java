@@ -25,7 +25,10 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 					
 					valid=true;
 				}
-				else {
+				else if(!(result.getString("Senha").equals(user.getSenha()))) {
+					valid =false;
+					
+				}else {
 					throw new Exception("Usuario ou senha incorretos");
 				}
 			}

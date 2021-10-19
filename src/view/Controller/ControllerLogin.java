@@ -1,6 +1,5 @@
 package view.Controller;
 
-import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -14,7 +13,7 @@ import model.BO.UsuarioBO;
 import model.VO.UsuarioVO;
 import view.Telas;
 
-public class Controler {
+public class ControllerLogin {
 
 	@FXML private Label erro;
 	@FXML private TextField cpf;
@@ -53,17 +52,9 @@ public class Controler {
 			public void handle(KeyEvent event) {
 				if (event.getCode().equals(KeyCode.ENTER)) {
 					senha.requestFocus();
+					
 				}
 			}
 		});
 	}
-
-	public void logout(ActionEvent event) throws IOException {
-		Telas.telaLogin();
-	}
-
-	public void livro(ActionEvent event) throws IOException {
-		Telas.telaLivro();
-	}
-
 }

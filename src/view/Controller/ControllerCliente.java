@@ -1,6 +1,6 @@
 package view.Controller;
 
-import java.awt.event.ActionEvent;
+
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
@@ -8,6 +8,7 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -21,17 +22,22 @@ import view.Telas;
 
 public class ControllerCliente implements Initializable {
 	
-	@FXML
-	private TableView<ClienteVO> tabelaClientes;
+	@FXML private TableView<ClienteVO> tabelaClientes;
 	
 	@FXML private TableColumn<ClienteVO, String> nome;
 	@FXML private TableColumn<ClienteVO, String> cpf;
 	@FXML private TableColumn<ClienteVO, String> endereco;
 	@FXML private TableColumn<ClienteVO, Integer> celular;
 
+	
 	@FXML
 	public void voltar(ActionEvent event) throws IOException {
 		Telas.telaInicial();
+	}
+	
+	@FXML
+	public void inserirCliente(ActionEvent event) throws IOException {
+		Telas.telaInserirCliente();
 	}
 	
 	
