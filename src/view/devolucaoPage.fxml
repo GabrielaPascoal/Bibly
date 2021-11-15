@@ -7,11 +7,11 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerDevolucao">
    <children>
       <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
          <children>
-            <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="voltar" textFill="WHITE">
+            <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="voltar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -20,15 +20,13 @@
       </AnchorPane>
       <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
          <children>
-            <TableView layoutX="14.0" layoutY="87.0" prefHeight="599.0" prefWidth="1338.0" stylesheets="@styles/tableStyle.css">
+            <TableView fx:id="tabelaDevolucao" layoutX="14.0" layoutY="87.0" prefHeight="599.0" prefWidth="1338.0" stylesheets="@styles/tableStyle.css">
                <columns>
-                  <TableColumn prefWidth="545.0" text="Nome" />
-                  <TableColumn prefWidth="182.0" text="Celular" />
-                  <TableColumn prefWidth="201.0" text="Data Retirada" />
-                  <TableColumn prefWidth="207.0" text="Data Devoluçao" />
-                  <TableColumn prefWidth="63.0" text="Qt" />
-                  <TableColumn prefWidth="94.0" text="Valor" />
-                  <TableColumn prefWidth="44.0" />
+                  <TableColumn fx:id="nome" prefWidth="481.0" text="Nome" />
+                  <TableColumn fx:id="celular" prefWidth="390.0" text="Celular" />
+                  <TableColumn fx:id="dataRetirada" prefWidth="219.0" text="Data Retirada" />
+                  <TableColumn fx:id="valor" prefWidth="190.0" text="Valor" />
+                  <TableColumn minWidth="0.0" prefWidth="56.0" />
                </columns>
             </TableView>
             <MenuButton layoutX="1159.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">

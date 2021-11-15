@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerRelatorioCliente">
+   <children>
+      <Text layoutX="130.0" layoutY="35.0" strokeType="OUTSIDE" strokeWidth="0.0" text="FATURA MENSAL" wrappingWidth="250">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Text layoutX="180.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mês">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="voltar" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Button>
+      <Button alignment="CENTER" layoutX="180.0" layoutY="233.0" mnemonicParsing="false" onAction="#gerarRelatorio" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Gerar Fatura" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+      <DatePicker layoutX="180.0" layoutY="138.0" prefHeight="40.0" prefWidth="240.0" showWeekNumbers="true" style="-fx-background-color: #ffffff; -fx-border-color: #7159c1; -fx-border-radius: 4;" />
+   </children>
+</AnchorPane>
