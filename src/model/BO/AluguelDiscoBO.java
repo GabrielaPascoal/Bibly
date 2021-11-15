@@ -17,6 +17,7 @@ public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelPro
     AluguelDiscoVO aluguelDisco = new AluguelDiscoVO();
     AluguelVO aluguel = new AluguelVO();
     DiscoVO disco = new DiscoVO();
+    DiscoBO discoBO = new DiscoBO();
 
     aluguel.setId(resposta.getInt("aluguel_id"));
     disco.setId(resposta.getInt("disco_id"));
@@ -50,11 +51,11 @@ public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelPro
 
       ResultSet respostaDisco = discoDAO.buscarPorId(aluguel.getProduto());
 
-      if (respostaAluguel.next()) {
+      if (!respostaAluguel.next()) {
         throw new Exception("Aluguel nao existe.");
       }
 
-      if (respostaDisco.next()) {
+      if (!respostaDisco.next()) {
         throw new Exception("Disco nao existe.");
       }
 
@@ -133,13 +134,13 @@ public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelPro
 
       ResultSet respostaAluguel = aluguelDAO.buscarPorId(aluguel.getAluguel());
 
-      if (respostaAluguel.next()) {
-        throw new Exception("Aluguel nao existe.");
+      List<AluguelDiscoVO> alugueis = new ArrayList<AluguelDiscoVO>();
+
+      if (!respostaAluguel.next()) {
+        return alugueis;
       }
 
       ResultSet resposta = aluguelDiscoDAO.buscarPorAluguelId(aluguel);
-
-      List<AluguelDiscoVO> alugueis = new ArrayList<AluguelDiscoVO>();
 
       while (resposta.next()) {
         aluguel = getAluguelDisco(resposta);
@@ -188,11 +189,11 @@ public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelPro
       ResultSet respostaAluguel = aluguelDAO.buscarPorId(aluguel.getAluguel());
       ResultSet respostaDisco = discoDAO.buscarPorId(aluguel.getProduto());
 
-      if (respostaAluguel.next()) {
+      if (!respostaAluguel.next()) {
         throw new Exception("Aluguel nao existe.");
       }
 
-      if (respostaDisco.next()) {
+      if (!respostaDisco.next()) {
         throw new Exception("Disco nao existe.");
       }
 
