@@ -98,6 +98,14 @@ public class Telas extends Application {
 		pS.setScene(cena);
 		
 		}
+	
+	public static void telaEditarDisco() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("editarDiscoPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+		
+	}
 		
 	public static void telaCliente() throws IOException {
 				
@@ -114,6 +122,14 @@ public class Telas extends Application {
 		pS.setScene(cena);
 		
 		}
+	
+	public static void telaEditarCliente() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("editarClientePage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+		
+	}
 
 	public static void main(String[] args) {
 		launch();

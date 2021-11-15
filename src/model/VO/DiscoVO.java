@@ -1,6 +1,6 @@
 package model.VO;
 
-public class DiscoVO implements ProdutoInterVO {
+public class DiscoVO {
   private int id;
   private String titulo;
   private String artista;
