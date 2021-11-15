@@ -5,7 +5,7 @@ public class ClienteVO {
   private String nome;
   private String cpf;
   private String endereco;
-  private int celular;
+  private String celular;
 
   // implementa��o para garantir integridade dos dados
 
@@ -89,13 +89,13 @@ public class ClienteVO {
     }
   }
 
-  public int getCelular() {
+  public String getCelular() {
     return this.celular;
   }
 
-  public void setCelular(int celular) {
+  public void setCelular(String celular) {
     try {
-      if (String.valueOf(celular).length() <= 8) {
+      if (celular.length() <= 8) {
         throw new Exception("O cliente deve informar um n�mero v�lido.");
       }
 

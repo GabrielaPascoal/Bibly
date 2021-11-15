@@ -20,11 +20,10 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 		preparedStatement.setString(1, vo.getNome());
 		preparedStatement.setString(2, vo.getCpf());
 		preparedStatement.setString(3, vo.getEndereco());
-		preparedStatement.setInt(4, vo.getCelular());
+		preparedStatement.setString(4, vo.getCelular());
 		preparedStatement.execute();
 
 	}
-
 
 	public void remover(ClienteVO vo) throws SQLException {
 
@@ -35,10 +34,8 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 			preparedStatement.setLong(1, vo.getId());
 			preparedStatement.executeUpdate();
 		} catch (SQLException e) {
-			 e.printStackTrace();
+			e.printStackTrace();
 		}
-		
-	
 
 	}
 
@@ -57,6 +54,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 				vo.setNome(result.getString("nome"));
 				vo.setCpf(result.getString("cpf"));
 				vo.setEndereco(result.getString("endereco"));
+				vo.setCelular(result.getString("celular"));
 
 				clientes.add(vo);
 
@@ -76,7 +74,8 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 			preparedStatement = connection.prepareStatement(query);
 			preparedStatement.setString(1, vo.getNome());
 			preparedStatement.setString(2, vo.getCpf());
-			preparedStatement.setString(1, vo.getEndereco());
+			preparedStatement.setString(3, vo.getEndereco());
+			preparedStatement.setString(4, vo.getCelular());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -103,6 +102,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 			vo.setNome(result.getString("nome"));
 			vo.setCpf(result.getString("cpf"));
 			vo.setEndereco(result.getString("endereco"));
+			vo.setCelular(result.getString("celular"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -125,6 +125,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 				vo.setNome(result.getString("nome"));
 				vo.setCpf(result.getString("cpf"));
 				vo.setEndereco(result.getString("endereco"));
+				vo.setCelular(result.getString("celular"));
 
 				clientes.add(vo);
 
@@ -154,6 +155,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 			vo.setNome(result.getString("nome"));
 			vo.setCpf(result.getString("cpf"));
 			vo.setEndereco(result.getString("endereco"));
+			vo.setCelular(result.getString("celular"));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
@@ -176,6 +178,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 				vo.setNome(result.getString("nome"));
 				vo.setCpf(result.getString("cpf"));
 				vo.setEndereco(result.getString("endereco"));
+				vo.setCelular(result.getString("celular"));
 
 				clientes.add(vo);
 
@@ -186,15 +189,16 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 		return clientes;
 
 	}
+
 	// BUSCAR TODOS
-    public ResultSet buscarTodos() throws SQLException {
-            Connection connection = getConnection();
+	public ResultSet buscarTodos() throws SQLException {
+		Connection connection = getConnection();
 
-            String query = "SELECT * FROM clientes";
+		String query = "SELECT * FROM clientes";
 
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query);
+		Statement statement = connection.createStatement();
+		ResultSet result = statement.executeQuery(query);
 
-            return result;
-        }
+		return result;
+	}
 }
