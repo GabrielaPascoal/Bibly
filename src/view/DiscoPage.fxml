@@ -12,7 +12,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerDisco">
+<AnchorPane prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerDisco">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="778.0" prefWidth="1376.0">
          <children>
@@ -38,12 +38,13 @@
                <children>
                   <TableView fx:id="tabelaDiscos" layoutX="14.0" layoutY="86.0" prefHeight="600.0" prefWidth="1340.0" stylesheets="@styles/tableStyle.css">
                      <columns>
-                        <TableColumn fx:id="titulo" prefWidth="320.0" text="Título" />
-                        <TableColumn fx:id="nome" prefWidth="320.0" text="Banda/Artista" />
-                        <TableColumn fx:id="estilo" prefWidth="178.0" text="Estilo" />
-                        <TableColumn fx:id="valor" prefWidth="114.0" text="Valor" />
-                        <TableColumn fx:id="quantidade" prefWidth="110.0" text="Qt" />
-                        <TableColumn prefWidth="56.0" />
+                        <TableColumn fx:id="titulo" prefWidth="407.0" text="Título" />
+                        <TableColumn fx:id="nome" prefWidth="358.0" text="Banda/Artista" />
+                        <TableColumn fx:id="estilo" prefWidth="158.0" text="Estilo" />
+                        <TableColumn fx:id="valor" minWidth="9.0" text="Valor" />
+                        <TableColumn fx:id="quantidade" minWidth="7.0" prefWidth="105.0" text="Qt" />
+                        <TableColumn fx:id="editar" minWidth="0.0" prefWidth="81.0" />
+                        <TableColumn fx:id="deletar" prefWidth="149.0" />
                      </columns>
                   </TableView>
                   <TextField layoutX="14.0" layoutY="16.0" prefHeight="51.0" prefWidth="1145.0" promptText="Pesquisar por título, banda ou estilo" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">

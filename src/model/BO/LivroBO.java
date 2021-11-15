@@ -84,8 +84,8 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 				
 				List<LivroVO> livros = new LinkedList<LivroVO>();
 				
-				while(resposta.next()) {
-					
+				do {
+	
 					LivroVO livroRecebe = new LivroVO();
 					
 					livroRecebe.setId(resposta.getInt("id"));
@@ -98,7 +98,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 					livros.add(livroRecebe);
 					
-				}
+				}while(resposta.next());
 				
 				return livros;
 			}

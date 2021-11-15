@@ -21,3 +21,28 @@
   -fx-font-weight: bold;
   -fx-font-size: 20px;  
 }
+
+/* remove o fundo cinza padrão do botão */
+.icon-button {
+  -fx-background-color: transparent, transparent, transparent, transparent, transparent;
+}
+
+.icon-button:hover{
+  -fx-cursor: hand;	
+}
+
+/* ==== Cores para os ícones svg ==== */
+
+.svg-roxo{
+  -fx-fill: #7159c1; 
+}
+
+/* Modifica a cor do icone em svg quando o mouse */
+/* passar por cima ou quando ele for clicado */
+/* aqui eu usei tonalidades um pouco mais escuras */
+.svg-gray:pressed, .svg-roxo:hover{
+  -fx-fill: #444444;
+}
+.svg-red:pressed, .svg-red:hover{
+  -fx-fill: #9d0208;
+}

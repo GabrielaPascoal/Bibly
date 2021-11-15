@@ -52,22 +52,10 @@ public class ClienteVO {
   }
 
   public void setCpf(String cpf) {
-    try {
-      if ((cpf == null) || (cpf.equals(""))) {
-        throw new Exception("O cliente deve informar um CPF.");
-      }
-
-      if (cpf.length() != 11) {
-        throw new Exception("O cliente deve informar um CPF v�lido.");
-      }
-
+	    
       this.cpf = cpf;
 
-    } catch (Exception erro) {
-
-      System.err.println(erro);
-
-    }
+    
   }
 
   public String getEndereco() {
