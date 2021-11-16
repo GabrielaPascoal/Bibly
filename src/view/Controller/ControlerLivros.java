@@ -32,6 +32,10 @@ public class ControlerLivros implements Initializable {
 	private CheckBox tituloCheck;
 	@FXML
 	private CheckBox autorCheck;
+	@FXML
+	private CheckBox generoCheck;
+	@FXML
+	private CheckBox anoCheck;
 
 	@FXML
 	private TableView<LivroVO> tableLivros;
@@ -112,7 +116,7 @@ public class ControlerLivros implements Initializable {
 				// Compare first name and last name of every person with filter text.
 				String lowerCaseFilter = newValue.toLowerCase();
 
-				// Fiultros
+				// Filtros.
 				if (tituloCheck.isSelected()) {
 					if (livro.getTitulo().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 						return true; // Filter matches first name.
@@ -126,13 +130,30 @@ public class ControlerLivros implements Initializable {
 					} else
 						return false;
 				}
-				// fim filtros
 
+				if (generoCheck.isSelected()) {
+					if (livro.getGenero().toLowerCase().indexOf(lowerCaseFilter) != -1) {
+						return true; // Filter matches last name.
+					} else
+						return false;
+				}
+
+				if (anoCheck.isSelected()) {
+					if (String.valueOf(livro.getAno()).toLowerCase().indexOf(lowerCaseFilter) != -1) {
+						return true; // Filter matches last name.
+					} else
+						return false;
+				}
+
+				// fim filtros.
+
+				// Pesquisa geral.
 				if (livro.getTitulo().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches first name.
 				} else if (livro.getAutor().toLowerCase().indexOf(lowerCaseFilter) != -1) {
 					return true; // Filter matches last name.
 				}
+				// fim pesquisa geral.
 				return false; // Does not match.
 			});
 		});

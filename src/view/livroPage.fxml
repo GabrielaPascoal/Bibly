@@ -52,8 +52,8 @@
             </TextField>
             <CheckBox fx:id="tituloCheck" layoutX="1174.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Título" textFill="#7159c1" />
             <CheckBox fx:id="autorCheck" layoutX="1174.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Autor" textFill="#7159c1" />
-            <CheckBox fx:id="autorCheck1" layoutX="1257.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Autor" textFill="#7159c1" />
-            <CheckBox fx:id="tituloCheck1" layoutX="1258.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Gênero" textFill="#7159c1" />
+            <CheckBox fx:id="anoCheck" layoutX="1257.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Ano" textFill="#7159c1" />
+            <CheckBox fx:id="generoCheck" layoutX="1258.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" text="Gênero" textFill="#7159c1" />
          </children>
       </AnchorPane>
    </children>
