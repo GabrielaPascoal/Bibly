@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.text.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import java.lang.*?>
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane maxHeight="-Infinity" fx:controller="view.Controller.ControllerRelatorios" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Text layoutX="14.0" layoutY="37.0" strokeType="OUTSIDE" strokeWidth="0.0" text="RELATÓRIOS" wrappingWidth="130.7294921875">
+         <font>
+            <Font name="System Bold" size="16.0" />
+         </font>
+      </Text>
+      <VBox layoutX="180.0" layoutY="82.0" prefHeight="214.0" prefWidth="240.0" style="-fx-alignment: top-center; -fx-spacing: 24px;">
+         <children>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" onAction="#geral" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Todos os alugueis" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" onAction="#clientes" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Por cliente" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Por período" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Button>
+         </children>
+      </VBox>
+      <Button alignment="CENTER" layoutX="180.0" layoutY="308.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Fatura mensal" textFill="WHITE">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Button>
+   </children>
+</AnchorPane>

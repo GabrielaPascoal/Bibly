@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.*?>
+<?import java.lang.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerAdicionarProduto">
+   <children>
+      <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
+         <children>
+            <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#confirmar" prefHeight="32.0" prefWidth="112.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="confirmar" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Button>
+         </children>
+      </AnchorPane>
+      <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
+         <children>
+            <TableView fx:id="tabelaProdutos" layoutX="14.0" layoutY="103.0" prefHeight="494.0" prefWidth="1334.0" stylesheets="@styles/tableStyle.css">
+               <columns>
+                  <TableColumn fx:id="id" prefWidth="63.0" text="ID" />
+                  <TableColumn fx:id="produto" prefWidth="802.0" text="Produto" />
+                  <TableColumn fx:id="quantidade" prefWidth="190.0" text="Quantidade" />
+                  <TableColumn fx:id="valor" prefWidth="277.0" text="Valor" />
+               </columns>
+            </TableView>
+            <AnchorPane layoutX="1228.0" layoutY="38.0">
+               <children>
+                  <HBox prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #999; -fx-background-radius: 15;">
+                     <children>
+                        <AnchorPane fx:id="tipoLivro" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: #7259c1; -fx-background-radius: 15;" />
+                        <AnchorPane fx:id="tipoDisco" prefHeight="30.0" prefWidth="30.0" style="-fx-background-color: transparent; -fx-background-radius: 15;" />
+                     </children>
+                  </HBox>
+                  <ToggleButton fx:id="tbTipo" mnemonicParsing="false" onAction="#renderizarTabela" opacity="0.0" prefHeight="30.0" prefWidth="60.0" style="-fx-background-radius: 15;" text="ToggleButton" />
+               </children>
+            </AnchorPane>
+            <Label layoutX="1172.0" layoutY="43.0" text="Livro">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <Label layoutX="1299.0" layoutY="43.0" text="Disco">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+            </Label>
+            <TextField fx:id="tituloBusca" layoutX="14.0" layoutY="28.0" onTextChange="#renderizarTabela" prefHeight="51.0" prefWidth="1143.0" promptText="Insira o nome do produto" style="-fx-border-radius: 4; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+               <font>
+                  <Font name="System Bold" size="20.0" />
+               </font>
+            </TextField>
+            <Button contentDisplay="RIGHT" layoutX="651.0" layoutY="613.0" mnemonicParsing="false" onAction="#adicionarCarrinho" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <graphic>
+                  <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/Vector.png" />
+                     </image>
+                     <cursor>
+                        <Cursor fx:constant="CLOSED_HAND" />
+                     </cursor>
+                  </ImageView>
+               </graphic>
+            </Button>
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

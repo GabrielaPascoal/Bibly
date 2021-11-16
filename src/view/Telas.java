@@ -34,7 +34,21 @@ public class Telas extends Application {
 		setpS(pS);
 		pS.setTitle("login");
 		pS.show();
-		telaLogin();
+		telaLoading();
+	}
+
+	public static void telaAlugel() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("aluguelPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+	}
+
+	public static void telaDevolucao() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("devolucaoPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
 	}
 
 	public static void telaLogin() throws IOException {
@@ -72,48 +86,64 @@ public class Telas extends Application {
 		Parent root = FXMLLoader.load(Telas.class.getResource("inserirLivroPage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-		
+
 	}
-	
+
 	public static void telaEditarLivro() throws IOException {
 
 		Parent root = FXMLLoader.load(Telas.class.getResource("editarLivroPage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-		
+
 	}
-	
-   public static void telaDisco() throws IOException {
-		
-	    Parent root = FXMLLoader.load(Telas.class.getResource("DiscoPage.fxml"));
+
+	public static void telaDisco() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("DiscoPage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-			
-		}
-		    
+
+	}
+
 	public static void telaInserirDisco() throws IOException {
-				
+
 		Parent root = FXMLLoader.load(Telas.class.getResource("inserirDiscoPage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-		
-		}
-		
+
+	}
+
+	public static void telaEditarDisco() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("editarDiscoPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+
+	}
+
 	public static void telaCliente() throws IOException {
-				
+
 		Parent root = FXMLLoader.load(Telas.class.getResource("ClientePage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-				
-		}
-	
+
+	}
+
 	public static void telaInserirCliente() throws IOException {
-			
+
 		Parent root = FXMLLoader.load(Telas.class.getResource("inserirClientePage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
-		
-		}
+
+	}
+
+	public static void telaEditarCliente() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("editarClientePage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+
+	}
 
 	public static void main(String[] args) {
 		launch();

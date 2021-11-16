@@ -50,11 +50,11 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
 
       ResultSet respostaLivro = livroDAO.buscarPorId(aluguel.getProduto());
 
-      if (respostaAluguel.next()) {
+      if (!respostaAluguel.next()) {
         throw new Exception("Aluguel nao existe.");
       }
 
-      if (respostaLivro.next()) {
+      if (!respostaLivro.next()) {
         throw new Exception("Livro nao existe.");
       }
 
@@ -137,13 +137,13 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
 
       ResultSet respostaAluguel = aluguelDAO.buscarPorId(aluguel.getAluguel());
 
-      if (respostaAluguel.next()) {
-        throw new Exception("Aluguel nao existe.");
+      List<AluguelLivroVO> alugueis = new ArrayList<AluguelLivroVO>();
+
+      if (!respostaAluguel.next()) {
+        return alugueis;
       }
 
       ResultSet resposta = aluguelLivroDAO.buscarPorAluguelId(aluguel);
-
-      List<AluguelLivroVO> alugueis = new ArrayList<AluguelLivroVO>();
 
       while (resposta.next()) {
         aluguel = getAluguelLivro(resposta);
@@ -192,11 +192,11 @@ public class AluguelLivroBO extends BaseBO<AluguelLivroVO> implements AluguelPro
       ResultSet respostaAluguel = aluguelDAO.buscarPorId(aluguel.getAluguel());
       ResultSet respostaLivro = livroDAO.buscarPorId(aluguel.getProduto());
 
-      if (respostaAluguel.next()) {
+      if (!respostaAluguel.next()) {
         throw new Exception("Aluguel nao existe.");
       }
 
-      if (respostaLivro.next()) {
+      if (!respostaLivro.next()) {
         throw new Exception("Livro nao existe.");
       }
 

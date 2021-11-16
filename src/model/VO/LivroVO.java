@@ -1,6 +1,6 @@
 package model.VO;
 
-public class LivroVO {
+public class LivroVO implements ProdutoInterVO {
   private int id;
   private String titulo;
   private String autor;

@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import view.Telas;
 
 public class ControllerInicial {
-	
+
 	@FXML
 	public void logout(ActionEvent event) throws IOException {
 		Telas.telaLogin();
@@ -17,15 +17,20 @@ public class ControllerInicial {
 	public void livro(ActionEvent event) throws IOException {
 		Telas.telaLivro();
 	}
-	
+
 	@FXML
-    public void disco(ActionEvent event) throws IOException  {
+	public void disco(ActionEvent event) throws IOException {
 		Telas.telaDisco();
-    }
-	
+	}
+
 	@FXML
-    public void cliente(ActionEvent event) throws IOException  {
+	public void cliente(ActionEvent event) throws IOException {
 		Telas.telaCliente();
-    }
+	}
+
+	@FXML
+	public void aluguel(ActionEvent event) throws IOException {
+		Telas.telaAlugel();
+	}
 
 }
