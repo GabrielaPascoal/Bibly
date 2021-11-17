@@ -22,13 +22,13 @@
          <children>
             <TableView fx:id="tabelaProdutos" layoutX="14.0" layoutY="103.0" prefHeight="494.0" prefWidth="1334.0" stylesheets="@styles/tableStyle.css">
                <columns>
-                  <TableColumn fx:id="id" prefWidth="63.0" text="ID" style="-fx-alignment: CENTER;"/>
-                  <TableColumn fx:id="produto" prefWidth="802.0" text="Produto" style="-fx-alignment: CENTER;"/>
-                  <TableColumn fx:id="quantidade" prefWidth="190.0" text="Quantidade" style="-fx-alignment: CENTER;"/>
-                  <TableColumn fx:id="valor" prefWidth="277.0" text="Valor" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="id" prefWidth="63.0" style="-fx-alignment: CENTER;" text="ID" />
+                  <TableColumn fx:id="produto" prefWidth="802.0" style="-fx-alignment: CENTER;" text="Produto" />
+                  <TableColumn fx:id="quantidade" prefWidth="190.0" style="-fx-alignment: CENTER;" text="Quantidade" />
+                  <TableColumn fx:id="valor" prefWidth="277.0" style="-fx-alignment: CENTER;" text="Valor" />
                </columns>
             </TableView>
-            <AnchorPane layoutX="1228.0" layoutY="38.0">
+            <AnchorPane layoutX="70.0" layoutY="43.0">
                <children>
                   <HBox prefHeight="30.0" prefWidth="60.0" style="-fx-background-color: #999; -fx-background-radius: 15;">
                      <children>
@@ -39,21 +39,16 @@
                   <ToggleButton fx:id="tbTipo" mnemonicParsing="false" onAction="#renderizarTabela" opacity="0.0" prefHeight="30.0" prefWidth="60.0" style="-fx-background-radius: 15;" text="ToggleButton" />
                </children>
             </AnchorPane>
-            <Label layoutX="1172.0" layoutY="43.0" text="Livro">
+            <Label layoutX="14.0" layoutY="48.0" text="Livro">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label layoutX="1299.0" layoutY="43.0" text="Disco">
+            <Label layoutX="141.0" layoutY="48.0" text="Disco">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="tituloBusca" layoutX="14.0" layoutY="28.0" onTextChange="#renderizarTabela" prefHeight="51.0" prefWidth="1143.0" promptText="Insira o nome do produto" style="-fx-border-radius: 4; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </TextField>
             <Button contentDisplay="RIGHT" layoutX="649.0" layoutY="614.0" mnemonicParsing="false" onAction="#adicionarCarrinho" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
@@ -69,7 +64,7 @@
                   </ImageView>
                </graphic>
             </Button>
-            <Label alignment="CENTER" fx:id="adicionado" layoutX="741.0" layoutY="626.0" opacity="0.0" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #04d361; -fx-background-radius: 20;" text="Label" textFill="WHITE">
+            <Label fx:id="adicionado" alignment="CENTER" layoutX="966.0" layoutY="38.0" opacity="0.0" prefHeight="40.0" prefWidth="382.0" style="-fx-background-color: #04d361; -fx-background-radius: 20;" text="Label" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font>
