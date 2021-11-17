@@ -84,121 +84,117 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 
 	}
 
-	public ResultSet buscarPorId(ClienteVO vo) throws SQLException {
-		String query = "SELECT * FROM clientes WHERE id = ?";
-		PreparedStatement preparedStatement;
-		ResultSet result = null;
-
-		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, vo.getId());
-			result = preparedStatement.executeQuery();
-
-			if (!result.next()) {
-				return null;
-			}
-
-			vo.setId(result.getInt("id"));
-			vo.setNome(result.getString("nome"));
-			vo.setCpf(result.getString("cpf"));
-			vo.setEndereco(result.getString("endereco"));
-			vo.setCelular(result.getString("celular"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return result;
-
-	}
-
-	public static List<ClienteVO> buscarPorNome(ClienteVO vo) throws SQLException {
-		String query = "SELECT * FROM clientes WHERE nome = ?";
-		PreparedStatement preparedStatement;
-		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
-		ResultSet result = null;
-
-		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getNome());
-			result = preparedStatement.executeQuery();
-			while (result.next()) {
-				vo.setId(result.getInt("id"));
-				vo.setNome(result.getString("nome"));
-				vo.setCpf(result.getString("cpf"));
-				vo.setEndereco(result.getString("endereco"));
-				vo.setCelular(result.getString("celular"));
-
-				clientes.add(vo);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return clientes;
-
-	}
-
-	public static ClienteVO buscarPorCpf(ClienteVO vo) throws SQLException {
-		String query = "SELECT * FROM clientes WHERE cpf = ?";
-		PreparedStatement preparedStatement;
-		ResultSet result = null;
-
-		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getCpf());
-			result = preparedStatement.executeQuery();
-
-			if (!result.next()) {
-				return null;
-			}
-
-			vo.setId(result.getInt("id"));
-			vo.setNome(result.getString("nome"));
-			vo.setCpf(result.getString("cpf"));
-			vo.setEndereco(result.getString("endereco"));
-			vo.setCelular(result.getString("celular"));
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return vo;
-
-	}
-
-	public static List<ClienteVO> buscarPorEndereco(ClienteVO vo) throws SQLException {
-		String query = "SELECT * FROM clientes WHERE endereco = ?";
-		PreparedStatement preparedStatement;
-		List<ClienteVO> clientes = new ArrayList<ClienteVO>();
-		ResultSet result = null;
-
-		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getEndereco());
-			result = preparedStatement.executeQuery();
-			while (result.next()) {
-				vo.setId(result.getInt("id"));
-				vo.setNome(result.getString("nome"));
-				vo.setCpf(result.getString("cpf"));
-				vo.setEndereco(result.getString("endereco"));
-				vo.setCelular(result.getString("celular"));
-
-				clientes.add(vo);
-
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return clientes;
-
-	}
-
 	// BUSCAR TODOS
-	public ResultSet buscarTodos() throws SQLException {
-		Connection connection = getConnection();
+		public ResultSet buscarTodos() {
 
-		String query = "SELECT * FROM clientes";
+			String sql = "SELECT * FROM clientes";
+			Statement st;
+			ResultSet resposta = null;
+			
 
-		Statement statement = connection.createStatement();
-		ResultSet result = statement.executeQuery(query);
+			try {
 
-		return result;
+				Connection connection = getConnection();
+				st = connection.createStatement();
+				resposta = st.executeQuery(sql);
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			return resposta;
+		}
+
+		// BUSCAR POR ID
+		public ResultSet buscarPorId(ClienteVO cliente) {
+
+			String sql = "SELECT * FROM clientes WHERE id=?";
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+			try {
+
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setInt(1, cliente.getId());
+				resposta = ptst.executeQuery();
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+			return resposta;
+		}
+
+		// BUSCAR POR NOME
+		public ResultSet buscarPorNome(ClienteVO cliente) {
+
+			String sql = "SELECT * FROM clientes WHERE nome = ?";
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+			
+
+			try {
+
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setString(1, cliente.getNome());
+				resposta = ptst.executeQuery();
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			return resposta;
+		}
+
+		// BUSCAR POR CPF
+		public ResultSet buscarPorCpf(ClienteVO cliente) {
+
+			String sql = "SELECT * FROM clientes WHERE cpf = ?";
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+
+			try {
+
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setString(1, cliente.getCpf());
+				resposta = ptst.executeQuery();
+
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			return resposta;
+
+		}
+
+		// BUSCAR POR ENDERECO
+		public ResultSet buscarPorEndereco(ClienteVO cliente) {
+
+			String sql = "SELECT * FROM clientes WHERE endereco = ?";
+			PreparedStatement ptst;
+			ResultSet resposta = null;
+
+			try {
+
+				Connection connection = getConnection();
+				ptst = connection.prepareStatement(sql);
+				ptst.setString(1, cliente.getEndereco());
+				resposta = ptst.executeQuery();
+
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			return resposta;
+
+		}
+
 	}
-}
+

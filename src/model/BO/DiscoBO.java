@@ -55,29 +55,174 @@ public class DiscoBO implements BaseInterBO<DiscoVO> {
 	@Override
 	public List<DiscoVO> buscarTodos() throws SQLException {
 		// TODO Auto-generated method stub
+		List<DiscoVO> disco = new ArrayList<DiscoVO>();
 		try {
 			ResultSet result = dao.buscarTodos();
 			if (!result.next()) {
 				throw new Exception("Erro.");
 			} else {
 
-				List<DiscoVO> disco = new ArrayList<DiscoVO>();
-
-				while (result.next()) {
+				do {
 					DiscoVO d = new DiscoVO();
 
 					d.setId(result.getInt("id"));
 					d.setTitulo(result.getString("titulo"));
 					d.setArtista(result.getString("artista"));
 					d.setEstilo(result.getString("estilo"));
+					;
 					d.setValor(result.getDouble("valor"));
 					d.setQuantidade(result.getInt("quantidade"));
 					disco.add(d);
-				}
+				} while (result.next());
 
 				return disco;
 			}
 
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return disco;
+		}
+
+	}
+
+	// BUSCAR POR ARTISTA
+	public List<DiscoVO> buscarPorArtista(DiscoVO vo) throws SQLException {
+
+		DiscoDAO disco = new DiscoDAO();
+
+		try {
+
+			ResultSet result = disco.buscarPorArtista(vo);
+			if (!result.next()) {
+				throw new Exception("Esse artista não existe.");
+			} else {
+
+				List<DiscoVO> discos = new ArrayList<DiscoVO>();
+
+				while (result.next()) {
+
+					DiscoVO d = new DiscoVO();
+					d.setId(result.getInt("id"));
+					d.setTitulo(result.getString("titulo"));
+					d.setArtista(result.getString("artista"));
+					d.setEstilo(result.getString("estilo"));
+					;
+					d.setValor(result.getDouble("valor"));
+					d.setQuantidade(result.getInt("quantidade"));
+					discos.add(d);
+
+				}
+
+				return discos;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR ESTILO
+	public List<DiscoVO> buscarPorEstilo(DiscoVO vo) throws SQLException {
+
+		DiscoDAO disco = new DiscoDAO();
+
+		try {
+			ResultSet result = disco.buscarPorEstilo(vo);
+			if (!result.next()) {
+				throw new Exception("Não existe nenhum disco cadastrado com esse estilo.");
+			} else {
+
+				List<DiscoVO> discos = new ArrayList<DiscoVO>();
+
+				while (result.next()) {
+
+					DiscoVO d = new DiscoVO();
+
+					d.setId(result.getInt("id"));
+					d.setTitulo(result.getString("titulo"));
+					d.setArtista(result.getString("artista"));
+					d.setEstilo(result.getString("estilo"));
+					;
+					d.setValor(result.getDouble("valor"));
+					d.setQuantidade(result.getInt("quantidade"));
+					discos.add(d);
+
+				}
+
+				return discos;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR TITULO
+	public List<DiscoVO> buscarPorTitulo(DiscoVO vo) throws SQLException {
+
+		DiscoDAO disco = new DiscoDAO();
+
+		try {
+			ResultSet result = disco.buscarPorTitulo(vo);
+			if (!result.next()) {
+				throw new Exception("Não existe nenhum disco cadastrado com esse titulo.");
+			} else {
+
+				List<DiscoVO> discos = new ArrayList<DiscoVO>();
+
+				while (result.next()) {
+
+					DiscoVO d = new DiscoVO();
+
+					d.setId(result.getInt("id"));
+					d.setTitulo(result.getString("titulo"));
+					d.setArtista(result.getString("artista"));
+					d.setEstilo(result.getString("estilo"));
+					;
+					d.setValor(result.getDouble("valor"));
+					d.setQuantidade(result.getInt("quantidade"));
+					discos.add(d);
+
+				}
+
+				return discos;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR ID
+	public List<DiscoVO> buscarPorId(DiscoVO vo) throws SQLException {
+
+		DiscoDAO disco = new DiscoDAO();
+
+		try {
+			ResultSet result = disco.buscarPorId(vo);
+			if (!result.next()) {
+				throw new Exception("Não existe nenhum disco cadastrado com esse id.");
+			} else {
+
+				List<DiscoVO> discos = new ArrayList<DiscoVO>();
+
+				while (result.next()) {
+
+					DiscoVO d = new DiscoVO();
+
+					d.setId(result.getInt("id"));
+					d.setTitulo(result.getString("titulo"));
+					d.setArtista(result.getString("artista"));
+					d.setEstilo(result.getString("estilo"));
+					;
+					d.setValor(result.getDouble("valor"));
+					d.setQuantidade(result.getInt("quantidade"));
+					discos.add(d);
+
+				}
+
+				return discos;
+			}
 		} catch (Exception erro) {
 			System.err.println(erro);
 			return null;
@@ -99,48 +244,13 @@ public class DiscoBO implements BaseInterBO<DiscoVO> {
 			ResultSet result = DiscoDAO.buscarPorId(entidade);
 
 			if (!result.next()) {
-				throw new Exception("Cliente nï¿½o existente");
+				throw new Exception("Cliente não existente");
 			}
 
 			DiscoDAO.remover(entidade);
 		} catch (Exception erro) {
 			System.err.println(erro);
 		}
-	}
-
-	public List<DiscoVO> buscarPorId(DiscoVO liv) throws SQLException {
-
-		DiscoDAO disco = new DiscoDAO();
-
-		try {
-			ResultSet resposta = disco.buscarPorId(liv);
-			if (!resposta.next()) {
-				throw new Exception("Nï¿½o existe nenhum disco cadastrado com esse titulo.");
-			} else {
-
-				List<DiscoVO> discos = new ArrayList<DiscoVO>();
-
-				while (resposta.next()) {
-
-					DiscoVO discoRecebe = new DiscoVO();
-
-					discoRecebe.setId(resposta.getInt("id"));
-					discoRecebe.setTitulo(resposta.getString("titulo"));
-					discoRecebe.setArtista(resposta.getString("artista"));
-					discoRecebe.setEstilo(resposta.getString("estilo"));
-					discoRecebe.setValor(resposta.getDouble("valor"));
-					discoRecebe.setQuantidade(resposta.getInt("quantidade"));
-					discos.add(discoRecebe);
-
-				}
-
-				return discos;
-			}
-		} catch (Exception erro) {
-			System.err.println(erro);
-			return null;
-		}
-
 	}
 
 }

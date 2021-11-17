@@ -55,7 +55,7 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
 
     List<AluguelLivroVO> livros = aluguelLivroBO.buscarPorAluguelId(livro);
     List<AluguelDiscoVO> discos = aluguelDiscoBO.buscarPorAluguelId(disco);
-    cliente = clienteBO.buscarPorId(cliente);
+    cliente = clienteBO.buscarPorId(cliente).get(0);
 
     aluguel.setLivros(livros);
     aluguel.setDiscos(discos);

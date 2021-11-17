@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerInserirCliente">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControllerInserirCliente">
    <children>
       <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="1376.0">
          <children>
@@ -42,11 +42,6 @@
                         <Font name="System Bold" size="15.0" />
                      </font>
                   </TextField>
-                  <TextField fx:id="obs" layoutX="63.0" layoutY="326.0" prefHeight="200.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                     <font>
-                        <Font name="System Bold" size="15.0" />
-                     </font>
-                  </TextField>
                   <TextField fx:id="endereco" layoutX="416.0" layoutY="121.0" prefHeight="38.0" prefWidth="891.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                      <font>
                         <Font name="System Bold" size="15.0" />
@@ -72,12 +67,7 @@
                         <Font name="System Bold" size="20.0" />
                      </font>
                   </Label>
-                  <Label layoutX="66.0" layoutY="297.0" text="Obs">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font>
-                  </Label>
-                  <Button fx:id="salvarCliente" contentDisplay="RIGHT" layoutX="615.0" layoutY="624.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="Salvar" textFill="WHITE">
+                  <Button fx:id="salvarCliente" onAction="#salvarCliente" contentDisplay="RIGHT" layoutX="613.0" layoutY="482.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="Salvar" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>

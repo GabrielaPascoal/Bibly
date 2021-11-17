@@ -10,6 +10,7 @@ import java.util.List;
 
 import model.VO.DiscoVO;
 
+
 public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO>{
 
 	// INSERIR
@@ -102,135 +103,113 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 	}
 
 	// BUSCAR POR ID
-	public ResultSet buscarPorId(DiscoVO vo) throws SQLException {
-		String query = "SELECT * FROM discos WHERE id = ?";
-		PreparedStatement preparedStatement;
+	public ResultSet buscarPorId(DiscoVO disco) {
+
+		String sql = "SELECT * FROM discos WHERE id=?";
+		PreparedStatement ptst;
 		ResultSet result = null;
-
 		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setInt(1, vo.getId());
-			result = preparedStatement.executeQuery();
 
-			if (!result.next()) {
-				return null;
-			}
-
-			vo.setId(result.getInt("id"));
-			vo.setTitulo(result.getString("titulo"));
-			vo.setArtista(result.getString("artista"));
-			vo.setEstilo(result.getString("estilo"));
-			vo.setValor(result.getDouble("valor"));
-			vo.setQuantidade(result.getInt("quantidade"));
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setInt(1, disco.getId());
+			result = ptst.executeQuery();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
+
+		return result;
+	}
+
+	// BUSCAR POR TITULO
+	public ResultSet buscarPorTitulo(DiscoVO disco) {
+
+		String sql = "SELECT * FROM discos WHERE titulo = ?";
+		PreparedStatement ptst;
+		ResultSet result = null;
+
+		try {
+
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, disco.getTitulo());
+			result = ptst.executeQuery();
+
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
 		return result;
 
 	}
 
-	// BUSCAR POR TITULO
-	public static List<DiscoVO> buscarPorTitulo(DiscoVO vo) throws SQLException {
-		String query = "SELECT * FROM discos WHERE titulo = ?";
-		PreparedStatement preparedStatement;
-		List<DiscoVO> discos = new ArrayList<DiscoVO>();
-		ResultSet result = null;
-
-		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getTitulo());
-			result = preparedStatement.executeQuery();
-
-			while (result.next()) {
-
-				DiscoVO novoVO = new DiscoVO();
-				novoVO.setId(result.getInt("id"));
-				novoVO.setTitulo(result.getString("titulo"));
-				novoVO.setArtista(result.getString("artista"));
-				novoVO.setEstilo(result.getString("estilo"));
-				novoVO.setValor(result.getDouble("valor"));
-				novoVO.setQuantidade(result.getInt("quantidade"));
-
-				discos.add(novoVO);
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-		}
-		return discos;
-	}
-
 	// BUSCAR POR ARTISTA
-	public static List<DiscoVO> buscarPorArtista(DiscoVO vo) throws SQLException {
+	public ResultSet buscarPorArtista(DiscoVO disco) {
 
-		String query = "SELECT * FROM discos WHERE artista = ?";
-		PreparedStatement preparedStatement;
-		List<DiscoVO> discos = new ArrayList<DiscoVO>();
+		String sql = "SELECT * FROM discos WHERE artista = ?";
+		PreparedStatement ptst;
 		ResultSet result = null;
+		
 
 		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getArtista());
-			result = preparedStatement.executeQuery();
-			while (result.next()) {
 
-				DiscoVO novoVO = new DiscoVO();
-				novoVO.setId(result.getInt("id"));
-				novoVO.setTitulo(result.getString("titulo"));
-				novoVO.setArtista(result.getString("artista"));
-				novoVO.setEstilo(result.getString("estilo"));
-				novoVO.setValor(result.getDouble("valor"));
-				novoVO.setQuantidade(result.getInt("quantidade"));
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, disco.getArtista());
+			result = ptst.executeQuery();
 
-				discos.add(novoVO);
-			}
 		} catch (SQLException e) {
+
 			e.printStackTrace();
 		}
-		return discos;
 
+		return result;
 	}
 
 	// BUSCAR POR ESTILO
-	public static List<DiscoVO> buscarPorEstilo(DiscoVO vo) throws SQLException {
+	public ResultSet buscarPorEstilo(DiscoVO disco) {
 
-		String query = "SELECT * FROM discos WHERE estilo = ?";
-		PreparedStatement preparedStatement;
-		List<DiscoVO> discos = new ArrayList<DiscoVO>();
+		String sql = "SELECT * FROM discos WHERE estilo = ?";
+		PreparedStatement ptst;
 		ResultSet result = null;
 
 		try {
-			preparedStatement = getConnection().prepareStatement(query);
-			preparedStatement.setString(1, vo.getEstilo());
-			result = preparedStatement.executeQuery();
-			while (result.next()) {
 
-				DiscoVO novoVO = new DiscoVO();
-				novoVO.setId(result.getInt("id"));
-				novoVO.setTitulo(result.getString("titulo"));
-				novoVO.setArtista(result.getString("artista"));
-				novoVO.setEstilo(result.getString("estilo"));
-				novoVO.setValor(result.getDouble("valor"));
-				novoVO.setQuantidade(result.getInt("quantidade"));
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, disco.getEstilo());
+			result = ptst.executeQuery();
 
-				discos.add(novoVO);
-			}
+
 		} catch (SQLException e) {
+
 			e.printStackTrace();
 		}
-		return discos;
+
+		return result;
 
 	}
 	// BUSCAR TODOS
-    public ResultSet buscarTodos() throws SQLException {
-            Connection connection = getConnection();
+	public ResultSet buscarTodos() {
 
-            String query = "SELECT * FROM discos";
+		String sql = "SELECT * FROM discos";
+		Statement st;
+		ResultSet resposta = null;
 
-            Statement statement = connection.createStatement();
-            ResultSet result = statement.executeQuery(query);
+		try {
 
-            return result;
-          }
+			Connection connection = getConnection();
+			st = connection.createStatement();
+			resposta = st.executeQuery(sql);
 
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return resposta;
+	}
 }

@@ -21,7 +21,7 @@ import javafx.scene.control.cell.PropertyValueFactory;
 import model.BO.AluguelBO;
 import model.BO.AluguelDiscoBO;
 import model.BO.AluguelLivroBO;
-import model.DAO.ClienteDAO;
+import model.BO.ClienteBO;
 import model.VO.AluguelDiscoVO;
 import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
@@ -75,7 +75,7 @@ public class ControllerFinalizarAluguel implements Initializable {
   @FXML
   public void buscarCliente(ActionEvent event) throws IOException, SQLException {
     cliente.setCpf(cpf.getText());
-    cliente = ClienteDAO.buscarPorCpf(cliente);
+    cliente = new ClienteBO().buscarPorCpf(cliente).get(0);
 
     if (cliente.getId() <= 0) {
       erroCliente.setText("Cliente não encontrado");

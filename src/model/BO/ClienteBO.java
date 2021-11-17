@@ -53,64 +53,6 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 		}
 	}
 
-	public ClienteVO buscarPorId(ClienteVO Cliente) throws SQLException {
-		try {
-			ClienteDAO ClienteDAO = new ClienteDAO();
-
-			if (Cliente.getId() <= 0) {
-				throw new Exception("Defina um id valido.");
-			}
-
-			ResultSet resposta = ClienteDAO.buscarPorId(Cliente);
-
-			ClienteVO c = new ClienteVO();
-
-			c.setId(resposta.getInt("id"));
-			c.setNome(resposta.getString("nome"));
-			c.setEndereco(resposta.getString("endereco"));
-			c.setCpf(resposta.getString("cpf"));
-			c.setCelular(resposta.getString("celular"));
-
-			return c;
-		} catch (Exception erro) {
-			System.err.println(erro);
-			return null;
-		}
-	}
-
-	// BUSCAR TODOS
-	@Override
-	public List<ClienteVO> buscarTodos() throws SQLException {
-		// TODO Auto-generated method stub
-		try {
-			ResultSet result = dao.buscarTodos();
-			if (!result.next()) {
-				throw new Exception("Erro.");
-			} else {
-
-				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
-
-				while (result.next()) {
-
-					ClienteVO c = new ClienteVO();
-
-					c.setId(result.getInt("id"));
-					c.setNome(result.getString("nome"));
-					c.setEndereco(result.getString("endereco"));
-					c.setCpf(result.getString("cpf"));
-					c.setCelular(result.getString("celular"));
-					clientes.add(c);
-				}
-
-				return clientes;
-
-			}
-		} catch (Exception erro) {
-			System.err.println(erro);
-			return null;
-		}
-	}
-
 	// EDITAR
 	@Override
 	public void editar(ClienteVO entidade) throws SQLException {
@@ -128,4 +70,177 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 			System.err.println(erro);
 		}
 	}
+
+	// BUSCAR POR NOME
+	public List<ClienteVO> buscarPorNome(ClienteVO vo) throws SQLException {
+
+		ClienteDAO cliente = new ClienteDAO();
+
+		try {
+
+			ResultSet result = cliente.buscarPorNome(vo);
+			if (!result.next()) {
+				throw new Exception("Esse cliente n�o existe.");
+			} else {
+
+				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
+				while (result.next()) {
+
+					ClienteVO c = new ClienteVO();
+					c.setId(result.getInt("id"));
+					c.setNome(result.getString("nome"));
+					c.setCpf(result.getString("cpf"));
+					c.setEndereco(result.getString("endereco"));
+					;
+					c.setCelular(result.getString("celular"));
+					clientes.add(c);
+
+				}
+
+				return clientes;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR CPF
+	public List<ClienteVO> buscarPorCpf(ClienteVO vo) throws SQLException {
+
+		ClienteDAO cliente = new ClienteDAO();
+
+		try {
+
+			ResultSet result = cliente.buscarPorCpf(vo);
+			if (!result.next()) {
+				throw new Exception("Esse cpf n�o existe.");
+			} else {
+
+				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
+				while (result.next()) {
+
+					ClienteVO c = new ClienteVO();
+					c.setId(result.getInt("id"));
+					c.setNome(result.getString("nome"));
+					c.setCpf(result.getString("cpf"));
+					c.setEndereco(result.getString("endereco"));
+					;
+					c.setCelular(result.getString("celular"));
+					clientes.add(c);
+
+				}
+
+				return clientes;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR ENDERECO
+	public List<ClienteVO> buscarPorEndereco(ClienteVO vo) throws SQLException {
+
+		ClienteDAO cliente = new ClienteDAO();
+
+		try {
+
+			ResultSet result = cliente.buscarPorEndereco(vo);
+			if (!result.next()) {
+				throw new Exception("Esse endereco n�o existe.");
+			} else {
+
+				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
+				while (result.next()) {
+
+					ClienteVO c = new ClienteVO();
+					c.setId(result.getInt("id"));
+					c.setNome(result.getString("nome"));
+					c.setCpf(result.getString("cpf"));
+					c.setEndereco(result.getString("endereco"));
+					;
+					c.setCelular(result.getString("celular"));
+					clientes.add(c);
+
+				}
+
+				return clientes;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR POR ID
+	public List<ClienteVO> buscarPorId(ClienteVO vo) throws SQLException {
+
+		ClienteDAO cliente = new ClienteDAO();
+
+		try {
+
+			ResultSet result = cliente.buscarPorId(vo);
+			if (!result.next()) {
+				throw new Exception("Esse cliente n�o existe.");
+			} else {
+
+				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
+
+				do {
+
+					ClienteVO c = new ClienteVO();
+					c.setId(result.getInt("id"));
+					c.setNome(result.getString("nome"));
+					c.setCpf(result.getString("cpf"));
+					c.setEndereco(result.getString("endereco"));
+					;
+					c.setCelular(result.getString("celular"));
+					clientes.add(c);
+
+				} while (result.next());
+
+				return clientes;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+	// BUSCAR TODOS
+	public List<ClienteVO> buscarTodos() throws SQLException {
+		List<ClienteVO> cliente = new ArrayList<ClienteVO>();
+		try {
+			ResultSet result = dao.buscarTodos();
+			if (!result.next()) {
+				throw new Exception("Erro.");
+			} else {
+
+				while (result.next()) {
+					ClienteVO c = new ClienteVO();
+
+					c.setId(result.getInt("id"));
+					c.setNome(result.getString("nome"));
+					c.setCpf(result.getString("cpf"));
+					c.setEndereco(result.getString("endereco"));
+					;
+					c.setCelular(result.getString("celular"));
+					cliente.add(c);
+
+				}
+
+				return cliente;
+			}
+
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return cliente;
+		}
+
+	}
+
 }

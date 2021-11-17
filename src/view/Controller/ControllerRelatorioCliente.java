@@ -16,7 +16,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import model.BO.AluguelBO;
-import model.DAO.ClienteDAO;
+import model.BO.ClienteBO;
 import model.VO.AluguelVO;
 import model.VO.ClienteVO;
 import view.Modals;
@@ -46,10 +46,11 @@ public class ControllerRelatorioCliente implements Initializable {
     AluguelBO aluguelBO = new AluguelBO();
     AluguelVO aluguel = new AluguelVO();
     ClienteVO cliente = new ClienteVO();
+    ClienteBO clienteBO = new ClienteBO();
     boolean erroData = false;
 
     cliente.setCpf(cpf.getText());
-    cliente = ClienteDAO.buscarPorCpf(cliente);
+    cliente = clienteBO.buscarPorCpf(cliente).get(0);
 
     erroData = dataInicial.getValue() == null && dataFinal.getValue() != null
         || dataFinal.getValue() == null && dataInicial.getValue() != null;

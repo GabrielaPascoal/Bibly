@@ -8,88 +8,74 @@
 <?import javafx.scene.text.Font?>
 
 
-<AnchorPane prefHeight="773.0" prefWidth="1377.0" xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171">
+<AnchorPane xmlns:fx="http://javafx.com/fxml/1" xmlns="http://javafx.com/javafx/8.0.171" fx:controller="view.Controller.ControllerEditarCliente">
    <children>
-      <AnchorPane prefHeight="780.0" prefWidth="1386.0">
+      <VBox layoutX="10.0" layoutY="10.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0">
          <children>
-            <VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="770.0" prefWidth="1376.0">
+            <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
                <children>
-                  <AnchorPane prefHeight="77.0" prefWidth="1376.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
-                     <children>
-                        <Label layoutX="514.0" layoutY="14.0" text="Editar" textFill="#7159c1">
-                           <font>
-                              <Font name="System Bold" size="32.0" />
-                           </font>
-                        </Label>
-                        <Button contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="voltar" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
-                  <AnchorPane prefHeight="704.0" prefWidth="1391.0" style="-fx-background-color: #D6D3D3;">
-                     <children>
-                        <TextField fx:id="nome" layoutX="68.0" layoutY="44.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="cpf" layoutX="68.0" layoutY="121.0" prefHeight="38.0" prefWidth="277.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="celular" layoutX="68.0" layoutY="202.0" prefHeight="38.0" prefWidth="277.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="obs" layoutX="63.0" layoutY="326.0" prefHeight="200.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </TextField>
-                        <TextField fx:id="endereco" layoutX="416.0" layoutY="121.0" prefHeight="38.0" prefWidth="891.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-                           <font>
-                              <Font name="System Bold" size="15.0" />
-                           </font>
-                        </TextField>
-                        <Label layoutX="72.0" layoutY="14.0" text="Nome">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="66.0" layoutY="91.0" text="CPF">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="416.0" layoutY="91.0" text="Endereço">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="67.0" layoutY="172.0" prefHeight="28.0" prefWidth="71.0" text="Celular">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Label layoutX="66.0" layoutY="297.0" text="Obs">
-                           <font>
-                              <Font name="System Bold" size="20.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="salvarCliente" contentDisplay="RIGHT" layoutX="615.0" layoutY="624.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="Salvar" textFill="WHITE">
-                           <font>
-                              <Font name="System Bold" size="16.0" />
-                           </font>
-                        </Button>
-                     </children>
-                  </AnchorPane>
+                  <Label layoutX="639.0" layoutY="11.0" text="Editar" textFill="#7159c1">
+                     <font>
+                        <Font name="System Bold" size="32.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="voltar" contentDisplay="RIGHT" layoutX="14.0" layoutY="18.0" mnemonicParsing="false" onAction="#voltar" prefHeight="32.0" prefWidth="96.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="voltar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
                </children>
-            </VBox>
+            </AnchorPane>
+            <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
+               <children>
+                  <TextField fx:id="nome" layoutX="64.0" layoutY="178.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="endereco" layoutX="64.0" layoutY="255.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="celular" layoutX="64.0" layoutY="336.0" prefHeight="38.0" prefWidth="315.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </TextField>
+                  <TextField fx:id="cpf" layoutX="441.0" layoutY="336.0" prefHeight="38.0" prefWidth="297.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+                     <font>
+                        <Font name="System Bold" size="15.0" />
+                     </font>
+                  </TextField>
+                  <Label layoutX="68.0" layoutY="148.0" text="Nome">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="62.0" layoutY="225.0" text="Endereço">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="441.0" layoutY="306.0" text="CPF">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="63.0" layoutY="306.0" prefHeight="28.0" prefWidth="71.0" text="Celular">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Button fx:id="editar" contentDisplay="RIGHT" layoutX="617.0" layoutY="542.0" mnemonicParsing="false" onAction="#editarCliente" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="Editar" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                  </Button>
+               </children>
+            </AnchorPane>
          </children>
-      </AnchorPane>
+      </VBox>
    </children>
 </AnchorPane>
