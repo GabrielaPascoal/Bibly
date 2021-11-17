@@ -14,13 +14,17 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import model.BO.DiscoBO;
+import model.BO.LivroBO;
+import model.VO.DiscoVO;
+import model.VO.LivroVO;
 import model.VO.ProdutoInterVO;
 import view.Modals;
 import view.Telas;
 
 public class ControllerAluguel implements Initializable {
 
-  private List<ProdutoInterVO> listaProduto;
+  private static List<ProdutoInterVO> listaProduto;
 
   @FXML
   private TableView<ProdutoInterVO> tabelaAlugueis;
@@ -37,8 +41,8 @@ public class ControllerAluguel implements Initializable {
   }
 
   @FXML
-  public void adicionar(ActionEvent event) throws IOException {
-    Modals.abrirModal("adicionarProdutoModal");
+  public void adicionarProduto(ActionEvent event) throws IOException {
+    Telas.telaAdicionarProduto();
   }
 
   @FXML
@@ -56,18 +60,96 @@ public class ControllerAluguel implements Initializable {
     Modals.abrirModal("relatorioModal");
   }
 
-  @Override
-  public void initialize(URL arg0, ResourceBundle arg1) {
+  @FXML
+  public void alugar(ActionEvent event) throws IOException {
+    Telas.telaFinalizarAluguel();
   }
 
-  public void renderizarTabela() throws SQLException {
-    ControllerAdicionarProduto controllerAdicionarProduto = new ControllerAdicionarProduto();
-    listaProduto = controllerAdicionarProduto.getListaProduto();
-    System.out.println(listaProduto.get(0).toString());
+  public List<ProdutoInterVO> getlistaProduto() {
+    return listaProduto;
+  }
+
+  @FXML
+  public void acrescentar(ActionEvent event) throws IOException, SQLException {
+    ProdutoInterVO produto = tabelaAlugueis.getSelectionModel().getSelectedItem();
+    Integer quantidadeAcrescentada = produto.getQuantidade() + 1;
+    boolean podeAcrescentar = true;
+
+    List<LivroVO> livros = new LivroBO().buscarTodos();
+    List<DiscoVO> discos = new DiscoBO().buscarTodos();
+
+    if (produto instanceof LivroVO) {
+      for (LivroVO livro : livros) {
+        if (livro.getId() == produto.getId()) {
+          podeAcrescentar = quantidadeAcrescentada <= livro.getQuantidade() ? true : false;
+        }
+      }
+    }
+
+    if (produto instanceof DiscoVO) {
+      for (DiscoVO disco : discos) {
+        if (disco.getId() == produto.getId()) {
+          podeAcrescentar = quantidadeAcrescentada <= disco.getQuantidade() ? true : false;
+        }
+      }
+    }
+
+    if (podeAcrescentar) {
+      for (ProdutoInterVO p : listaProduto) {
+        if (p.equals(produto)) {
+          Double novoValor = p.getValor() + (p.getValor() / p.getQuantidade());
+          p.setQuantidade(quantidadeAcrescentada);
+          p.setValor(novoValor);
+        }
+      }
+    }
+
     initTable();
   }
 
+  @FXML
+  public void decrescentar(ActionEvent event) throws IOException, SQLException {
+    ProdutoInterVO produto = tabelaAlugueis.getSelectionModel().getSelectedItem();
+
+    if (produto.getQuantidade() > 1) {
+      for (ProdutoInterVO p : listaProduto) {
+        if (p.equals(produto)) {
+          Double newValue = p.getValor() - (p.getValor() / p.getQuantidade());
+          p.setQuantidade(p.getQuantidade() - 1);
+          p.setValor(newValue);
+        }
+      }
+    }
+
+    initTable();
+  }
+
+  @FXML
+  public void remover(ActionEvent event) throws IOException, SQLException {
+    int index = tabelaAlugueis.getSelectionModel().getSelectedIndex();
+
+    listaProduto.remove(index);
+    initTable();
+  }
+
+  @Override
+  public void initialize(URL arg0, ResourceBundle arg1) {
+    ControllerAdicionarProduto controllerAdicionarProduto = new ControllerAdicionarProduto();
+    listaProduto = controllerAdicionarProduto.getListaProduto();
+    if (listaProduto.size() > 0) {
+      try {
+        initTable();
+      } catch (SQLException e) {
+        // TODO Auto-generated catch block
+        e.printStackTrace();
+      }
+    }
+  }
+
   private void initTable() throws SQLException {
+    tabelaAlugueis.getColumns().get(0).setVisible(false);
+    tabelaAlugueis.getColumns().get(0).setVisible(true);
+
     produto.setCellValueFactory(new PropertyValueFactory<>("titulo"));
     quantidade.setCellValueFactory(new PropertyValueFactory<>("quantidade"));
     valor.setCellValueFactory(new PropertyValueFactory<>("valor"));
@@ -77,6 +159,5 @@ public class ControllerAluguel implements Initializable {
   @FXML
   public ObservableList<ProdutoInterVO> atualizar() throws SQLException {
     return FXCollections.observableArrayList(listaProduto);
-
   }
 }
