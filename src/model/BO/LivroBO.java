@@ -67,13 +67,14 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 
 	@Override
 	public List<LivroVO> buscarTodos() throws SQLException {
+
+		List<LivroVO> livros = new LinkedList<LivroVO>();
+
 		try {
 			ResultSet resposta = dao.buscarTodos();
 			if (!resposta.next()) {
 				throw new Exception("N�o existe Livros.");
 			} else {
-
-				List<LivroVO> livros = new LinkedList<LivroVO>();
 
 				do {
 
@@ -95,7 +96,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 			}
 		} catch (Exception erro) {
 			System.err.println(erro);
-			return null;
+			return livros;
 		}
 	}
 
@@ -243,7 +244,7 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 		}
 	}
 
-	public List<LivroVO> buscarPorId(LivroVO liv) throws SQLException {
+	public LivroVO buscarPorId(LivroVO liv) throws SQLException {
 
 		LivroDAO livro = new LivroDAO();
 
@@ -253,25 +254,18 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 				throw new Exception("N�o existe nenhum livro cadastrado com esse titulo.");
 			} else {
 
-				List<LivroVO> livros = new ArrayList<LivroVO>();
+				LivroVO livroRecebe = new LivroVO();
 
-				while (resposta.next()) {
+				livroRecebe.setId(resposta.getInt("id"));
+				livroRecebe.setTitulo(resposta.getString("titulo"));
+				livroRecebe.setAutor(resposta.getString("autor"));
+				livroRecebe.setGenero(resposta.getString("genero"));
+				livroRecebe.setAno(resposta.getInt("ano"));
+				livroRecebe.setPagina(resposta.getInt("paginas"));
+				livroRecebe.setValor(resposta.getDouble("valor"));
+				livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 
-					LivroVO livroRecebe = new LivroVO();
-
-					livroRecebe.setId(resposta.getInt("id"));
-					livroRecebe.setTitulo(resposta.getString("titulo"));
-					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setGenero(resposta.getString("genero"));
-					livroRecebe.setAno(resposta.getInt("ano"));
-					livroRecebe.setPagina(resposta.getInt("paginas"));
-					livroRecebe.setValor(resposta.getDouble("valor"));
-					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
-					livros.add(livroRecebe);
-
-				}
-
-				return livros;
+				return livroRecebe;
 			}
 		} catch (Exception erro) {
 			System.err.println(erro);

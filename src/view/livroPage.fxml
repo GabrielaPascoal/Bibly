@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.MenuButton?>
-<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -12,7 +11,7 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControlerLivros">
+<VBox maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="768.0" prefWidth="1366.0" style="-fx-alignment: CENTER;" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="view.Controller.ControlerLivros">
    <children>
       <AnchorPane prefHeight="68.0" prefWidth="710.0" style="-fx-background-color: #D6D3D3; -fx-border-width: 0 0 1px 0; -fx-border-color: transparent transparent #bbbbbb transparent;">
          <children>
@@ -35,31 +34,27 @@
          <children>
             <TableView fx:id="tableLivros" layoutX="14.0" layoutY="86.0" prefHeight="600.0" prefWidth="1340.0" stylesheets="@styles/tableStyle.css">
                <columns>
-                  <TableColumn fx:id="clnTitulo" prefWidth="330.0" resizable="false" style="-fx-alignment: CENTER;" text="Título" />
-                  <TableColumn fx:id="clnAutor" prefWidth="330.0" resizable="false" style="-fx-alignment: CENTER;" text="Autor" />
+                  <TableColumn fx:id="clnId" minWidth="0.0" prefWidth="0.0" />
+                  <TableColumn fx:id="clnTitulo" prefWidth="350.0" resizable="false" style="-fx-alignment: CENTER;" text="Título" />
+                  <TableColumn fx:id="clnAutor" prefWidth="320.0" resizable="false" style="-fx-alignment: CENTER;" text="Autor" />
                   <TableColumn fx:id="clnGenero" prefWidth="150.0" resizable="false" style="-fx-alignment: CENTER;" text="Gênero" />
                   <TableColumn fx:id="clnAno" prefWidth="120.0" resizable="false" style="-fx-alignment: CENTER;" text="Ano" />
                   <TableColumn fx:id="clnPaginas" prefWidth="120.0" resizable="false" style="-fx-alignment: CENTER;" text="Nº pag" />
                   <TableColumn fx:id="clnQt" prefWidth="85.0" resizable="false" style="-fx-alignment: CENTER;" text="Qt" />
                   <TableColumn fx:id="clnValor" prefWidth="110.0" resizable="false" style="-fx-alignment: CENTER;" text="Valor" />
-                  <TableColumn fx:id="editar" minWidth="0.0" prefWidth="58.0" resizable="false" />
+                  <TableColumn fx:id="editar" minWidth="0.0" prefWidth="40.0" resizable="false" />
                   <TableColumn fx:id="deletar" minWidth="0.0" prefWidth="40.0" resizable="false" />
                </columns>
             </TableView>
-            <TextField layoutX="14.0" layoutY="16.0" prefHeight="51.0" prefWidth="1145.0" promptText="Digite a informação do livro" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="busca" layoutX="14.0" layoutY="16.0" prefHeight="51.0" prefWidth="1145.0" promptText="Digite a informação do livro" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </TextField>
-            <MenuButton layoutX="1159.0" layoutY="16.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Título" />
-                  <MenuItem mnemonicParsing="false" text="Autor" />
-               </items>
-            </MenuButton>
+            <CheckBox fx:id="tituloCheck" layoutX="1174.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Título" textFill="#7159c1" />
+            <CheckBox fx:id="autorCheck" layoutX="1174.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Autor" textFill="#7159c1" />
+            <CheckBox fx:id="anoCheck" layoutX="1257.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Ano" textFill="#7159c1" />
+            <CheckBox fx:id="generoCheck" layoutX="1258.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Gênero" textFill="#7159c1" />
          </children>
       </AnchorPane>
    </children>

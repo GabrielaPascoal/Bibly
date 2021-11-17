@@ -25,87 +25,77 @@
       </AnchorPane>
       <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
          <children>
-            <TextField fx:id="tituloTf" layoutX="68.0" layoutY="44.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="tituloTf" layoutX="66.0" layoutY="177.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="generoTf" layoutX="68.0" layoutY="121.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="generoTf" layoutX="66.0" layoutY="254.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="autorTf" layoutX="68.0" layoutY="202.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="autorTf" layoutX="66.0" layoutY="335.0" prefHeight="38.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="quantidadeTf" layoutX="66.0" layoutY="278.0" prefHeight="38.0" prefWidth="171.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="quantidadeTf" layoutX="64.0" layoutY="411.0" prefHeight="38.0" prefWidth="171.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="obsTf" layoutX="68.0" layoutY="365.0" prefHeight="200.0" prefWidth="1240.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="anoTf" layoutX="481.0" layoutY="254.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="anoTf" layoutX="483.0" layoutY="121.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="paginasTf" layoutX="896.0" layoutY="254.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="paginasTf" layoutX="898.0" layoutY="121.0" prefHeight="38.0" prefWidth="410.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
+            <TextField fx:id="valorTf" layoutX="271.0" layoutY="412.0" prefHeight="38.0" prefWidth="149.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
                <font>
                   <Font name="System Bold" size="15.0" />
                </font>
             </TextField>
-            <TextField fx:id="valorTf" layoutX="1159.0" layoutY="278.0" prefHeight="38.0" prefWidth="149.0" style="-fx-border-radius: 6; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-               <font>
-                  <Font name="System Bold" size="15.0" />
-               </font>
-            </TextField>
-            <Label layoutX="72.0" layoutY="14.0" text="Título">
+            <Label layoutX="70.0" layoutY="147.0" text="Título">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="66.0" layoutY="91.0" text="Gênero">
+            <Label layoutX="64.0" layoutY="224.0" text="Gênero">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="483.0" layoutY="91.0" text="Ano de Laçanamento">
+            <Label layoutX="481.0" layoutY="224.0" text="Ano de Laçanamento">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="898.0" layoutY="91.0" text="Número de Páginas">
+            <Label layoutX="896.0" layoutY="224.0" text="Número de Páginas">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="67.0" layoutY="172.0" prefHeight="28.0" prefWidth="71.0" text="Autor">
+            <Label layoutX="65.0" layoutY="305.0" prefHeight="28.0" prefWidth="71.0" text="Autor">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="66.0" layoutY="248.0" text="Quantidade">
+            <Label layoutX="64.0" layoutY="381.0" text="Quantidade">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="1159.0" layoutY="248.0" text="Valor">
+            <Label layoutX="271.0" layoutY="382.0" text="Valor">
                <font>
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label layoutX="68.0" layoutY="335.0" text="Obs">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </Label>
-            <Button contentDisplay="RIGHT" layoutX="615.0" layoutY="624.0" mnemonicParsing="false" onAction="#salvar" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" text="Salvar" textFill="WHITE">
+            <Button contentDisplay="RIGHT" layoutX="617.0" layoutY="542.0" mnemonicParsing="false" onAction="#salvar" prefHeight="38.0" prefWidth="135.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center; -fx-cursor: Hand;" text="Salvar" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

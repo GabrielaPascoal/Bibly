@@ -50,6 +50,7 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
     }
 
     livro.setAluguel(aluguel);
+    disco.setAluguel(aluguel);
     cliente.setId(resposta.getInt("cliente_id"));
 
     List<AluguelLivroVO> livros = aluguelLivroBO.buscarPorAluguelId(livro);
@@ -58,6 +59,7 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
 
     aluguel.setLivros(livros);
     aluguel.setDiscos(discos);
+
     aluguel.setCliente(cliente);
 
     return aluguel;
