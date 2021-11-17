@@ -1,14 +1,10 @@
 package view.Controller;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
 import java.util.ResourceBundle;
-
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.collections.transformation.FilteredList;
-import javafx.collections.transformation.SortedList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
@@ -19,11 +15,8 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
-import model.BO.DiscoBO;
 import model.BO.UsuarioBO;
-import model.VO.DiscoVO;
 import model.VO.UsuarioVO;
-import view.Telas;
 
 public class ControlerUsuario implements Initializable {
 
@@ -70,6 +63,13 @@ public class ControlerUsuario implements Initializable {
 					e.printStackTrace();
 				}
 
+				try {
+					tableUsuario.setItems(atualizar());
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
 			} else if (resposta == btnNao) {
 
 				cpf.clear();
@@ -80,7 +80,6 @@ public class ControlerUsuario implements Initializable {
 		});
 
 	}
-
 
 	@FXML
 	void excluir(ActionEvent event) {
@@ -102,6 +101,13 @@ public class ControlerUsuario implements Initializable {
 				try {
 					uservo = userbo.buscarPorCpf(uservo);
 					userbo.remover(uservo);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+				try {
+					tableUsuario.setItems(atualizar());
 				} catch (SQLException e) {
 					// TODO Auto-generated catch block
 					e.printStackTrace();

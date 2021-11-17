@@ -64,17 +64,25 @@ public class ControlerInserirLivros {
 					livro.setAutor(autorTf.getText());
 					livro.setQuantidade(Integer.valueOf(quantidadeTf.getText()));
 					livro.setValor(Double.valueOf(valorTf.getText().replaceAll(",", ".")));
-
+					
+					
 					try {
 						bo.inserir(livro);
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
+					
+					try {
+						Telas.telaLivro();
+					} catch (IOException e1) {
+						// TODO Auto-generated catch block
+						e1.printStackTrace();
+					}
 
 				} else if (resposta == btnNao) {
 					try {
-						Telas.telaInserirCliente();
+						Telas.telaInserirLivro();
 					} catch (IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();

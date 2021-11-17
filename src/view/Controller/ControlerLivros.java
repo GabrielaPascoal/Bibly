@@ -98,7 +98,6 @@ public class ControlerLivros implements Initializable {
 	@FXML
 	public void initTable() throws SQLException {
 
-		
 		clnTitulo.setCellValueFactory(new PropertyValueFactory<>("titulo"));
 		clnAutor.setCellValueFactory(new PropertyValueFactory<>("autor"));
 		clnGenero.setCellValueFactory(new PropertyValueFactory<>("genero"));
@@ -113,13 +112,13 @@ public class ControlerLivros implements Initializable {
 		// 2. Set the filter Predicate whenever the filter changes.
 		busca.textProperty().addListener((observable, oldValue, newValue) -> {
 			filteredData.setPredicate(livro -> {
-				// If filter text is empty, display all persons.
+				// Se for vazio exibe tudo
 
 				if (newValue == null || newValue.isEmpty()) {
 					return true;
 				}
 
-				// Compare first name and last name of every person with filter text.
+				// comparacao
 				String lowerCaseFilter = newValue.toLowerCase();
 
 				// Filtros.
@@ -160,18 +159,17 @@ public class ControlerLivros implements Initializable {
 					return true; // Filter matches last name.
 				}
 				// fim pesquisa geral.
-				return false; // Does not match.
+				return false; // nao teve resultado
 			});
 		});
 
-		// 3. Wrap the FilteredList in a SortedList.
+		// FilteredList em uma SortedList.
 		SortedList<LivroVO> sortedData = new SortedList<>(filteredData);
 
-		// 4. Bind the SortedList comparator to the TableView comparator.
-		// Otherwise, sorting the TableView would have no effect.
+		// vincular SortedList a tableLivros
 		sortedData.comparatorProperty().bind(tableLivros.comparatorProperty());
 
-		// 5. Add sorted (and filtered) data to the table.
+		// adicionar SorteadData a tabela
 		tableLivros.setItems(sortedData);
 
 		Botao.initButtons(deletar, 25, LIXEIRA, "svg-roxo", (LivroVO livro, ActionEvent event) -> {
@@ -199,7 +197,6 @@ public class ControlerLivros implements Initializable {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-				
 
 				} else if (resposta == btnNao) {
 					try {
@@ -210,11 +207,11 @@ public class ControlerLivros implements Initializable {
 					}
 				}
 			});
-			
+
 		});
 
 		Botao.initButtons(editar, 25, LAPIS, "svg-roxo", (LivroVO livro, ActionEvent event) -> {
-			
+
 			try {
 				ControlerEditarLivro test = new ControlerEditarLivro();
 				test.setTextField(livro);
@@ -222,7 +219,7 @@ public class ControlerLivros implements Initializable {
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
-				
+
 			}
 		});
 	}

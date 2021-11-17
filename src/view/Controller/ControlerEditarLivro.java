@@ -86,9 +86,9 @@ public class ControlerEditarLivro implements Initializable {
 
 			dialogoExe.showAndWait().ifPresent(resposta -> {
 				if (resposta == btnSim) {
-					
+
 					LivroBO bo = new LivroBO();
-					
+
 					livro.setTitulo(tituloTf.getText());
 					livro.setGenero(generoTf.getText());
 					livro.setAno(Integer.valueOf(anoTf.getText()));
@@ -96,15 +96,15 @@ public class ControlerEditarLivro implements Initializable {
 					livro.setAutor(autorTf.getText());
 					livro.setQuantidade(Integer.valueOf(quantidadeTf.getText()));
 					livro.setValor(Double.valueOf(valorTf.getText().replaceAll(",", ".")));
-					
+
 					try {
 						bo.editar(livro);
-						
+
 					} catch (SQLException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}
-					
+
 					try {
 						Telas.telaLivro();
 					} catch (IOException e) {
@@ -125,7 +125,7 @@ public class ControlerEditarLivro implements Initializable {
 
 			});
 		}
-		
+
 	}
 
 	@FXML

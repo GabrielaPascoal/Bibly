@@ -89,22 +89,21 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 	public UsuarioVO buscarPorId(UsuarioVO user) throws SQLException {
 
 		UsuarioDAO da = new UsuarioDAO();
-		
+
 		try {
 			ResultSet resposta = da.buscarPorId(user);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse usuario.");
 			} else {
 
-				
 				UsuarioVO userRecebe = new UsuarioVO();
-				while (resposta.next()) {
-					
+				do {
+
 					userRecebe.setId(resposta.getInt("id"));
 					userRecebe.setCpf(resposta.getString("cpf"));
 					userRecebe.setSenha(resposta.getString("senha"));
-					
-				}
+
+				} while (resposta.next());
 
 				return userRecebe;
 
@@ -116,26 +115,25 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 			return null;
 		}
 	}
-	
+
 	public UsuarioVO buscarPorCpf(UsuarioVO user) throws SQLException {
 
 		UsuarioDAO da = new UsuarioDAO();
-		
+
 		try {
 			ResultSet resposta = da.buscarPorCpf(user);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse usuario.");
 			} else {
 
-				
 				UsuarioVO userRecebe = new UsuarioVO();
 				do {
-					
+
 					userRecebe.setId(resposta.getInt("id"));
 					userRecebe.setCpf(resposta.getString("cpf"));
 					userRecebe.setSenha(resposta.getString("senha"));
-					
-				}while (resposta.next());
+
+				} while (resposta.next());
 
 				return userRecebe;
 
@@ -147,8 +145,6 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 			return null;
 		}
 	}
-
-
 
 	@Override
 	public List<UsuarioVO> buscarTodos() throws SQLException {
@@ -161,7 +157,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 
 				List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
 
-				while (resposta.next()) {
+				do {
 
 					UsuarioVO userRecebe = new UsuarioVO();
 
@@ -169,7 +165,7 @@ public class UsuarioBO implements BaseInterBO<UsuarioVO> {
 					userRecebe.setCpf(resposta.getString("cpf"));
 					userRecebe.setSenha(resposta.getString("senha"));
 					usuarios.add(userRecebe);
-				}
+				} while (resposta.next());
 
 				return usuarios;
 
