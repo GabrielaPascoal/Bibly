@@ -59,7 +59,8 @@ public class ControllerInserirDiscos {
 
 					try {
 						bo.inserir(disco);
-					} catch (SQLException e) {
+						Telas.telaDisco();
+					} catch (SQLException | IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

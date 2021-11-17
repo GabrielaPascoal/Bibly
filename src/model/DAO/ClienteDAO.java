@@ -68,7 +68,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 
 	public void editar(ClienteVO vo) throws SQLException {
 		Connection connection = getConnection();
-		String query = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?";
+		String query = "UPDATE clientes SET nome = ?, cpf = ?, endereco = ?, celular = ? WHERE id =?";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = connection.prepareStatement(query);
@@ -76,6 +76,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 			preparedStatement.setString(2, vo.getCpf());
 			preparedStatement.setString(3, vo.getEndereco());
 			preparedStatement.setString(4, vo.getCelular());
+			preparedStatement.setInt(5, vo.getId());
 			preparedStatement.executeUpdate();
 
 		} catch (SQLException e) {
@@ -85,116 +86,112 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 	}
 
 	// BUSCAR TODOS
-		public ResultSet buscarTodos() {
+	public ResultSet buscarTodos() {
 
-			String sql = "SELECT * FROM clientes";
-			Statement st;
-			ResultSet resposta = null;
-			
+		String sql = "SELECT * FROM clientes";
+		Statement st;
+		ResultSet resposta = null;
 
-			try {
+		try {
 
-				Connection connection = getConnection();
-				st = connection.createStatement();
-				resposta = st.executeQuery(sql);
+			Connection connection = getConnection();
+			st = connection.createStatement();
+			resposta = st.executeQuery(sql);
 
-			} catch (SQLException e) {
+		} catch (SQLException e) {
 
-				e.printStackTrace();
-			}
-
-			return resposta;
+			e.printStackTrace();
 		}
 
-		// BUSCAR POR ID
-		public ResultSet buscarPorId(ClienteVO cliente) {
+		return resposta;
+	}
 
-			String sql = "SELECT * FROM clientes WHERE id=?";
-			PreparedStatement ptst;
-			ResultSet resposta = null;
-			try {
+	// BUSCAR POR ID
+	public ResultSet buscarPorId(ClienteVO cliente) {
 
-				Connection connection = getConnection();
-				ptst = connection.prepareStatement(sql);
-				ptst.setInt(1, cliente.getId());
-				resposta = ptst.executeQuery();
+		String sql = "SELECT * FROM clientes WHERE id=?";
+		PreparedStatement ptst;
+		ResultSet resposta = null;
+		try {
 
-			} catch (SQLException e) {
-				e.printStackTrace();
-			}
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setInt(1, cliente.getId());
+			resposta = ptst.executeQuery();
 
-			return resposta;
+		} catch (SQLException e) {
+			e.printStackTrace();
 		}
 
-		// BUSCAR POR NOME
-		public ResultSet buscarPorNome(ClienteVO cliente) {
+		return resposta;
+	}
 
-			String sql = "SELECT * FROM clientes WHERE nome = ?";
-			PreparedStatement ptst;
-			ResultSet resposta = null;
-			
+	// BUSCAR POR NOME
+	public ResultSet buscarPorNome(ClienteVO cliente) {
 
-			try {
+		String sql = "SELECT * FROM clientes WHERE nome = ?";
+		PreparedStatement ptst;
+		ResultSet resposta = null;
 
-				Connection connection = getConnection();
-				ptst = connection.prepareStatement(sql);
-				ptst.setString(1, cliente.getNome());
-				resposta = ptst.executeQuery();
+		try {
 
-			} catch (SQLException e) {
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, cliente.getNome());
+			resposta = ptst.executeQuery();
 
-				e.printStackTrace();
-			}
+		} catch (SQLException e) {
 
-			return resposta;
+			e.printStackTrace();
 		}
 
-		// BUSCAR POR CPF
-		public ResultSet buscarPorCpf(ClienteVO cliente) {
+		return resposta;
+	}
 
-			String sql = "SELECT * FROM clientes WHERE cpf = ?";
-			PreparedStatement ptst;
-			ResultSet resposta = null;
+	// BUSCAR POR CPF
+	public ResultSet buscarPorCpf(ClienteVO cliente) {
 
-			try {
+		String sql = "SELECT * FROM clientes WHERE cpf = ?";
+		PreparedStatement ptst;
+		ResultSet resposta = null;
 
-				Connection connection = getConnection();
-				ptst = connection.prepareStatement(sql);
-				ptst.setString(1, cliente.getCpf());
-				resposta = ptst.executeQuery();
+		try {
 
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, cliente.getCpf());
+			resposta = ptst.executeQuery();
 
-			} catch (SQLException e) {
+		} catch (SQLException e) {
 
-				e.printStackTrace();
-			}
-
-			return resposta;
-
+			e.printStackTrace();
 		}
 
-		// BUSCAR POR ENDERECO
-		public ResultSet buscarPorEndereco(ClienteVO cliente) {
-
-			String sql = "SELECT * FROM clientes WHERE endereco = ?";
-			PreparedStatement ptst;
-			ResultSet resposta = null;
-
-			try {
-
-				Connection connection = getConnection();
-				ptst = connection.prepareStatement(sql);
-				ptst.setString(1, cliente.getEndereco());
-				resposta = ptst.executeQuery();
-
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
-			return resposta;
-
-		}
+		return resposta;
 
 	}
 
+	// BUSCAR POR ENDERECO
+	public ResultSet buscarPorEndereco(ClienteVO cliente) {
+
+		String sql = "SELECT * FROM clientes WHERE endereco = ?";
+		PreparedStatement ptst;
+		ResultSet resposta = null;
+
+		try {
+
+			Connection connection = getConnection();
+			ptst = connection.prepareStatement(sql);
+			ptst.setString(1, cliente.getEndereco());
+			resposta = ptst.executeQuery();
+
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+
+		return resposta;
+
+	}
+
+}

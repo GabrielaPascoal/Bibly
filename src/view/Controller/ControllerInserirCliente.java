@@ -58,7 +58,7 @@ public class ControllerInserirCliente {
 					try {
 						bo.inserir(cliente);
 						Telas.telaCliente();
-					} catch (SQLException e) {
+					} catch (SQLException | IOException e) {
 						// TODO Auto-generated catch block
 						e.printStackTrace();
 					}

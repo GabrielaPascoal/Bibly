@@ -10,8 +10,7 @@ import java.util.List;
 
 import model.VO.DiscoVO;
 
-
-public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO>{
+public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO> {
 
 	// INSERIR
 	public void inserir(DiscoVO vo) throws SQLException {
@@ -82,7 +81,7 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 	// ALTERAR
 	public void editar(DiscoVO vo) throws SQLException {
 
-		String query = "UPDATE discos SET titulo = ?, artista = ?, estilo = ?, valor = ?, quantidade = ?, WHERE id = ? ";
+		String query = "UPDATE discos SET titulo = ?, artista = ?, estilo = ?, valor = ?, quantidade = ? WHERE id = ? ";
 		PreparedStatement preparedStatement;
 
 		try {
@@ -136,7 +135,6 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 			ptst.setString(1, disco.getTitulo());
 			result = ptst.executeQuery();
 
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -152,7 +150,6 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 		String sql = "SELECT * FROM discos WHERE artista = ?";
 		PreparedStatement ptst;
 		ResultSet result = null;
-		
 
 		try {
 
@@ -183,7 +180,6 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 			ptst.setString(1, disco.getEstilo());
 			result = ptst.executeQuery();
 
-
 		} catch (SQLException e) {
 
 			e.printStackTrace();
@@ -192,6 +188,7 @@ public class DiscoDAO extends BaseDAO<DiscoVO> implements BuscarInterDAO<DiscoVO
 		return result;
 
 	}
+
 	// BUSCAR TODOS
 	public ResultSet buscarTodos() {
 
