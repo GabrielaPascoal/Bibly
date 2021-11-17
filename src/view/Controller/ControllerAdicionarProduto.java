@@ -47,8 +47,6 @@ public class ControllerAdicionarProduto implements Initializable {
   @FXML
   private AnchorPane tipoDisco;
   @FXML
-  private TextField tituloBusca;
-  @FXML
   private Label adicionado;
 
   @FXML
