@@ -18,16 +18,11 @@
       </TableView>
       <TextField fx:id="cpf" layoutX="341.0" layoutY="111.0" prefHeight="31.0" prefWidth="222.0" promptText="CPF" />
       <TextField fx:id="senha" layoutX="341.0" layoutY="154.0" prefHeight="31.0" prefWidth="222.0" promptText="SENHA" />
-      <Button layoutX="311.0" layoutY="262.0" mnemonicParsing="false" onAction="#cadastro" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18;" text="Cadastrar" textFill="WHITE">
+      <Button layoutX="341.0" layoutY="262.0" mnemonicParsing="false" onAction="#cadastro" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18;" text="Cadastrar" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font></Button>
-      <Button layoutX="499.0" layoutY="262.0" mnemonicParsing="false" onAction="#excluir" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18;" text="Excluir" textFill="WHITE">
-         <font>
-            <Font name="System Bold" size="14.0" />
-         </font>
-      </Button>
-      <Button layoutX="406.0" layoutY="262.0" mnemonicParsing="false" onAction="#editar" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18;" text="Editar" textFill="WHITE">
+      <Button layoutX="476.0" layoutY="262.0" mnemonicParsing="false" onAction="#excluir" prefHeight="30.0" prefWidth="87.0" style="-fx-background-color: #7159c1; -fx-background-radius: 18;" text="Excluir" textFill="WHITE">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>

@@ -26,7 +26,7 @@ public class Telas extends Application {
 		setpS(pS);
 		pS.setTitle("login");
 		pS.show();
-		telaLoading();
+		telaLogin();
 	}
 
 	public static void telaAlugel() throws IOException {

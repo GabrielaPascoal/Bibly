@@ -81,22 +81,6 @@ public class ControlerUsuario implements Initializable {
 
 	}
 
-	@FXML
-	void editar(ActionEvent event) {
-
-		UsuarioBO userbo = new UsuarioBO();
-		UsuarioVO uservo = new UsuarioVO();
-		uservo.setCpf(cpf.getText());
-
-		try {
-			uservo = userbo.buscarPorCpf(uservo);
-			userbo.editar(uservo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-	}
 
 	@FXML
 	void excluir(ActionEvent event) {
