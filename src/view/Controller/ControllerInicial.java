@@ -33,4 +33,13 @@ public class ControllerInicial {
 		Telas.telaAlugel();
 	}
 
+	@FXML
+    void usuarios(ActionEvent event) {
+		try {
+			Telas.telaUsuario();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+    }
 }

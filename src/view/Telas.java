@@ -7,6 +7,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 public class Telas extends Application {
 
@@ -33,6 +34,17 @@ public class Telas extends Application {
 		Parent root = FXMLLoader.load(Telas.class.getResource("aluguelPage.fxml"));
 		Scene cena = new Scene(root);
 		pS.setScene(cena);
+	}
+	
+	public static void telaUsuario() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("UsuarioPage.fxml"));
+		Scene cena = new Scene(root);
+		Stage stage = new Stage();
+		stage.setScene(cena);
+		stage.initStyle(StageStyle.UTILITY);
+		stage.show();
+		
 	}
 
 	public static void telaAdicionarProduto() throws IOException {

@@ -10,117 +10,175 @@ import model.DAO.UsuarioDAO;
 import model.VO.UsuarioVO;
 
 public class UsuarioBO implements BaseInterBO<UsuarioVO> {
-	
+
 	static private BaseInterDAO<UsuarioVO> dao = new UsuarioDAO();
-	
-	public boolean autenticar (UsuarioVO user) throws Exception{
-	
+
+	public boolean autenticar(UsuarioVO user) throws Exception {
+
 		UsuarioDAO busca = new UsuarioDAO();
 		ResultSet result = busca.buscarPorCpf(user);
 		boolean valid = false;
-		
-			if(result.next()) {
-				
-				if(result.getString("Senha").equals(user.getSenha())) {
-					
-					valid=true;
-				}
-				else if(!(result.getString("Senha").equals(user.getSenha()))) {
-					valid =false;
-					
-				}else {
-					throw new Exception("Usuario ou senha incorretos");
-				}
+
+		if (result.next()) {
+
+			if (result.getString("Senha").equals(user.getSenha())) {
+
+				valid = true;
+			} else if (!(result.getString("Senha").equals(user.getSenha()))) {
+				valid = false;
+
+			} else {
+				throw new Exception("Usuario ou senha incorretos");
 			}
-			
-			return valid;
+		}
+
+		return valid;
 	}
-	
+
 	@Override
 	public void inserir(UsuarioVO entidade) throws SQLException {
-		
+
 		UsuarioDAO usuario = new UsuarioDAO();
-		
+
 		try {
 			ResultSet resposta = usuario.buscarPorCpf(entidade);
 			if (resposta.next()) {
 				throw new Exception("Já existe um usuario com esse cpf");
-			}
-			else {
+			} else {
 				dao.inserir(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
 	@Override
 	public void editar(UsuarioVO entidade) throws SQLException {
-		
+
 		UsuarioDAO usuario = new UsuarioDAO();
-		
+
 		try {
 			ResultSet resposta = usuario.buscarPorId(entidade);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse usuario.");
-			}
-			else {
+			} else {
 				dao.editar(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
 	@Override
 	public void remover(UsuarioVO entidade) throws SQLException {
-		
+
 		UsuarioDAO usuario = new UsuarioDAO();
-		
+
 		try {
 			ResultSet resposta = usuario.buscarPorId(entidade);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse usuario.");
-			}
-			else {
+			} else {
 				dao.remover(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
+	public UsuarioVO buscarPorId(UsuarioVO user) throws SQLException {
+
+		UsuarioDAO da = new UsuarioDAO();
+		
+		try {
+			ResultSet resposta = da.buscarPorId(user);
+			if (!resposta.next()) {
+				throw new Exception("Não existe esse usuario.");
+			} else {
+
+				
+				UsuarioVO userRecebe = new UsuarioVO();
+				while (resposta.next()) {
+					
+					userRecebe.setId(resposta.getInt("id"));
+					userRecebe.setCpf(resposta.getString("cpf"));
+					userRecebe.setSenha(resposta.getString("senha"));
+					
+				}
+
+				return userRecebe;
+
+			}
+		}
+
+		catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+	
+	public UsuarioVO buscarPorCpf(UsuarioVO user) throws SQLException {
+
+		UsuarioDAO da = new UsuarioDAO();
+		
+		try {
+			ResultSet resposta = da.buscarPorCpf(user);
+			if (!resposta.next()) {
+				throw new Exception("Não existe esse usuario.");
+			} else {
+
+				
+				UsuarioVO userRecebe = new UsuarioVO();
+				do {
+					
+					userRecebe.setId(resposta.getInt("id"));
+					userRecebe.setCpf(resposta.getString("cpf"));
+					userRecebe.setSenha(resposta.getString("senha"));
+					
+				}while (resposta.next());
+
+				return userRecebe;
+
+			}
+		}
+
+		catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
+
+
 	@Override
 	public List<UsuarioVO> buscarTodos() throws SQLException {
-		
+
 		try {
 			ResultSet resposta = dao.buscarTodos();
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse usuario.");
-			}
-			else {
-				
+			} else {
+
 				List<UsuarioVO> usuarios = new ArrayList<UsuarioVO>();
-				
-				while(resposta.next()) {
-					
+
+				while (resposta.next()) {
+
 					UsuarioVO userRecebe = new UsuarioVO();
-					
+
 					userRecebe.setId(resposta.getInt("id"));
 					userRecebe.setCpf(resposta.getString("cpf"));
+					userRecebe.setSenha(resposta.getString("senha"));
 					usuarios.add(userRecebe);
 				}
-				
+
 				return usuarios;
-				
+
 			}
 		}
+
 		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
+			System.err.println(erro);
+			return null;
 		}
 	}
 }
