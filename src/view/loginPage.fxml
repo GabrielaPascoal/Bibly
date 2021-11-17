@@ -55,16 +55,44 @@
                      </font></TextField>
                </children>
             </HBox>
-            <HBox maxWidth="-Infinity" prefHeight="46.0" prefWidth="340.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
+            <HBox maxWidth="-Infinity" prefHeight="46.0" prefWidth="339.0" style="-fx-background-color: #E5E5E5; -fx-alignment: center; -fx-padding: 0 8px; -fx-border-color: #d6d3d3; -fx-border-width: 1;">
                <children>
                   <ImageView fitHeight="24.0" fitWidth="24.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../../assets/key.png" />
                      </image></ImageView>
-                  <PasswordField fx:id="senha" onAction="#autenticar" prefHeight="36.0" prefWidth="340.0" promptText="SENHA" style="-fx-background-color: transparent;">
-                     <font>
-                        <Font name="System Bold" size="20.0" />
-                     </font></PasswordField>
+                  <AnchorPane prefHeight="44.0" prefWidth="311.0">
+                     <children>
+                        <TextField fx:id="mostrar" prefHeight="44.0" prefWidth="298.0" promptText="SENHA" style="-fx-background-color: trasparent;" visible="false">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </TextField>
+                        <PasswordField fx:id="senha" onAction="#autenticar" prefHeight="44.0" prefWidth="298.0" promptText="SENHA" style="-fx-background-color: transparent;">
+                           <font>
+                              <Font name="System Bold" size="20.0" />
+                           </font>
+                        </PasswordField>
+                        <Button fx:id="decodificar" layoutX="257.0" layoutY="6.0" mnemonicParsing="false" onAction="#decodificar" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-cursor: Hand;">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/baseline_visibility_black_24dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                        <Button fx:id="codificar" layoutX="257.0" layoutY="6.0" mnemonicParsing="false" onAction="#codificar" style="-fx-background-radius: 20; -fx-background-color: transparent; -fx-cursor: Hand;" visible="false">
+                           <graphic>
+                              <ImageView fitHeight="25.0" fitWidth="25.0" pickOnBounds="true" preserveRatio="true">
+                                 <image>
+                                    <Image url="@../../assets/baseline_visibility_off_black_24dp.png" />
+                                 </image>
+                              </ImageView>
+                           </graphic>
+                        </Button>
+                     </children>
+                  </AnchorPane>
                </children>
             </HBox>
             <Button contentDisplay="RIGHT" mnemonicParsing="false" onAction="#autenticar" prefHeight="40.0" prefWidth="160.0" style="-fx-background-color: #7159c1; -fx-background-radius: 20px; -fx-alignment: center;" text="ENTRAR" textFill="WHITE">
