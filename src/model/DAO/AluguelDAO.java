@@ -60,30 +60,6 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
     return resposta;
   }
 
-  public List<AluguelVO> buscarPorMes(Integer Mes) throws SQLException {
-    Connection connection = getConnection();
-
-    String query = "SELECT * FROM alugueis WHERE EXTRACT(MONTH FROM data) = ?";
-
-    PreparedStatement preparedStatement = connection.prepareStatement(query);
-    preparedStatement.setInt(1, Mes);
-
-    ResultSet resposta = preparedStatement.executeQuery();
-
-    List<AluguelVO> alugueisEncontrados = new ArrayList<AluguelVO>();
-
-    while (resposta.next()) {
-
-      AluguelVO aluguelEncontrado = new AluguelVO();
-
-      aluguelEncontrado = formatarResposta(resposta);
-
-      alugueisEncontrados.add(aluguelEncontrado);
-    }
-
-    return alugueisEncontrados;
-  }
-
   public List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
     Connection connection = getConnection();
 
@@ -108,7 +84,7 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
     return alugueisEncontrados;
   }
 
-  public List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
+  public ResultSet buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
     Connection connection = getConnection();
 
     String query = "SELECT * FROM alugueis WHERE (? <= data AND data <= ?)";
@@ -116,6 +92,22 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
     PreparedStatement preparedStatement = connection.prepareStatement(query);
     preparedStatement.setDate(1, Date.valueOf(dataMin));
     preparedStatement.setDate(2, Date.valueOf(dataMax));
+
+    ResultSet resposta = preparedStatement.executeQuery();
+
+    return resposta;
+  }
+
+  public List<AluguelVO> buscarPorClienteEIntervaloDeDias(LocalDate dataMin, LocalDate dataMax, AluguelVO aluguel)
+      throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM alugueis WHERE (? <= data AND data <= ?) AND cliente_id = ?";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+    preparedStatement.setDate(1, Date.valueOf(dataMin));
+    preparedStatement.setDate(2, Date.valueOf(dataMax));
+    preparedStatement.setInt(3, aluguel.getCliente().getId());
 
     ResultSet resposta = preparedStatement.executeQuery();
 
@@ -133,9 +125,21 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
     return alugueisEncontrados;
   }
 
+  public ResultSet buscarPorDevolucao() throws SQLException {
+    Connection connection = getConnection();
+
+    String query = "SELECT * FROM alugueis WHERE devolucao IS NULL";
+
+    PreparedStatement preparedStatement = connection.prepareStatement(query);
+
+    ResultSet resposta = preparedStatement.executeQuery();
+
+    return resposta;
+  }
+
   public void editar(AluguelVO aluguel) throws SQLException {
 
-    String sql = "Update alugueis SET cliente_id = ?, valor = ?, data = ? where id = ? ";
+    String sql = "Update alugueis SET cliente_id = ?, valor = ?, data = ?, devolucao = ? where id = ? ";
     PreparedStatement preparedStatement;
 
     try {
@@ -145,7 +149,8 @@ public class AluguelDAO extends BaseDAO<AluguelVO> implements BuscarInterDAO<Alu
       preparedStatement.setInt(1, aluguel.getCliente().getId());
       preparedStatement.setDouble(2, aluguel.getValor());
       preparedStatement.setDate(3, Date.valueOf(aluguel.getData()));
-      preparedStatement.setInt(4, aluguel.getId());
+      preparedStatement.setDate(4, Date.valueOf(aluguel.getDevolucao()));
+      preparedStatement.setInt(5, aluguel.getId());
       preparedStatement.executeUpdate();
 
     } catch (SQLException e) {

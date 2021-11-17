@@ -2,7 +2,7 @@ package model.VO;
 
 public interface ProdutoInterVO {
   int id = 0;
-  String titulo = "";
+  String titulo = "ninguem";
   int quantidade = 0;
   double valor = 0;
 

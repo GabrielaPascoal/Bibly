@@ -19,37 +19,46 @@ import com.itextpdf.text.Document;
 import com.itextpdf.text.DocumentException;
 import com.itextpdf.text.Element;
 import com.itextpdf.text.Paragraph;
+import com.itextpdf.text.Phrase;
+import com.itextpdf.text.pdf.PdfPCell;
+import com.itextpdf.text.pdf.PdfPTable;
 import com.itextpdf.text.pdf.PdfWriter;
 
 import model.DAO.AluguelDAO;
-import model.DAO.ClienteDAO;
 import model.VO.AluguelDiscoVO;
 import model.VO.AluguelLivroVO;
 import model.VO.AluguelVO;
-import model.VO.DiscoVO;
-import model.VO.LivroVO;
+import model.VO.ClienteVO;
+import utils.formater;
 
 public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<AluguelVO> {
   public AluguelVO getAluguel(ResultSet resposta) throws SQLException {
     AluguelVO aluguel = new AluguelVO();
     AluguelLivroBO aluguelLivroBO = new AluguelLivroBO();
     AluguelDiscoBO aluguelDiscoBO = new AluguelDiscoBO();
+    ClienteBO clienteBO = new ClienteBO();
 
     AluguelLivroVO livro = new AluguelLivroVO();
     AluguelDiscoVO disco = new AluguelDiscoVO();
+    ClienteVO cliente = new ClienteVO();
 
     aluguel.setId(resposta.getInt("id"));
     aluguel.setValor(resposta.getDouble("valor"));
     aluguel.setData(resposta.getDate("data").toLocalDate());
+    if (resposta.getDate("devolucao") != null) {
+      aluguel.setDevolucao(resposta.getDate("devolucao").toLocalDate());
+    }
 
     livro.setAluguel(aluguel);
+    cliente.setId(resposta.getInt("cliente_id"));
 
     List<AluguelLivroVO> livros = aluguelLivroBO.buscarPorAluguelId(livro);
     List<AluguelDiscoVO> discos = aluguelDiscoBO.buscarPorAluguelId(disco);
+    cliente = clienteBO.buscarPorId(cliente);
 
     aluguel.setLivros(livros);
     aluguel.setDiscos(discos);
-    // aluguel.setCliente();
+    aluguel.setCliente(cliente);
 
     return aluguel;
   }
@@ -57,7 +66,6 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
   public void inserir(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
-      ClienteDAO clienteDAO = new ClienteDAO();
 
       if (aluguel.getCliente().getId() <= 0) {
         throw new Exception("Defina o id de um cliente valido.");
@@ -65,12 +73,6 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
 
       if (aluguel.getValor() < 0) {
         throw new Exception("Valor nao pode ser menor que 0.");
-      }
-
-      ResultSet respostaCliente = clienteDAO.buscarPorId(aluguel.getCliente());
-
-      if (!respostaCliente.next()) {
-        throw new Exception("Cliente nao existe.");
       }
 
       aluguelDAO.inserir(aluguel);
@@ -119,21 +121,6 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
     }
   }
 
-  public List<AluguelVO> buscarPorMes(Integer mes) throws SQLException {
-    try {
-      AluguelDAO aluguelDAO = new AluguelDAO();
-
-      if (mes < 1 && mes > 12) {
-        throw new Exception("Escolha um mes de 1 a 12.");
-      }
-
-      return aluguelDAO.buscarPorMes(mes);
-    } catch (Exception erro) {
-      System.err.println(erro);
-      return null;
-    }
-  }
-
   public List<AluguelVO> buscarPorCliente(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
@@ -152,12 +139,53 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
   public List<AluguelVO> buscarPorIntervaloDeDias(LocalDate dataMin, LocalDate dataMax) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
+      List<AluguelVO> alugueis = new ArrayList<AluguelVO>();
+
+      ResultSet resposta = aluguelDAO.buscarPorDevolucao();
+
+      while (resposta.next()) {
+        AluguelVO aluguel = getAluguel(resposta);
+        alugueis.add(aluguel);
+      }
+      return alugueis;
+    } catch (Exception erro) {
+      System.err.println(erro);
+      return null;
+    }
+  }
+
+  public List<AluguelVO> buscarPorClienteEIntervaloDeDias(LocalDate dataMin, LocalDate dataMax, AluguelVO aluguel)
+      throws SQLException {
+    try {
+      AluguelDAO aluguelDAO = new AluguelDAO();
+
+      if (aluguel.getCliente().getId() <= 0) {
+        throw new Exception("Defina o id de um cliente valido.");
+      }
 
       if (dataMin == null && dataMax == null) {
         throw new Exception("Defina uma data valida.");
       }
 
-      return aluguelDAO.buscarPorIntervaloDeDias(dataMin, dataMax);
+      return aluguelDAO.buscarPorClienteEIntervaloDeDias(dataMin, dataMax, aluguel);
+    } catch (Exception erro) {
+      System.err.println(erro);
+      return null;
+    }
+  }
+
+  public List<AluguelVO> buscarPorDevolucao() throws SQLException {
+    try {
+      AluguelDAO aluguelDAO = new AluguelDAO();
+      List<AluguelVO> alugueis = new ArrayList<AluguelVO>();
+
+      ResultSet resposta = aluguelDAO.buscarPorDevolucao();
+
+      while (resposta.next()) {
+        AluguelVO aluguel = getAluguel(resposta);
+        alugueis.add(aluguel);
+      }
+      return alugueis;
     } catch (Exception erro) {
       System.err.println(erro);
       return null;
@@ -167,7 +195,6 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
   public void editar(AluguelVO aluguel) throws SQLException {
     try {
       AluguelDAO aluguelDAO = new AluguelDAO();
-      ClienteDAO clienteDAO = new ClienteDAO();
 
       if (aluguel.getId() <= 0) {
         throw new Exception("Defina um id valido.");
@@ -187,12 +214,6 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
 
       if (aluguel.getValor() < 0) {
         aluguel.setValor(aluguelAntigo.getValor());
-      }
-
-      ResultSet respostaCliente = clienteDAO.buscarPorId(aluguel.getCliente());
-
-      if (!respostaCliente.next()) {
-        throw new Exception("Cliente nao existe.");
       }
 
       aluguelDAO.editar(aluguel);
@@ -249,66 +270,141 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
     titulo.setAlignment(Element.ALIGN_CENTER);
     documento.add(titulo);
     documento.add(Chunk.NEWLINE);
-    documento.add(Chunk.NEWLINE);
 
     return documento;
   }
 
-  public void gerarRelatorioGeral() throws DocumentException, SQLException, IOException, NullPointerException {
-    List<AluguelVO> alugueis = this.buscarTodos();
-    Integer totalDeAlugueis = alugueis.size();
+  public void gerarFaturaMensal(LocalDate dataInicial, LocalDate dataFinal)
+      throws DocumentException, SQLException, IOException, NullPointerException {
+    List<AluguelVO> alugueis = this.buscarPorIntervaloDeDias(dataInicial, dataFinal);
+    Double valorTotal = 0.0;
 
     LocalDateTime dataHoraAtual = LocalDateTime.now();
     DateTimeFormatter formatadorNomeArquivo = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss");
-    DateTimeFormatter formatadorDataAluguel = DateTimeFormatter.ofPattern("dd/MM/yyyy");
-    Document relatorio = gerarPDF("RelatorioGeral-Bibly" + dataHoraAtual.format(formatadorNomeArquivo));
+    DateTimeFormatter formatadorMesFatura = DateTimeFormatter.ofPattern("MM-yyyy");
+    Document relatorio = gerarPDF(
+        "Fatura-" + dataInicial.format(formatadorMesFatura) + "-Bibly" + dataHoraAtual.format(formatadorNomeArquivo));
+
+    relatorio.add(Chunk.NEWLINE);
+
+    relatorio.add(new Paragraph("Fatura referente ao mês: " + dataInicial.format(formatadorMesFatura)));
+
+    PdfPTable tabela = new PdfPTable(new float[] { 2f, 8f, 5f, 3f });
+
+    PdfPCell celulaAID = new PdfPCell(new Phrase("Aluguel ID"));
+    celulaAID.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+    PdfPCell celulaNome = new PdfPCell(new Phrase("Cliente"));
+    celulaAID.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+    PdfPCell celulaCpf = new PdfPCell(new Phrase("CPF"));
+    celulaAID.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+    PdfPCell celulaValor = new PdfPCell(new Phrase("Valor"));
+    celulaValor.setHorizontalAlignment(Element.ALIGN_CENTER);
+
+    tabela.addCell(celulaAID);
+    tabela.addCell(celulaNome);
+    tabela.addCell(celulaCpf);
+    tabela.addCell(celulaValor);
+
+    Integer totalDeAlugueis = alugueis.size();
 
     if (totalDeAlugueis <= 0) {
       relatorio.close();
       return;
     }
 
-    for (int i = 0; i < totalDeAlugueis; i++) {
-      AluguelVO aluguel = alugueis.get(i);
-      relatorio.add(new Paragraph("ID do aluguel-" + aluguel.getId()));
-      relatorio.add(new Paragraph("  -Valor total: R$" + aluguel.getValor()));
-      relatorio.add(new Paragraph("  -Data: " + aluguel.getData().format(formatadorDataAluguel)));
+    for (AluguelVO aluguel : alugueis) {
+      valorTotal += aluguel.getValor();
+      PdfPCell celula1 = new PdfPCell(new Phrase("" + aluguel.getId()));
+      PdfPCell celula2 = new PdfPCell(new Phrase(aluguel.getCliente().getNome()));
+      PdfPCell celula3 = new PdfPCell(new Phrase(aluguel.getCliente().getCpf()));
+      PdfPCell celula4 = new PdfPCell(new Phrase(formater.formatarValor(aluguel.getValor())));
+
+      tabela.addCell(celula1);
+      tabela.addCell(celula2);
+      tabela.addCell(celula3);
+      tabela.addCell(celula4);
+    }
+    PdfPCell celula1 = new PdfPCell(new Phrase("Total:"));
+    PdfPCell celula2 = new PdfPCell(new Phrase(""));
+    PdfPCell celula3 = new PdfPCell(new Phrase(""));
+    PdfPCell celula4 = new PdfPCell(new Phrase(formater.formatarValor(valorTotal)));
+
+    tabela.addCell(celula1);
+    tabela.addCell(celula2);
+    tabela.addCell(celula3);
+    tabela.addCell(celula4);
+
+    relatorio.add(tabela);
+
+    relatorio.close();
+  }
+
+  public void gerarRelatorioGeral(LocalDate dataInicial, LocalDate dataFinal)
+      throws DocumentException, SQLException, IOException, NullPointerException {
+    List<AluguelVO> alugueis;
+    if (dataInicial != null && dataFinal != null) {
+      alugueis = this.buscarPorIntervaloDeDias(dataInicial, dataFinal);
+    } else {
+      alugueis = this.buscarTodos();
+    }
+
+    LocalDateTime dataHoraAtual = LocalDateTime.now();
+    DateTimeFormatter formatadorNomeArquivo = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss");
+    DateTimeFormatter formatadorDataAluguel = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    Document relatorio = gerarPDF("RelatorioGeral-Bibly" + dataHoraAtual.format(formatadorNomeArquivo));
+
+    Integer totalDeAlugueis = alugueis.size();
+
+    if (totalDeAlugueis <= 0) {
+      relatorio.close();
+      return;
+    }
+
+    for (AluguelVO aluguel : alugueis) {
       relatorio.add(Chunk.NEWLINE);
+      relatorio.add(new Paragraph("ID do aluguel-" + aluguel.getId()));
+      relatorio.add(new Paragraph("  -Valor total: " + formater.formatarValor(aluguel.getValor())));
+      relatorio.add(new Paragraph("  -Data: " + aluguel.getData().format(formatadorDataAluguel)));
+    }
 
-      // relatorio.add(new Paragraph("ID do aluguel-" + aluguel.getId()));
-      // relatorio.add(new Paragraph(" Livros:"));
+    relatorio.close();
+  }
 
-      // List<AluguelLivroVO> aluguelLivros = aluguel.getLivros();
-      // Integer qtdLivrosAlugados = aluguelLivros.size();
+  public void gerarRelatorioPorCliente(LocalDate dataInicial, LocalDate dataFinal, AluguelVO aluguelCliente)
+      throws DocumentException, SQLException, IOException, NullPointerException {
+    List<AluguelVO> alugueis;
+    if (dataInicial != null && dataFinal != null) {
+      alugueis = this.buscarPorClienteEIntervaloDeDias(dataInicial, dataFinal, aluguelCliente);
+    } else {
+      alugueis = this.buscarPorCliente(aluguelCliente);
+    }
 
-      // if (qtdLivrosAlugados >= 0) {
-      // for (int n = 0; n < qtdLivrosAlugados; n++) {
-      // AluguelLivroVO aluguelLivro = aluguelLivros.get(n);
-      // LivroVO livro = new LivroBO().buscarPorId(aluguelLivro.getProduto()).get(0);
+    LocalDateTime dataHoraAtual = LocalDateTime.now();
+    DateTimeFormatter formatadorNomeArquivo = DateTimeFormatter.ofPattern("dd-MM-yyyy-HH-mm-ss");
+    DateTimeFormatter formatadorDataAluguel = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+    Document relatorio = gerarPDF("RelatorioPorCliente-Bibly" + aluguelCliente.getCliente().getCpf()
+        + dataHoraAtual.format(formatadorNomeArquivo));
 
-      // relatorio.add(new Paragraph(" Título: "));
-      // relatorio.add(new Paragraph(" Quantidade: "));
-      // relatorio.add(new Paragraph(" Valor unitário: "));
-      // relatorio.add(new Paragraph(" Valor Total: "));
-      // relatorio.add(Chunk.NEWLINE);
-      // }
-      // }
+    Integer totalDeAlugueis = alugueis.size();
 
-      // List<AluguelDiscoVO> aluguelDiscos = aluguel.getDiscos();
-      // Integer qtdDiscosAlugados = aluguelDiscos.size();
+    if (totalDeAlugueis <= 0) {
+      relatorio.close();
+      return;
+    }
+    relatorio.add(new Paragraph("Cliente:" + aluguelCliente.getCliente().getNome()));
+    relatorio.add(new Paragraph("  CPF: " + aluguelCliente.getCliente().getCpf()));
+    relatorio.add(new Paragraph("  Endereço: " + aluguelCliente.getCliente().getEndereco()));
+    relatorio.add(new Paragraph("  Número: " + aluguelCliente.getCliente().getCelular()));
+    relatorio.add(Chunk.NEWLINE);
 
-      // if (qtdDiscosAlugados >= 0) {
-      // for (int n = 0; n < qtdDiscosAlugados; n++) {
-      // AluguelDiscoVO aluguelDisco = aluguelDiscos.get(n);
-      // DiscoVO disco = new DiscoBO().buscarPorId(aluguelDisco.getProduto()).get(0);
-
-      // relatorio.add(new Paragraph(" Título: "));
-      // relatorio.add(new Paragraph(" Quantidade: "));
-      // relatorio.add(new Paragraph(" Valor unitário: "));
-      // relatorio.add(new Paragraph(" Valor Total: "));
-      // relatorio.add(Chunk.NEWLINE);
-      // }
-      // }
+    for (AluguelVO aluguel : alugueis) {
+      relatorio.add(Chunk.NEWLINE);
+      relatorio.add(new Paragraph("ID do aluguel-" + aluguel.getId()));
+      relatorio.add(new Paragraph("  -Valor total: " + formater.formatarValor(aluguel.getValor())));
+      relatorio.add(new Paragraph("  -Data: " + aluguel.getData().format(formatadorDataAluguel)));
     }
 
     relatorio.close();

@@ -1,6 +1,6 @@
 package model.VO;
 
-public class DiscoVO {
+public class DiscoVO implements ProdutoInterVO {
   private int id;
   private String titulo;
   private String artista;
@@ -36,6 +36,7 @@ public class DiscoVO {
   public void setTitulo(String titulo) {
     try {
       if ((titulo == null) || (titulo.equals(""))) {
+        // System.out.println(this.toString());
         throw new Exception("O disco deve conter um titulo.");
       }
 
@@ -96,7 +97,7 @@ public class DiscoVO {
         throw new Exception("O valor do disco n�o pode ser menor que 0.");
       }
 
-      this.valor = valor;
+      this.valor = Math.round(valor * 100.0) / 100.0;
 
     } catch (Exception erro) {
 

@@ -53,6 +53,31 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 		}
 	}
 
+	public ClienteVO buscarPorId(ClienteVO Cliente) throws SQLException {
+		try {
+			ClienteDAO ClienteDAO = new ClienteDAO();
+
+			if (Cliente.getId() <= 0) {
+				throw new Exception("Defina um id valido.");
+			}
+
+			ResultSet resposta = ClienteDAO.buscarPorId(Cliente);
+
+			ClienteVO c = new ClienteVO();
+
+			c.setId(resposta.getInt("id"));
+			c.setNome(resposta.getString("nome"));
+			c.setEndereco(resposta.getString("endereco"));
+			c.setCpf(resposta.getString("cpf"));
+			c.setCelular(resposta.getString("celular"));
+
+			return c;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
+		}
+	}
+
 	// BUSCAR TODOS
 	@Override
 	public List<ClienteVO> buscarTodos() throws SQLException {

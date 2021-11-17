@@ -17,7 +17,6 @@ public class AluguelDiscoBO extends BaseBO<AluguelDiscoVO> implements AluguelPro
     AluguelDiscoVO aluguelDisco = new AluguelDiscoVO();
     AluguelVO aluguel = new AluguelVO();
     DiscoVO disco = new DiscoVO();
-    DiscoBO discoBO = new DiscoBO();
 
     aluguel.setId(resposta.getInt("aluguel_id"));
     disco.setId(resposta.getInt("disco_id"));

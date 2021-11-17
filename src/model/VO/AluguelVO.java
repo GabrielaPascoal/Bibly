@@ -10,6 +10,7 @@ public class AluguelVO {
   private List<AluguelLivroVO> livros;
   private List<AluguelDiscoVO> discos;
   private LocalDate data;
+  private LocalDate devolucao;
 
   public ClienteVO getCliente() {
     return this.cliente;
@@ -59,7 +60,7 @@ public class AluguelVO {
         throw new Exception("O valor do aluguel n�o pode ser menor que 0.");
       }
 
-      this.valor = valor;
+      this.valor = Math.round(valor * 100.0) / 100.0;
 
     } catch (Exception erro) {
 
@@ -119,6 +120,25 @@ public class AluguelVO {
       }
 
       this.data = data;
+
+    } catch (Exception erro) {
+
+      System.err.println(erro);
+
+    }
+  }
+
+  public LocalDate getDevolucao() {
+    return this.devolucao;
+  }
+
+  public void setDevolucao(LocalDate devolucao) {
+    try {
+      if (devolucao == null) {
+        throw new Exception("A data de devolucao do aluguel deve ser informado.");
+      }
+
+      this.devolucao = devolucao;
 
     } catch (Exception erro) {
 

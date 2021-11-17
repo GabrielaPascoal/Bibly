@@ -70,7 +70,6 @@ public class DiscoBO implements BaseInterBO<DiscoVO> {
 					d.setTitulo(result.getString("titulo"));
 					d.setArtista(result.getString("artista"));
 					d.setEstilo(result.getString("estilo"));
-					;
 					d.setValor(result.getDouble("valor"));
 					d.setQuantidade(result.getInt("quantidade"));
 					disco.add(d);

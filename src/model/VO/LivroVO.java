@@ -141,7 +141,7 @@ public class LivroVO implements ProdutoInterVO {
         throw new Exception("O valor do livro não pode ser menor que 0.");
       }
 
-      this.valor = valor;
+      this.valor = Math.round(valor * 100.0) / 100.0;
 
     } catch (Exception erro) {
 
