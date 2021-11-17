@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.*?>
 <?import java.net.*?>
 <?import java.lang.*?>
 <?import javafx.scene.control.*?>
@@ -20,29 +22,29 @@
       </AnchorPane>
       <AnchorPane prefHeight="700.0" prefWidth="200.0" style="-fx-background-color: #D6D3D3;">
          <children>
-            <TableView fx:id="tabelaDevolucao" layoutX="14.0" layoutY="87.0" prefHeight="599.0" prefWidth="1338.0" stylesheets="@styles/tableStyle.css">
+            <TableView fx:id="tabelaDevolucao" layoutX="14.0" layoutY="22.0" prefHeight="560.0" prefWidth="1338.0" stylesheets="@styles/tableStyle.css">
                <columns>
-                  <TableColumn fx:id="nome" prefWidth="481.0" text="Nome" />
-                  <TableColumn fx:id="celular" prefWidth="390.0" text="Celular" />
-                  <TableColumn fx:id="dataRetirada" prefWidth="219.0" text="Data Retirada" />
-                  <TableColumn fx:id="valor" prefWidth="190.0" text="Valor" />
-                  <TableColumn minWidth="0.0" prefWidth="56.0" />
+                  <TableColumn fx:id="nome" prefWidth="481.0" text="Nome" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="celular" prefWidth="390.0" text="Celular" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="dataRetirada" prefWidth="272.0" text="Data Retirada" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="valor" prefWidth="188.0" text="Valor" style="-fx-alignment: CENTER;"/>
                </columns>
             </TableView>
-            <MenuButton layoutX="1159.0" layoutY="14.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="193.0" style="-fx-background-color: #7159c1; -fx-background-radius: 0;" text="Buscar por" textFill="WHITE">
+            <Button contentDisplay="RIGHT" layoutX="651.0" layoutY="605.0" mnemonicParsing="false" onAction="#devolver" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="20.0" />
+                  <Font name="System Bold" size="16.0" />
                </font>
-               <items>
-                  <MenuItem mnemonicParsing="false" text="Action 1" />
-                  <MenuItem mnemonicParsing="false" text="Action 2" />
-               </items>
-            </MenuButton>
-            <TextField layoutX="14.0" layoutY="14.0" prefHeight="51.0" prefWidth="1145.0" promptText="Digite a informação do produto" style="-fx-border-radius: 4px 0 0 4px; -fx-border-width: 1px; -fx-border-color: #7159c1; -fx-text-box-border: transparent;">
-               <font>
-                  <Font name="System Bold" size="20.0" />
-               </font>
-            </TextField>
+               <graphic>
+                  <ImageView fitHeight="32.0" fitWidth="32.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../assets/devolucao.png" />
+                     </image>
+                     <effect>
+                        <ColorAdjust brightness="1.0" />
+                     </effect>
+                  </ImageView>
+               </graphic>
+            </Button>
          </children>
       </AnchorPane>
    </children>

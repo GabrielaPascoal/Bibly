@@ -22,10 +22,10 @@
          <children>
             <TableView fx:id="tabelaProdutos" layoutX="14.0" layoutY="103.0" prefHeight="494.0" prefWidth="1334.0" stylesheets="@styles/tableStyle.css">
                <columns>
-                  <TableColumn fx:id="id" prefWidth="63.0" text="ID" />
-                  <TableColumn fx:id="produto" prefWidth="802.0" text="Produto" />
-                  <TableColumn fx:id="quantidade" prefWidth="190.0" text="Quantidade" />
-                  <TableColumn fx:id="valor" prefWidth="277.0" text="Valor" />
+                  <TableColumn fx:id="id" prefWidth="63.0" text="ID" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="produto" prefWidth="802.0" text="Produto" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="quantidade" prefWidth="190.0" text="Quantidade" style="-fx-alignment: CENTER;"/>
+                  <TableColumn fx:id="valor" prefWidth="277.0" text="Valor" style="-fx-alignment: CENTER;"/>
                </columns>
             </TableView>
             <AnchorPane layoutX="1228.0" layoutY="38.0">
@@ -54,7 +54,7 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </TextField>
-            <Button contentDisplay="RIGHT" layoutX="651.0" layoutY="613.0" mnemonicParsing="false" onAction="#adicionarCarrinho" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" textFill="WHITE">
+            <Button contentDisplay="RIGHT" layoutX="649.0" layoutY="614.0" mnemonicParsing="false" onAction="#adicionarCarrinho" prefHeight="64.0" prefWidth="64.0" style="-fx-background-color: #7159c1; -fx-background-radius: 16px; -fx-alignment: center;" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -69,6 +69,11 @@
                   </ImageView>
                </graphic>
             </Button>
+            <Label alignment="CENTER" fx:id="adicionado" layoutX="741.0" layoutY="626.0" opacity="0.0" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #04d361; -fx-background-radius: 20;" text="Label" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
          </children>
       </AnchorPane>
    </children>

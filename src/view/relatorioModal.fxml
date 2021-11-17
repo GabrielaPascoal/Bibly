@@ -26,14 +26,9 @@
                   <Font name="System Bold" size="18.0" />
                </font>
             </Button>
-            <Button alignment="CENTER" mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Por período" textFill="WHITE">
-               <font>
-                  <Font name="System Bold" size="18.0" />
-               </font>
-            </Button>
          </children>
       </VBox>
-      <Button alignment="CENTER" layoutX="180.0" layoutY="308.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Fatura mensal" textFill="WHITE">
+      <Button alignment="CENTER" layoutX="180.0" layoutY="308.0" mnemonicParsing="false" onAction="#fatura" prefHeight="40.0" prefWidth="240.0" style="-fx-background-color: #7159c1; -fx-background-radius: 8px;" text="Fatura mensal" textFill="WHITE">
          <font>
             <Font name="System Bold" size="18.0" />
          </font>
