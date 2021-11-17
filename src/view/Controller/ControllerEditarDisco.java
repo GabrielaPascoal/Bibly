@@ -123,7 +123,7 @@ public class ControllerEditarDisco implements Initializable {
 	}
 
 	@FXML
-	void voltar(ActionEvent event) {
+	void voltarDisco(ActionEvent event) {
 		try {
 			Telas.telaDisco();
 		} catch (IOException e) {
