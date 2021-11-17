@@ -52,7 +52,7 @@ public class ControlerUsuario implements Initializable {
 		ButtonType btnSim = new ButtonType("Sim");
 		ButtonType btnNao = new ButtonType("Não");
 		dialogoExe.setTitle("CONFIRMAÇÃO");
-		dialogoExe.setHeaderText("Deseja adicionar esse livro?");
+		dialogoExe.setHeaderText("Deseja adicionar esse usuario?");
 		dialogoExe.getButtonTypes().setAll(btnSim, btnNao);
 
 		dialogoExe.showAndWait().ifPresent(resposta -> {
@@ -83,11 +83,11 @@ public class ControlerUsuario implements Initializable {
 
 	@FXML
 	void editar(ActionEvent event) {
-		
+
 		UsuarioBO userbo = new UsuarioBO();
 		UsuarioVO uservo = new UsuarioVO();
 		uservo.setCpf(cpf.getText());
-		
+
 		try {
 			uservo = userbo.buscarPorCpf(uservo);
 			userbo.editar(uservo);
@@ -95,29 +95,43 @@ public class ControlerUsuario implements Initializable {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
-		
+
 	}
 
 	@FXML
 	void excluir(ActionEvent event) {
-		
-		UsuarioBO userbo = new UsuarioBO();
-		UsuarioVO uservo = new UsuarioVO();
-		uservo.setCpf(cpf.getText());
-		
-		try {
-			uservo = userbo.buscarPorCpf(uservo);
-			userbo.remover(uservo);
-		} catch (SQLException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-		
-		
-		
-		
+
+		Alert dialogoExe = new Alert(Alert.AlertType.CONFIRMATION);
+		ButtonType btnSim = new ButtonType("Sim");
+		ButtonType btnNao = new ButtonType("Não");
+		dialogoExe.setTitle("CONFIRMAÇÃO");
+		dialogoExe.setHeaderText("Deseja excluir esse usuario?");
+		dialogoExe.getButtonTypes().setAll(btnSim, btnNao);
+
+		dialogoExe.showAndWait().ifPresent(resposta -> {
+			if (resposta == btnSim) {
+
+				UsuarioBO userbo = new UsuarioBO();
+				UsuarioVO uservo = new UsuarioVO();
+				uservo.setCpf(cpf.getText());
+
+				try {
+					uservo = userbo.buscarPorCpf(uservo);
+					userbo.remover(uservo);
+				} catch (SQLException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+
+			} else if (resposta == btnNao) {
+
+				cpf.clear();
+				senha.clear();
+
+			}
+
+		});
+
 	}
 
 	@FXML
