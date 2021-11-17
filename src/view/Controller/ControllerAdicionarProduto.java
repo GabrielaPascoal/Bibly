@@ -3,6 +3,7 @@ package view.Controller;
 import java.io.IOException;
 import java.net.URL;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 
@@ -11,23 +12,21 @@ import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.AnchorPane;
-import javafx.stage.Stage;
 import model.BO.DiscoBO;
 import model.BO.LivroBO;
-import model.DAO.DiscoDAO;
-import model.VO.DiscoVO;
-import model.VO.LivroVO;
 import model.VO.ProdutoInterVO;
+import view.Telas;
 
 public class ControllerAdicionarProduto implements Initializable {
 
-  private static List<ProdutoInterVO> listaProduto;
+  private static List<ProdutoInterVO> listaProduto = new ArrayList<ProdutoInterVO>();
 
   @FXML
   private TableView<ProdutoInterVO> tabelaProdutos;
@@ -49,12 +48,12 @@ public class ControllerAdicionarProduto implements Initializable {
   private AnchorPane tipoDisco;
   @FXML
   private TextField tituloBusca;
+  @FXML
+  private Label adicionado;
 
   @FXML
   public void confirmar(ActionEvent event) throws IOException {
-    Stage modal = (Stage) tbTipo.getScene().getWindow();
-
-    modal.close();
+    Telas.telaAlugel();
   }
 
   @Override
@@ -77,10 +76,24 @@ public class ControllerAdicionarProduto implements Initializable {
 
   public void adicionarCarrinho() throws SQLException {
     ProdutoInterVO produto = tabelaProdutos.getSelectionModel().getSelectedItem();
-    listaProduto.add(produto);
+    boolean podeAdicionar = true;
+    if (produto.getQuantidade() <= 0) {
+      return;
+    }
 
-    ControllerAluguel controllerAluguel = new ControllerAluguel();
-    controllerAluguel.renderizarTabela();
+    for (ProdutoInterVO p : listaProduto) {
+      if (p.getClass().equals(produto.getClass())) {
+        podeAdicionar = p.getId() == produto.getId() ? false : true;
+      }
+    }
+
+    if (podeAdicionar) {
+      produto.setQuantidade(1);
+      listaProduto.add(produto);
+
+      adicionado.setOpacity(1);
+      adicionado.setText(produto.getTitulo() + " foi adicionado!");
+    }
   }
 
   private void initTable() throws SQLException {
@@ -93,26 +106,21 @@ public class ControllerAdicionarProduto implements Initializable {
 
   @FXML
   public ObservableList<ProdutoInterVO> atualizar() throws SQLException {
+
     if (tbTipo.isSelected()) {
       tipoLivro.setStyle("-fx-background-color: transparent");
       tipoDisco.setStyle("-fx-background-color: #7259c1; -fx-background-radius: 15;");
 
-      DiscoBO discoBO = new DiscoBO();
-      DiscoVO disco = new DiscoVO();
-      disco.setTitulo(tituloBusca.getText());
+      DiscoBO disco = new DiscoBO();
 
-      return FXCollections.observableArrayList(
-          (tituloBusca.getText().trim().isEmpty() ? discoBO.buscarTodos() : DiscoDAO.buscarPorTitulo(disco)));
+      return FXCollections.observableArrayList(disco.buscarTodos());
     }
 
     tipoLivro.setStyle("-fx-background-color: #7259c1; -fx-background-radius: 15;");
     tipoDisco.setStyle("-fx-background-color: transparent");
 
-    LivroBO livroBO = new LivroBO();
-    LivroVO livro = new LivroVO();
-    livro.setTitulo(tituloBusca.getText());
+    LivroBO livro = new LivroBO();
 
-    return FXCollections.observableArrayList(
-        (tituloBusca.getText().trim().isEmpty() ? livroBO.buscarTodos() : livroBO.buscarPorTitulo(livro)));
+    return FXCollections.observableArrayList(livro.buscarTodos());
   }
 }
