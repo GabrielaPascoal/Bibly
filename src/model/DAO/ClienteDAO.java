@@ -27,7 +27,7 @@ public class ClienteDAO extends BaseDAO<ClienteVO> implements BuscarInterDAO<Cli
 
 	public void remover(ClienteVO vo) throws SQLException {
 
-		String sqlDelete = "DELETE FROM cliente WHERE id = ?";
+		String sqlDelete = "DELETE FROM clientes WHERE id = ?";
 		PreparedStatement preparedStatement;
 		try {
 			preparedStatement = getConnection().prepareStatement(sqlDelete);

@@ -63,9 +63,6 @@ public class ControllerFaturaMensal implements Initializable {
     LocalDate dataInicial = LocalDate.of(anoValue, mes.getSelectionModel().getSelectedIndex() + 1, 1);
     LocalDate dataFinal = dataInicial.withDayOfMonth(dataInicial.lengthOfMonth());
 
-    System.out.println(dataInicial);
-    System.out.println(dataFinal);
-
     new AluguelBO().gerarFaturaMensal(dataInicial, dataFinal);
   }
 

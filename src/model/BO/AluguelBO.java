@@ -143,7 +143,7 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
       AluguelDAO aluguelDAO = new AluguelDAO();
       List<AluguelVO> alugueis = new ArrayList<AluguelVO>();
 
-      ResultSet resposta = aluguelDAO.buscarPorDevolucao();
+      ResultSet resposta = aluguelDAO.buscarPorIntervaloDeDias(dataMin, dataMax);
 
       while (resposta.next()) {
         AluguelVO aluguel = getAluguel(resposta);
@@ -329,6 +329,8 @@ public class AluguelBO extends BaseBO<AluguelVO> implements BuscarInterBO<Alugue
       tabela.addCell(celula3);
       tabela.addCell(celula4);
     }
+    valorTotal = Math.round(valorTotal * 100.0) / 100.0;
+    ;
     PdfPCell celula1 = new PdfPCell(new Phrase("Total:"));
     PdfPCell celula2 = new PdfPCell(new Phrase(""));
     PdfPCell celula3 = new PdfPCell(new Phrase(""));
