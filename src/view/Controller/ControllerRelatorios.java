@@ -21,6 +21,11 @@ public class ControllerRelatorios implements Initializable {
     Modals.abrirModal("relatorioClienteModal");
   }
 
+  @FXML
+  public void fatura(ActionEvent event) throws IOException {
+    Modals.abrirModal("faturaMensalModal");
+  }
+
   @Override
   public void initialize(URL location, ResourceBundle resources) {
     // TODO Auto-generated method stub
