@@ -120,8 +120,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 
 				List<ClienteVO> clientes = new ArrayList<ClienteVO>();
 
-				while (result.next()) {
-
+				do {
 					ClienteVO c = new ClienteVO();
 					c.setId(result.getInt("id"));
 					c.setNome(result.getString("nome"));
@@ -131,7 +130,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 					c.setCelular(result.getString("celular"));
 					clientes.add(c);
 
-				}
+				} while (result.next());
 
 				return clientes;
 			}
