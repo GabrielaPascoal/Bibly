@@ -11,7 +11,6 @@ import javafx.stage.Stage;
 public class Telas extends Application {
 
 	private static Stage pS;
-	private static Stage Ss;
 
 	public static Stage getpS() {
 		return pS;
@@ -19,14 +18,6 @@ public class Telas extends Application {
 
 	public static void setpS(Stage pS) {
 		Telas.pS = pS;
-	}
-
-	public static Stage getSs() {
-		return Ss;
-	}
-
-	public static void setSs(Stage ss) {
-		Ss = ss;
 	}
 
 	@Override

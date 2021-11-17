@@ -10,46 +10,41 @@ import model.DAO.BaseInterDAO;
 import model.DAO.LivroDAO;
 import model.VO.LivroVO;
 
-
 public class LivroBO implements BaseInterBO<LivroVO> {
 
 	static private BaseInterDAO<LivroVO> dao = new LivroDAO();
-	
+
 	@Override
 	public void inserir(LivroVO entidade) throws SQLException {
 
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorId(entidade);
 			if (resposta.next()) {
 				throw new Exception("Já existe livro cadastrado com esse ID.");
-			}
-			else {
+			} else {
 				dao.inserir(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
 	@Override
 	public void editar(LivroVO entidade) throws SQLException {
-		
+
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorId(entidade);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse livro.");
-			}
-			else {
+			} else {
 				dao.editar(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
@@ -57,37 +52,36 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 	public void remover(LivroVO entidade) throws SQLException {
 
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorId(entidade);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse livro.");
-			}
-			else {
+			} else {
 				dao.remover(entidade);
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
+		} catch (Exception erro) {
+			System.err.println(erro);
 		}
 	}
 
 	@Override
 	public List<LivroVO> buscarTodos() throws SQLException {
 		
+		List<LivroVO> livros = new LinkedList<LivroVO>();
+		
 		try {
 			ResultSet resposta = dao.buscarTodos();
 			if (!resposta.next()) {
 				throw new Exception("Não existe Livros.");
-			}
-			else {
+			} else {
+
 				
-				List<LivroVO> livros = new LinkedList<LivroVO>();
-				
+
 				do {
-	
+
 					LivroVO livroRecebe = new LivroVO();
-					
+
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
@@ -97,36 +91,33 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setValor(resposta.getDouble("valor"));
 					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 					livros.add(livroRecebe);
-					
-				}while(resposta.next());
-				
+
+				} while (resposta.next());
+
 				return livros;
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return livros;
 		}
 	}
-	
-	
+
 	public List<LivroVO> buscarPorAutor(LivroVO liv) throws SQLException {
-		
+
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorAutor(liv);
 			if (!resposta.next()) {
 				throw new Exception("Não existe esse autor.");
-			}
-			else {
-				
+			} else {
+
 				List<LivroVO> livros = new ArrayList<LivroVO>();
-				
-				while(resposta.next()) {
-					
+
+				while (resposta.next()) {
+
 					LivroVO livroRecebe = new LivroVO();
-					
+
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
@@ -136,35 +127,33 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setValor(resposta.getDouble("valor"));
 					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 					livros.add(livroRecebe);
-					
+
 				}
-				
+
 				return livros;
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
 		}
 	}
-		
+
 	public List<LivroVO> buscarPorAno(LivroVO liv) throws SQLException {
-		
+
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorAno(liv);
 			if (!resposta.next()) {
 				throw new Exception("Não existe nenhum livro cadastrado desse ano.");
-			}
-			else {
-				
+			} else {
+
 				List<LivroVO> livros = new ArrayList<LivroVO>();
-				
-				while(resposta.next()) {
-					
+
+				while (resposta.next()) {
+
 					LivroVO livroRecebe = new LivroVO();
-					
+
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
@@ -174,35 +163,33 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setValor(resposta.getDouble("valor"));
 					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 					livros.add(livroRecebe);
-					
+
 				}
-				
+
 				return livros;
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
 		}
 	}
-	
+
 	public List<LivroVO> buscarPorGenero(LivroVO liv) throws SQLException {
-		
+
 		LivroDAO livro = new LivroDAO();
-		
+
 		try {
 			ResultSet resposta = livro.buscarPorGenero(liv);
 			if (!resposta.next()) {
 				throw new Exception("Não existe nenhum livro cadastrado com desse genero.");
-			}
-			else {
-				
+			} else {
+
 				List<LivroVO> livros = new ArrayList<LivroVO>();
-				
-				while(resposta.next()) {
-					
+
+				while (resposta.next()) {
+
 					LivroVO livroRecebe = new LivroVO();
-					
+
 					livroRecebe.setId(resposta.getInt("id"));
 					livroRecebe.setTitulo(resposta.getString("titulo"));
 					livroRecebe.setAutor(resposta.getString("autor"));
@@ -212,35 +199,65 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 					livroRecebe.setValor(resposta.getDouble("valor"));
 					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
 					livros.add(livroRecebe);
-					
+
 				}
-				
+
 				return livros;
 			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
 		}
 	}
-	
+
 	public List<LivroVO> buscarPorTitulo(LivroVO liv) throws SQLException {
-	
-	LivroDAO livro = new LivroDAO();
-	
-	try {
-		ResultSet resposta = livro.buscarPorTitulo(liv);
-		if (!resposta.next()) {
-			throw new Exception("Não existe nenhum livro cadastrado com esse titulo.");
+
+		LivroDAO livro = new LivroDAO();
+
+		try {
+			ResultSet resposta = livro.buscarPorTitulo(liv);
+			if (!resposta.next()) {
+				throw new Exception("Não existe nenhum livro cadastrado com esse titulo.");
+			} else {
+
+				List<LivroVO> livros = new ArrayList<LivroVO>();
+
+				while (resposta.next()) {
+
+					LivroVO livroRecebe = new LivroVO();
+
+					livroRecebe.setId(resposta.getInt("id"));
+					livroRecebe.setTitulo(resposta.getString("titulo"));
+					livroRecebe.setAutor(resposta.getString("autor"));
+					livroRecebe.setGenero(resposta.getString("genero"));
+					livroRecebe.setAno(resposta.getInt("ano"));
+					livroRecebe.setPagina(resposta.getInt("paginas"));
+					livroRecebe.setValor(resposta.getDouble("valor"));
+					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
+					livros.add(livroRecebe);
+
+				}
+
+				return livros;
+			}
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
 		}
-		else {
-			
-			List<LivroVO> livros = new ArrayList<LivroVO>();
-			
-			while(resposta.next()) {
-				
+	}
+
+	public LivroVO buscarPorId(LivroVO liv) throws SQLException {
+
+		LivroDAO livro = new LivroDAO();
+
+		try {
+			ResultSet resposta = livro.buscarPorId(liv);
+			if (!resposta.next()) {
+				throw new Exception("Não existe nenhum livro cadastrado com esse titulo.");
+			} else {
+
 				LivroVO livroRecebe = new LivroVO();
-				
+
 				livroRecebe.setId(resposta.getInt("id"));
 				livroRecebe.setTitulo(resposta.getString("titulo"));
 				livroRecebe.setAutor(resposta.getString("autor"));
@@ -249,55 +266,13 @@ public class LivroBO implements BaseInterBO<LivroVO> {
 				livroRecebe.setPagina(resposta.getInt("paginas"));
 				livroRecebe.setValor(resposta.getDouble("valor"));
 				livroRecebe.setQuantidade(resposta.getInt("quantidade"));
-				livros.add(livroRecebe);
-				
+
+				return livroRecebe;
 			}
-			
-			return livros;
+		} catch (Exception erro) {
+			System.err.println(erro);
+			return null;
 		}
-	}
-	catch (Exception erro) {
-	      System.err.println(erro);
-	      return null;
-	}
-  }
-	
-	public List<LivroVO> buscarPorId(LivroVO liv) throws SQLException {
-		
-		LivroDAO livro = new LivroDAO();
-		
-		try {
-			ResultSet resposta = livro.buscarPorId(liv);
-			if (!resposta.next()) {
-				throw new Exception("Não existe nenhum livro cadastrado com esse titulo.");
-			}
-			else {
-				
-				List<LivroVO> livros = new ArrayList<LivroVO>();
-				
-				while(resposta.next()) {
-					
-					LivroVO livroRecebe = new LivroVO();
-					
-					livroRecebe.setId(resposta.getInt("id"));
-					livroRecebe.setTitulo(resposta.getString("titulo"));
-					livroRecebe.setAutor(resposta.getString("autor"));
-					livroRecebe.setGenero(resposta.getString("genero"));
-					livroRecebe.setAno(resposta.getInt("ano"));
-					livroRecebe.setPagina(resposta.getInt("paginas"));
-					livroRecebe.setValor(resposta.getDouble("valor"));
-					livroRecebe.setQuantidade(resposta.getInt("quantidade"));
-					livros.add(livroRecebe);
-					
-				}
-				
-				return livros;
-			}
-		}
-		catch (Exception erro) {
-		      System.err.println(erro);
-		      return null;
-		}
-	
+
 	}
 }
