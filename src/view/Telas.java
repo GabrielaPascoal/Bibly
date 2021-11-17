@@ -44,6 +44,20 @@ public class Telas extends Application {
 		pS.setScene(cena);
 	}
 
+	public static void telaAdicionarProduto() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("adicionarProduto.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+	}
+
+	public static void telaFinalizarAluguel() throws IOException {
+
+		Parent root = FXMLLoader.load(Telas.class.getResource("finalizarAluguelPage.fxml"));
+		Scene cena = new Scene(root);
+		pS.setScene(cena);
+	}
+
 	public static void telaDevolucao() throws IOException {
 
 		Parent root = FXMLLoader.load(Telas.class.getResource("devolucaoPage.fxml"));
