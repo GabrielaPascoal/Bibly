@@ -127,7 +127,6 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 					c.setNome(result.getString("nome"));
 					c.setCpf(result.getString("cpf"));
 					c.setEndereco(result.getString("endereco"));
-					;
 					c.setCelular(result.getString("celular"));
 					clientes.add(c);
 
@@ -220,7 +219,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 				throw new Exception("Erro.");
 			} else {
 
-				while (result.next()) {
+				do {
 					ClienteVO c = new ClienteVO();
 
 					c.setId(result.getInt("id"));
@@ -231,7 +230,7 @@ public class ClienteBO implements BaseInterBO<ClienteVO> {
 					c.setCelular(result.getString("celular"));
 					cliente.add(c);
 
-				}
+				}while (result.next());
 
 				return cliente;
 			}

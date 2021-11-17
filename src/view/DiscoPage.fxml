@@ -50,8 +50,8 @@
                </font>
             </TextField>
             <CheckBox fx:id="tituloCheck" layoutX="1174.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Título" textFill="#7159c1" />
-            <CheckBox fx:id="autorCheck" layoutX="1174.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Artista" textFill="#7159c1" />
-            <CheckBox fx:id="generoCheck" layoutX="1258.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Estilo" textFill="#7159c1" />
+            <CheckBox fx:id="nomeCheck" layoutX="1174.0" layoutY="42.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Artista" textFill="#7159c1" />
+            <CheckBox fx:id="estiloCheck" layoutX="1258.0" layoutY="14.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="71.0" style="-fx-cursor: Hand;" text="Estilo" textFill="#7159c1" />
          </children>
       </AnchorPane>
    </children>

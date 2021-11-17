@@ -145,14 +145,14 @@ public class ControllerDisco implements Initializable {
 				// 5. Add sorted (and filtered) data to the table.
 				tabelaDiscos.setItems(sortedData);
 				
-        // BOTÕES
+        // BOTï¿½ES
 
 				Botao.initButtons(deletar, 25, LIXEIRA, "svg-roxo", (DiscoVO disco, ActionEvent event) -> {
 
 					Alert dialogoExe = new Alert(Alert.AlertType.CONFIRMATION);
 					ButtonType btnSim = new ButtonType("Sim");
-					ButtonType btnNao = new ButtonType("Não");
-					dialogoExe.setTitle("CONFIRMAÇÃO");
+					ButtonType btnNao = new ButtonType("Nï¿½o");
+					dialogoExe.setTitle("CONFIRMAï¿½ï¿½O");
 					dialogoExe.setHeaderText("Deseja adicionar esse disco?");
 					dialogoExe.getButtonTypes().setAll(btnSim, btnNao);
 
@@ -199,7 +199,6 @@ public class ControllerDisco implements Initializable {
 					}
 				});
 			}
-
 	
 	@FXML
 	public ObservableList<DiscoVO> atualizar() throws SQLException {
